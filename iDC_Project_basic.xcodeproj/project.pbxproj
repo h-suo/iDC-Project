@@ -10,9 +10,16 @@
 		458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */; };
 		458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */; };
 		458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADC29B9A5FA00E48DBF /* ViewController.swift */; };
-		458E5AE029B9A5FA00E48DBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458E5ADE29B9A5FA00E48DBF /* Main.storyboard */; };
 		458E5AE229B9A5FB00E48DBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458E5AE129B9A5FB00E48DBF /* Assets.xcassets */; };
 		458E5AE529B9A5FB00E48DBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458E5AE329B9A5FB00E48DBF /* LaunchScreen.storyboard */; };
+		458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AF029B9A73F00E48DBF /* PostViewModel.swift */; };
+		458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AF229B9A75300E48DBF /* PostForm.swift */; };
+		458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AF429B9A7BC00E48DBF /* LoginViewController.swift */; };
+		458E5AF729B9A7D000E48DBF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AF629B9A7D000E48DBF /* TabBarController.swift */; };
+		458E5AF929B9A7DF00E48DBF /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AF829B9A7DF00E48DBF /* PostDetailViewController.swift */; };
+		458E5AFB29B9A7FC00E48DBF /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */; };
+		458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFC29B9A80800E48DBF /* SettingViewController.swift */; };
+		458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +27,17 @@
 		458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		458E5ADC29B9A5FA00E48DBF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		458E5ADF29B9A5FA00E48DBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		458E5AE129B9A5FB00E48DBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		458E5AE429B9A5FB00E48DBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		458E5AE629B9A5FB00E48DBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458E5AF029B9A73F00E48DBF /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		458E5AF229B9A75300E48DBF /* PostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostForm.swift; sourceTree = "<group>"; };
+		458E5AF429B9A7BC00E48DBF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		458E5AF629B9A7D000E48DBF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		458E5AF829B9A7DF00E48DBF /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		458E5AFC29B9A80800E48DBF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,62 @@
 		458E5AD729B9A5FA00E48DBF /* iDC_Project_basic */ = {
 			isa = PBXGroup;
 			children = (
-				458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */,
-				458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */,
-				458E5ADC29B9A5FA00E48DBF /* ViewController.swift */,
-				458E5ADE29B9A5FA00E48DBF /* Main.storyboard */,
+				458E5AEC29B9A6D300E48DBF /* Delegate */,
+				458E5AED29B9A6F400E48DBF /* Model */,
+				458E5AEE29B9A70E00E48DBF /* View */,
+				458E5AEF29B9A72200E48DBF /* ViewModel */,
 				458E5AE129B9A5FB00E48DBF /* Assets.xcassets */,
 				458E5AE329B9A5FB00E48DBF /* LaunchScreen.storyboard */,
 				458E5AE629B9A5FB00E48DBF /* Info.plist */,
 			);
 			path = iDC_Project_basic;
+			sourceTree = "<group>";
+		};
+		458E5AEC29B9A6D300E48DBF /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */,
+				458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		458E5AED29B9A6F400E48DBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				458E5AF229B9A75300E48DBF /* PostForm.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		458E5AEE29B9A70E00E48DBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				458E5AF429B9A7BC00E48DBF /* LoginViewController.swift */,
+				458E5AF629B9A7D000E48DBF /* TabBarController.swift */,
+				458E5ADC29B9A5FA00E48DBF /* ViewController.swift */,
+				458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */,
+				458E5AF829B9A7DF00E48DBF /* PostDetailViewController.swift */,
+				458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */,
+				458E5AFC29B9A80800E48DBF /* SettingViewController.swift */,
+				458E5B0029B9ACAD00E48DBF /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		458E5AEF29B9A72200E48DBF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				458E5AF029B9A73F00E48DBF /* PostViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		458E5B0029B9ACAD00E48DBF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +188,6 @@
 			files = (
 				458E5AE529B9A5FB00E48DBF /* LaunchScreen.storyboard in Resources */,
 				458E5AE229B9A5FB00E48DBF /* Assets.xcassets in Resources */,
-				458E5AE029B9A5FA00E48DBF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +198,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458E5AF929B9A7DF00E48DBF /* PostDetailViewController.swift in Sources */,
+				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
+				458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */,
 				458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */,
 				458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */,
+				458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */,
+				458E5AFB29B9A7FC00E48DBF /* AlarmViewController.swift in Sources */,
+				458E5AF729B9A7D000E48DBF /* TabBarController.swift in Sources */,
 				458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */,
+				458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */,
+				458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		458E5ADE29B9A5FA00E48DBF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				458E5ADF29B9A5FA00E48DBF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		458E5AE329B9A5FB00E48DBF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,7 +351,7 @@
 				INFOPLIST_FILE = iDC_Project_basic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,7 +378,7 @@
 				INFOPLIST_FILE = iDC_Project_basic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
