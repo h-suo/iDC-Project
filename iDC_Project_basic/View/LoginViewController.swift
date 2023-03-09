@@ -13,13 +13,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
                 
         setupUI()
-//        setupConstraints()
+        setupLayout()
     }
         
     // MARK: - Setup UI
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "IMG_1622")
+//        iv.image = UIImage(named: "pencil.circle.fill")
+        iv.backgroundColor = .white
         
         return iv
     }()
@@ -40,19 +41,22 @@ class LoginViewController: UIViewController {
         self.view.addSubview(LoginButton)
     }
     
-    // MARK: - Setup Constraints
-//    func setupConstraints() {
-//        imageView.snp.makeConstraints { make in
-//            make.width.equalTo(120)
-//            make.height.equalTo(120)
-//            make.centerX.equalToSuperview()
-//            make.top.equalToSuperview().offset(300)
-//        }
-//        SingInButton.snp.makeConstraints { make in
-//            make.width.equalTo(200)
-//            make.height.equalTo(40)
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(imageView.snp.bottom).offset(40)
-//        }
-//    }
+    // MARK: - Setup Layout
+    func setupLayout() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        LoginButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: 120),
+            imageView.widthAnchor.constraint(equalToConstant: 120),
+            imageView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: -60)
+        ])
+        NSLayoutConstraint.activate([
+            LoginButton.heightAnchor.constraint(equalToConstant: 40),
+            LoginButton.widthAnchor.constraint(equalToConstant: 200),
+            LoginButton.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            LoginButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 40)
+        ])
+    }    
 }

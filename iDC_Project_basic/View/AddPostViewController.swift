@@ -17,12 +17,12 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         setupNavigation()
         navigationItemSetting()
         setupUI()
-//        setupConstraints()
+        setupLayout()
     }
     
     // MARK: - Setup Navigation
     func setupNavigation() {
-        self.navigationItem.title = "Add Post"
+        self.navigationItem.title = "Post"
         self.navigationController?.navigationBar.backgroundColor = .black
         self.navigationController?.overrideUserInterfaceStyle = .dark
         self.navigationItem.largeTitleDisplayMode = .never
@@ -95,24 +95,28 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         self.view.addSubview(textCountLabel)
     }
     
-//    // MARK: - Setup Constraints
-//    func setupConstraints() {
-//        titleTextField.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(12)
-//            make.trailing.equalToSuperview().offset(-12)
-//            make.height.equalTo(40)
-//            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-//        }
-//        textView.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(12)
-//            make.trailing.equalToSuperview().offset(-12)
-//            make.top.equalTo(titleTextField.snp.bottom).offset(20)
-//            make.height.equalTo(300)
-//        }
-//        textCountLabel.snp.makeConstraints { make in
-//            make.trailing.equalTo(textView).offset(-12)
-//            make.bottom.equalTo(textView).offset(-12)
-//            make.width.equalTo(80)
-//        }
-//    }
+    // MARK: - Setup Layout
+    func setupLayout() {
+        titleTextField.translatesAutoresizingMaskIntoConstraints = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleTextField.heightAnchor.constraint(equalToConstant: 40),
+            titleTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            titleTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
+        ])
+        NSLayoutConstraint.activate([
+            textView.heightAnchor.constraint(equalToConstant: 300),
+            textView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 20),
+            textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
+        ])
+        NSLayoutConstraint.activate([
+            textCountLabel.widthAnchor.constraint(equalToConstant: 80),
+            textCountLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: -12),
+            textCountLabel.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: -12)
+        ])
+    }
 }

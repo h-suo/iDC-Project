@@ -14,7 +14,7 @@ class PostDetailiViewController: UIViewController {
         
         setupNavigation()
         setupUI()
-//        setupConstraints()
+        setupLayout()
     }
     
     // MARK: - Setup Navigation
@@ -32,7 +32,7 @@ class PostDetailiViewController: UIViewController {
         return tl
     }()
     
-    let tiemLabel: UILabel = {
+    let timeLabel: UILabel = {
         let tl = UILabel()
         tl.font = UIFont.systemFont(ofSize: 14)
         tl.textColor = .gray
@@ -52,27 +52,31 @@ class PostDetailiViewController: UIViewController {
     func setupUI() {
         self.view.backgroundColor = .black
         self.view.addSubview(titleLabel)
-        self.view.addSubview(tiemLabel)
+        self.view.addSubview(timeLabel)
         self.view.addSubview(textView)
     }
 
-//    // MARK: - Setup Constraints
-//    func setupConstraints() {
-//        titleLabel.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-//        }
-//        tiemLabel.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//            make.top.equalTo(titleLabel.snp.bottom)
-//        }
-//        textView.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(12)
-//            make.trailing.equalToSuperview().offset(-12)
-//            make.top.equalTo(tiemLabel.snp.bottom).offset(12)
-//            make.height.equalTo(300)
-//        }
-//    }
+    // MARK: - Setup Layout
+    func setupLayout() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
+        NSLayoutConstraint.activate([
+            timeLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            timeLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            timeLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
+        ])
+        NSLayoutConstraint.activate([
+            textView.heightAnchor.constraint(equalToConstant: 300),
+            textView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 12),
+            textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
+        ])
+    }
 }
