@@ -20,6 +20,7 @@
 		458E5AFB29B9A7FC00E48DBF /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */; };
 		458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFC29B9A80800E48DBF /* SettingViewController.swift */; };
 		458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */; };
+		458E5B0529BCBCD200E48DBF /* postService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5B0429BCBCD200E48DBF /* postService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		458E5AFC29B9A80800E48DBF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		458E5B0429BCBCD200E48DBF /* postService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +73,10 @@
 			isa = PBXGroup;
 			children = (
 				458E5AEC29B9A6D300E48DBF /* Delegate */,
-				458E5AED29B9A6F400E48DBF /* Model */,
-				458E5AEE29B9A70E00E48DBF /* View */,
-				458E5AEF29B9A72200E48DBF /* ViewModel */,
+				458E5B0329BCBC8D00E48DBF /* Services */,
+				458E5AED29B9A6F400E48DBF /* Models */,
+				458E5AEE29B9A70E00E48DBF /* Views */,
+				458E5AEF29B9A72200E48DBF /* ViewModels */,
 				458E5AE129B9A5FB00E48DBF /* Assets.xcassets */,
 				458E5AE329B9A5FB00E48DBF /* LaunchScreen.storyboard */,
 				458E5AE629B9A5FB00E48DBF /* Info.plist */,
@@ -90,15 +93,15 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		458E5AED29B9A6F400E48DBF /* Model */ = {
+		458E5AED29B9A6F400E48DBF /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				458E5AF229B9A75300E48DBF /* PostForm.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		458E5AEE29B9A70E00E48DBF /* View */ = {
+		458E5AEE29B9A70E00E48DBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				458E5AF429B9A7BC00E48DBF /* LoginViewController.swift */,
@@ -110,15 +113,15 @@
 				458E5AFC29B9A80800E48DBF /* SettingViewController.swift */,
 				458E5B0029B9ACAD00E48DBF /* Cell */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		458E5AEF29B9A72200E48DBF /* ViewModel */ = {
+		458E5AEF29B9A72200E48DBF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				458E5AF029B9A73F00E48DBF /* PostViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		458E5B0029B9ACAD00E48DBF /* Cell */ = {
@@ -126,6 +129,14 @@
 			children = (
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		458E5B0329BCBC8D00E48DBF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				458E5B0429BCBCD200E48DBF /* postService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +220,7 @@
 				458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */,
 				458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */,
 				458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */,
+				458E5B0529BCBCD200E48DBF /* postService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

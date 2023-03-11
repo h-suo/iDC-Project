@@ -8,5 +8,9 @@
 import Foundation
 
 class ViewModel {
+    var posts: [PostForm] = []
     
+    init(posts: [PostForm]) {
+        self.posts = posts
+    }
 }
