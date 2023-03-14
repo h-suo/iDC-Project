@@ -41,9 +41,7 @@ class PostViewModel {
          }
          }
          }*/
-        
-        print(posts)
-        
+                
         return posts
     }
 }

@@ -11,27 +11,28 @@ class ViewController: UITableViewController {
     
     var vm: PostViewModel = PostViewModel.shared
     let cellId = "HomeTableViewCell"
-    var posts: [PostForm]?
+    var posts: [PostForm] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.dataSource = nil
-        
-        roadData()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         setupUI()
         setupLayout()
         setupNavigation()
         navigationItemSetting()
+        
+        roadData()
     }
     
     func roadData() {
         Task(priority: .userInitiated) {
             posts = try await vm.getPost()
+            self.tableView.reloadData()
+            print("VC: \(posts)")
         }
-        
-        self.tableView.reloadData()
     }
     
     // MARK: - Setup Navigation
@@ -52,15 +53,15 @@ class ViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = posts?.count else { return 0 }
+        //        guard let count = posts?.count else { return 0 }
         
-        return count
+        return posts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HomeTableViewCell
         
-        guard let posts = posts else { return cell}
+        //        guard let posts = posts else { return cell}
         
         print("Cell:\(posts)")
         
