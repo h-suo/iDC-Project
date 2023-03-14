@@ -7,12 +7,28 @@
 
 import Foundation
 
-struct PostForm: Decodable {
-    var id: Int
-    var title: String
-    var description: String
-    var comment: [String]
-    var time: String
+struct PostForm {
+    var id: Int?
+    var title: String?
+    var description: String?
+    var comment: [String]?
+    var time: String?
+    
+    init (id: Int, title: String, description: String, comment: [String], time: String) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.comment = comment
+        self.time = time
+    }
+    
+    init?(dictionary: [String:Any]) {
+        self.id = dictionary["id"] as? Int
+        self.title = dictionary["title"] as? String
+        self.description = dictionary["description"] as? String
+        self.comment = dictionary["comment"] as? [String]
+        self.time = dictionary["time"] as? String
+    }
 }
 
 extension PostForm {

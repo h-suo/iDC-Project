@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4564202429BDE729007CA516 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4564202329BDE729007CA516 /* FirebaseAnalytics */; };
-		4564202629BDE729007CA516 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 4564202529BDE729007CA516 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		453D797B29C0534A00444F5C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797A29C0534A00444F5C /* HomeTableViewCell.swift */; };
 		4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4564202729BDEB7E007CA516 /* GoogleService-Info.plist */; };
 		458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */; };
 		458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */; };
@@ -24,9 +23,13 @@
 		458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFC29B9A80800E48DBF /* SettingViewController.swift */; };
 		458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */; };
 		458E5B0529BCBCD200E48DBF /* postService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5B0429BCBCD200E48DBF /* postService.swift */; };
+		EA67BF6A8D6A37E897B96534 /* Pods_iDC_Project_basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02DE4FF5ECB7093FAA7D51A7 /* Pods-iDC_Project_basic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.release.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.release.xcconfig"; sourceTree = "<group>"; };
+		3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDC_Project_basic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		453D797A29C0534A00444F5C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		4564202729BDEB7E007CA516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		458E5AD529B9A5FA00E48DBF /* iDC_Project_basic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDC_Project_basic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		458E5AFC29B9A80800E48DBF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		458E5B0429BCBCD200E48DBF /* postService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postService.swift; sourceTree = "<group>"; };
+		EA7C1219EA2E1AF636A969F3 /* Pods-iDC_Project_basic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.debug.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4564202429BDE729007CA516 /* FirebaseAnalytics in Frameworks */,
-				4564202629BDE729007CA516 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				EA67BF6A8D6A37E897B96534 /* Pods_iDC_Project_basic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +67,8 @@
 			children = (
 				458E5AD729B9A5FA00E48DBF /* iDC_Project_basic */,
 				458E5AD629B9A5FA00E48DBF /* Products */,
+				8B2D0602CE661A54AC1A6C6D /* Pods */,
+				48CEC43677884165E681D111 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +139,7 @@
 		458E5B0029B9ACAD00E48DBF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				453D797A29C0534A00444F5C /* HomeTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -146,6 +152,23 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		48CEC43677884165E681D111 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B2D0602CE661A54AC1A6C6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA7C1219EA2E1AF636A969F3 /* Pods-iDC_Project_basic.debug.xcconfig */,
+				02DE4FF5ECB7093FAA7D51A7 /* Pods-iDC_Project_basic.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,19 +176,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 458E5AE929B9A5FB00E48DBF /* Build configuration list for PBXNativeTarget "iDC_Project_basic" */;
 			buildPhases = (
+				33CE08AAFB75F1ADBE075FD0 /* [CP] Check Pods Manifest.lock */,
 				458E5AD129B9A5FA00E48DBF /* Sources */,
 				458E5AD229B9A5FA00E48DBF /* Frameworks */,
 				458E5AD329B9A5FA00E48DBF /* Resources */,
+				86CA81E7E5331D891900BE92 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iDC_Project_basic;
-			packageProductDependencies = (
-				4564202329BDE729007CA516 /* FirebaseAnalytics */,
-				4564202529BDE729007CA516 /* FirebaseAnalyticsWithoutAdIdSupport */,
-			);
 			productName = iDC_Project_basic;
 			productReference = 458E5AD529B9A5FA00E48DBF /* iDC_Project_basic.app */;
 			productType = "com.apple.product-type.application";
@@ -194,9 +215,6 @@
 				Base,
 			);
 			mainGroup = 458E5ACC29B9A5FA00E48DBF;
-			packageReferences = (
-				4564202229BDE729007CA516 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-			);
 			productRefGroup = 458E5AD629B9A5FA00E48DBF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -219,6 +237,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		33CE08AAFB75F1ADBE075FD0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iDC_Project_basic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86CA81E7E5331D891900BE92 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		458E5AD129B9A5FA00E48DBF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -226,6 +286,7 @@
 			files = (
 				458E5AF929B9A7DF00E48DBF /* PostDetailViewController.swift in Sources */,
 				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
+				453D797B29C0534A00444F5C /* HomeTableViewCell.swift in Sources */,
 				458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */,
 				458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */,
 				458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */,
@@ -369,6 +430,7 @@
 		};
 		458E5AEA29B9A5FB00E48DBF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA7C1219EA2E1AF636A969F3 /* Pods-iDC_Project_basic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -396,6 +458,7 @@
 		};
 		458E5AEB29B9A5FB00E48DBF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02DE4FF5ECB7093FAA7D51A7 /* Pods-iDC_Project_basic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -443,30 +506,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4564202229BDE729007CA516 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4564202329BDE729007CA516 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4564202229BDE729007CA516 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		4564202529BDE729007CA516 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4564202229BDE729007CA516 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 458E5ACD29B9A5FA00E48DBF /* Project object */;
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class AddPostViewController: UIViewController, UITextViewDelegate {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,8 +29,13 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     }
     
     func navigationItemSetting() {
-        let rightButton = UIBarButtonItem(title: "write", style: .plain, target: self, action: nil)
+        let rightButton = UIBarButtonItem(title: "write", style: .plain, target: self, action: #selector(writeButtonTapped))
         self.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    // MARK: - Setup function
+    @IBAction func writeButtonTapped(_ sender: Any) {
+        
     }
     
     // MARK: - Setup TextView
