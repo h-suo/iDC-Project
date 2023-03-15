@@ -19,19 +19,6 @@ class HomeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - update UI
-    func updateUI(_ posts: PostForm) {
-        self.titleLabel.text = posts.title
-        self.descriptionLabel.text = posts.description
-        self.timeLabel.text = posts.time
-        self.selectionStyle = .none
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-    }
-    
     // MARK: - Setup UI
     let titleLabel: UILabel = {
         let tl = UILabel()

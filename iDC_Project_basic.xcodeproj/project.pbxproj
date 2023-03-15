@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		453D797B29C0534A00444F5C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797A29C0534A00444F5C /* HomeTableViewCell.swift */; };
+		453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */; };
 		4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4564202729BDEB7E007CA516 /* GoogleService-Info.plist */; };
 		458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */; };
 		458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		02DE4FF5ECB7093FAA7D51A7 /* Pods-iDC_Project_basic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.release.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.release.xcconfig"; sourceTree = "<group>"; };
 		3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDC_Project_basic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		453D797A29C0534A00444F5C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		4564202729BDEB7E007CA516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		458E5AD529B9A5FA00E48DBF /* iDC_Project_basic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDC_Project_basic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				453D797A29C0534A00444F5C /* HomeTableViewCell.swift */,
+				453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				458E5AF729B9A7D000E48DBF /* TabBarController.swift in Sources */,
 				458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */,
 				458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */,
+				453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */,
 				458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */,
 				458E5B0529BCBCD200E48DBF /* postService.swift in Sources */,
 			);

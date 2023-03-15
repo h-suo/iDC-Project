@@ -16,8 +16,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         
         setupUI()
         setupLayout()
@@ -79,8 +79,7 @@ class ViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = backButton
     }
     
-    // MARK: - Table view data source
-    
+    // MARK: - TableView Code
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        guard let count = posts?.count else { return 0 }
         
