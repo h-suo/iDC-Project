@@ -53,6 +53,10 @@ class ViewController: UITableViewController {
         }
     }
     
+    @IBAction func plusViewTapped() {
+        self.navigationController?.pushViewController(AddPostViewController(), animated: true)
+    }
+    
     // MARK: - Setup TableView Refresh Controller
     func setupRefreshController() {
         self.tableView.refreshControl = UIRefreshControl()
@@ -112,6 +116,8 @@ class ViewController: UITableViewController {
         self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellId)
         self.tableView.rowHeight = 80
         self.view.addSubview(imageView)
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusViewTapped)))
     }
     
     // MARK: - Setup Layout

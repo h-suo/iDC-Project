@@ -39,6 +39,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     @IBAction func writeButtonTapped(_ sender: Any) {
 //        guard let newPostid = vm.posts[0].id else { return }
         vm.writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: "\(Date())")
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Setup TextView
