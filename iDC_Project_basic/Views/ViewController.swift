@@ -33,7 +33,7 @@ class ViewController: UITableViewController {
             do {
                 posts = try await vm.getPost()
                 self.tableView.reloadData()
-                print("VC: \(posts)")
+                print("road Data success")
             } catch {
                 print("Error loading post: \(error)")
             }
@@ -45,7 +45,7 @@ class ViewController: UITableViewController {
             do {
                 posts = try await vm.getPost()
                 self.tableView.reloadData()
-                print("VC: \(posts)")
+                print("reload Data success")
                 refreshControl?.endRefreshing()
             } catch {
                 print("Error loading post: \(error)")
@@ -88,7 +88,6 @@ class ViewController: UITableViewController {
         
         //        guard let posts = posts else { return cell}
         
-        print("Cell:\(posts)")
         cell.selectionStyle = .none
         cell.titleLabel.text = posts[indexPath.row].title
         cell.descriptionLabel.text = posts[indexPath.row].description

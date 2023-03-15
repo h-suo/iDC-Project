@@ -20,7 +20,7 @@ class PostViewModel {
     //    }
     
     func getPost() async throws -> [PostForm] {
-        let querySnapshot = try await db.collection("Post").getDocuments()
+        let querySnapshot = try await db.collection("Post").order(by: "time", descending: true).getDocuments()
         var posts: [PostForm] = []
         for document in querySnapshot.documents {
             guard let post = PostForm(dictionary: document.data()) else { throw NSError(domain: "Error getting documents", code: 404) }
@@ -52,6 +52,13 @@ class PostViewModel {
             "description": newPost.description,
             "comment": newPost.comment,
             "time": newPost.time
-        ])
+        ]) { err in
+            if let err = err {
+                print(err)
+            } else {
+                print("writePost success")
+            }
+        }
     }
+    
 }
