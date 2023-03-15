@@ -9,12 +9,21 @@ import UIKit
 
 class PostDetailiViewController: UIViewController {
     
+    var post: PostForm?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigation()
         setupUI()
         setupLayout()
+        updateData()
+    }
+    
+    func updateData() {
+        titleLabel.text = post?.title
+        textView.text = post?.description
+        timeLabel.text = post?.time
     }
     
     // MARK: - Setup Navigation
@@ -63,7 +72,7 @@ class PostDetailiViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
