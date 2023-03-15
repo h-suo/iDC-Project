@@ -15,14 +15,13 @@ class PostViewModel {
     var db: Firestore = Firestore.firestore()
     var posts: [PostForm] = []
     
-//    init(posts: [PostForm]) {
-//        self.posts = posts
-//    }
+    //    init(posts: [PostForm]) {
+    //        self.posts = posts
+    //    }
     
     func getPost() async throws -> [PostForm] {
         let querySnapshot = try await db.collection("Post").getDocuments()
         var posts: [PostForm] = []
-        
         for document in querySnapshot.documents {
             guard let post = PostForm(dictionary: document.data()) else { throw NSError(domain: "Error getting documents", code: 404) }
             posts.append(post)
@@ -41,7 +40,18 @@ class PostViewModel {
          }
          }
          }*/
-                
+        
         return posts
+    }
+    
+    func writePost(id: Int, title: String, description: String, time: String) {
+        let newPost = PostForm(id: id, title: title, description: description, comment: [], time: time)
+        db.collection("Post").addDocument(data: [
+            "id": newPost.id,
+            "title": newPost.title,
+            "description": newPost.description,
+            "comment": newPost.comment,
+            "time": newPost.time
+        ])
     }
 }

@@ -21,6 +21,7 @@ class ViewController: UITableViewController {
         
         setupUI()
         setupLayout()
+        setupRefreshController()
         setupNavigation()
         navigationItemSetting()
         
@@ -29,10 +30,34 @@ class ViewController: UITableViewController {
     
     func roadData() {
         Task(priority: .userInitiated) {
-            posts = try await vm.getPost()
-            self.tableView.reloadData()
-            print("VC: \(posts)")
+            do {
+                posts = try await vm.getPost()
+                self.tableView.reloadData()
+                print("VC: \(posts)")
+            } catch {
+                print("Error loading post: \(error)")
+            }
         }
+    }
+    
+    @IBAction func reloadData() {
+        Task(priority: .userInitiated) {
+            do {
+                posts = try await vm.getPost()
+                self.tableView.reloadData()
+                print("VC: \(posts)")
+                refreshControl?.endRefreshing()
+            } catch {
+                print("Error loading post: \(error)")
+            }
+        }
+    }
+    
+    // MARK: - Setup TableView Refresh Controller
+    func setupRefreshController() {
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        self.tableView.refreshControl?.tintColor = .white
     }
     
     // MARK: - Setup Navigation
@@ -64,7 +89,7 @@ class ViewController: UITableViewController {
         //        guard let posts = posts else { return cell}
         
         print("Cell:\(posts)")
-        
+        cell.selectionStyle = .none
         cell.titleLabel.text = posts[indexPath.row].title
         cell.descriptionLabel.text = posts[indexPath.row].description
         cell.timeLabel.text = posts[indexPath.row].time
