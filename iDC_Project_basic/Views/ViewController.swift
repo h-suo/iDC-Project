@@ -19,15 +19,16 @@ class ViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        setupNavigation()
+        navigationItemSetting()
         setupUI()
         setupLayout()
         setupRefreshController()
-        setupNavigation()
-        navigationItemSetting()
         
         roadData()
     }
     
+    // MARK: - Function Code
     func roadData() {
         Task(priority: .userInitiated) {
             do {

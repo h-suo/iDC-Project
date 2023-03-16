@@ -22,6 +22,13 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         setupLayout()
     }
     
+    // MARK: - Function Code
+    @IBAction func writeButtonTapped(_ sender: Any) {
+//        guard let newPostid = vm.posts[0].id else { return }
+        vm.writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: "\(Date())")
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationItem.title = "Post"
@@ -33,13 +40,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     func navigationItemSetting() {
         let rightButton = UIBarButtonItem(title: "write", style: .plain, target: self, action: #selector(writeButtonTapped))
         self.navigationItem.rightBarButtonItem = rightButton
-    }
-    
-    // MARK: - Setup function
-    @IBAction func writeButtonTapped(_ sender: Any) {
-//        guard let newPostid = vm.posts[0].id else { return }
-        vm.writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: "\(Date())")
-        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Setup TextView

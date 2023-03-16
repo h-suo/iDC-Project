@@ -10,15 +10,19 @@ import FirebaseCore
 import FirebaseFirestore
 
 class PostViewModel {
+    
     static let shared = PostViewModel()
     
     var db: Firestore = Firestore.firestore()
     var posts: [PostForm] = []
     
-    //    init(posts: [PostForm]) {
-    //        self.posts = posts
-    //    }
+    /*
+    init(posts: [PostForm]) {
+        self.posts = posts
+    }
+     */
     
+    // MARK: - Function Code
     func getPost() async throws -> [PostForm] {
         let querySnapshot = try await db.collection("Post").order(by: "time", descending: true).getDocuments()
         var posts: [PostForm] = []

@@ -24,6 +24,7 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         updateData()
     }
     
+    // MARK: - Function Code
     func updateData() {
         titleLabel.text = post?.title
         textView.text = post?.description
