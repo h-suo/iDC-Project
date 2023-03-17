@@ -43,11 +43,11 @@ class FirebaseDB {
     func writePost(id: Int, title: String, description: String, time: String) {
         let newPost = PostForm(id: id, title: title, description: description, comment: [], time: time)
         db.collection("Post").addDocument(data: [
-            "id": newPost.id as Any,
-            "title": newPost.title as Any,
-            "description": newPost.description as Any,
-            "comment": newPost.comment as Any,
-            "time": newPost.time as Any
+            "id": newPost.id,
+            "title": newPost.title,
+            "description": newPost.description,
+            "comment": newPost.comment,
+            "time": newPost.time
         ]) { err in
             if let err = err {
                 print(err)

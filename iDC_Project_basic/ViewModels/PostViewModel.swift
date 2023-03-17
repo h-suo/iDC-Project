@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
+// MARK: - PostList ViewModel
 struct PostListViewModel {
 //    static let shared = PostListViewModel()
     let postList: [PostForm]
@@ -28,6 +30,7 @@ extension PostListViewModel {
     }
 }
 
+// MARK: - Post ViewModel
 struct PostViewModel {
     private let post: PostForm
 }
@@ -40,25 +43,11 @@ extension PostViewModel {
 
 extension PostViewModel {
     
-    var id: Int {
-        return self.post.id
-    }
-    
-    var title: String {
-        return self.post.title
-    }
-    
-    var description: String {
-        return self.post.description
-    }
-    
-    var comment: [String] {
-        return self.post.comment
-    }
-    
-    var time: String {
-        return self.post.time
-    }
+    var id: Int { return self.post.id }
+    var title: String { return self.post.title }
+    var description: String { return self.post.description }
+    var comment: [String] { return self.post.comment }
+    var time: String { return self.post.time }
 }
 
 extension PostViewModel {
