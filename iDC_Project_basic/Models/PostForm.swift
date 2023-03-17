@@ -8,11 +8,11 @@
 import Foundation
 
 struct PostForm {
-    var id: Int?
-    var title: String?
-    var description: String?
-    var comment: [String]?
-    var time: String?
+    var id: Int
+    var title: String
+    var description: String
+    var comment: [String]
+    var time: String
     
     init (id: Int, title: String, description: String, comment: [String], time: String) {
         self.id = id
@@ -23,11 +23,11 @@ struct PostForm {
     }
     
     init?(dictionary: [String:Any]) {
-        self.id = dictionary["id"] as? Int
-        self.title = dictionary["title"] as? String
-        self.description = dictionary["description"] as? String
-        self.comment = dictionary["comment"] as? [String]
-        self.time = dictionary["time"] as? String
+        self.id = dictionary["id"] as! Int
+        self.title = dictionary["title"] as! String
+        self.description = dictionary["description"] as! String
+        self.comment = dictionary["comment"] as! [String]
+        self.time = dictionary["time"] as! String
     }
 }
 

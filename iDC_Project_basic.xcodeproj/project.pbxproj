@@ -23,7 +23,7 @@
 		458E5AFB29B9A7FC00E48DBF /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */; };
 		458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFC29B9A80800E48DBF /* SettingViewController.swift */; };
 		458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */; };
-		458E5B0529BCBCD200E48DBF /* postService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5B0429BCBCD200E48DBF /* postService.swift */; };
+		458E5B0529BCBCD200E48DBF /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */; };
 		EA67BF6A8D6A37E897B96534 /* Pods_iDC_Project_basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 		458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		458E5AFC29B9A80800E48DBF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
-		458E5B0429BCBCD200E48DBF /* postService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postService.swift; sourceTree = "<group>"; };
+		458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
 		EA7C1219EA2E1AF636A969F3 /* Pods-iDC_Project_basic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.debug.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,7 +150,7 @@
 		458E5B0329BCBC8D00E48DBF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				458E5B0429BCBCD200E48DBF /* postService.swift */,
+				458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */,
 				453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */,
 				458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */,
-				458E5B0529BCBCD200E48DBF /* postService.swift in Sources */,
+				458E5B0529BCBCD200E48DBF /* FirebaseDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

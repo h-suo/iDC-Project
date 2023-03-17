@@ -9,9 +9,8 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var vm: PostViewModel = PostViewModel.shared
+    var postListVM: PostListViewModel!
     let cellId = "HomeTableViewCell"
-    var posts: [PostForm] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +31,8 @@ class ViewController: UITableViewController {
     func roadData() {
         Task(priority: .userInitiated) {
             do {
-                posts = try await vm.getPost()
+                let postList = try await FirebaseDB().getPost()
+                self.postListVM = PostListViewModel(postList: postList)
                 self.tableView.reloadData()
                 print("road Data success")
             } catch {
@@ -42,16 +42,16 @@ class ViewController: UITableViewController {
     }
     
     @IBAction func reloadData() {
-        Task(priority: .userInitiated) {
-            do {
-                posts = try await vm.getPost()
-                self.tableView.reloadData()
-                print("reload Data success")
-                refreshControl?.endRefreshing()
-            } catch {
-                print("Error loading post: \(error)")
-            }
-        }
+//        Task(priority: .userInitiated) {
+//            do {
+//                posts = try await vm.getPost()
+//                self.tableView.reloadData()
+//                print("reload Data success")
+//                refreshControl?.endRefreshing()
+//            } catch {
+//                print("Error loading post: \(error)")
+//            }
+//        }
     }
     
     @IBAction func plusViewTapped() {
@@ -81,28 +81,29 @@ class ViewController: UITableViewController {
     }
     
     // MARK: - TableView Code
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.postListVM == nil ? 0 : self.postListVM.numberOfSections
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        guard let count = posts?.count else { return 0 }
-        
-        return posts.count
+        return postListVM.numberOfRowsInSection(section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HomeTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? HomeTableViewCell else { fatalError("HomeTableViewCell not found") }
         
-        //        guard let posts = posts else { return cell}
-        
+        let postVM = self.postListVM.postAtIndex(indexPath.row)
         cell.selectionStyle = .none
-        cell.titleLabel.text = posts[indexPath.row].title
-        cell.descriptionLabel.text = posts[indexPath.row].description
-        cell.timeLabel.text = posts[indexPath.row].time
+        cell.titleLabel.text = postVM.title
+        cell.descriptionLabel.text = postVM.description
+        cell.timeLabel.text = postVM.time
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let NextVC = PostDetailiViewController()
-        NextVC.post = posts[indexPath.row]
+        NextVC.postVM = self.postListVM.postAtIndex(indexPath.row)
         navigationController?.pushViewController(NextVC, animated: true)
     }
     

@@ -8,9 +8,7 @@
 import UIKit
 
 class AddPostViewController: UIViewController, UITextViewDelegate {
-    
-    var vm: PostViewModel = PostViewModel.shared
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +23,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     // MARK: - Function Code
     @IBAction func writeButtonTapped(_ sender: Any) {
 //        guard let newPostid = vm.posts[0].id else { return }
-        vm.writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: "\(Date())")
+        FirebaseDB().writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: "\(Date())")
         self.navigationController?.popViewController(animated: true)
     }
     

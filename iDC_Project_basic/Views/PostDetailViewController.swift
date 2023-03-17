@@ -10,7 +10,7 @@ import UIKit
 class PostDetailiViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellId = "CommentTableViewCell"
-    var post: PostForm?
+    var postVM: PostViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,9 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: - Function Code
     func updateData() {
-        titleLabel.text = post?.title
-        textView.text = post?.description
-        timeLabel.text = post?.time
+        titleLabel.text = postVM.title
+        textView.text = postVM.description
+        timeLabel.text = postVM.time
     }
     
     // MARK: - Setup Navigation
@@ -39,16 +39,19 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     // MARK: - TableView Code
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.postVM == nil ? 0 : self.postVM.commentNumberOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let commnetCount = post?.comment?.count else { return 0 }
-        
-        return commnetCount
+        return postVM.commentNumberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommentTableViewCell
-                
-        cell.commentLabel.text = post?.comment![indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
+        
+        let comment = self.postVM.commentAtIndex(indexPath.row)
+        cell.commentLabel.text = comment
         
         return cell
     }
@@ -125,9 +128,9 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         ])
         NSLayoutConstraint.activate([
             textView.heightAnchor.constraint(equalToConstant: 250),
-            textView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 12),
-            textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
+            textView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 4),
+            textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
         ])
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4),
