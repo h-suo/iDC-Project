@@ -7,10 +7,11 @@
 
 import UIKit
 
-class PostDetailiViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PostDetailiViewController: UIViewController {
     
     let cellId = "CommentTableViewCell"
     var postVM: PostViewModel!
+    var textFieldConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,26 +19,26 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         
+        commentTextField.delegate = self
+        
         setupNavigation()
         setupUI()
         setupLayout()
         
         updateData()
         
-        setupTextField()
+        observeKeyboard()
     }
     
-    // MARK: - Function Code
+    // MARK: - Update Data
     func updateData() {
         titleLabel.text = postVM.title
         contentTextView.text = postVM.description
         timeLabel.text = postVM.time
     }
     
-    // MARK: - Setup textField
-    var textFieldConstraint: NSLayoutConstraint?
-    
-    func setupTextField() {
+    // MARK: - Observe textField
+    func observeKeyboard() {
         
         self.textFieldConstraint = NSLayoutConstraint(item: self.commentTextField, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.textFieldConstraint?.isActive = true
@@ -66,24 +67,6 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         self.navigationController?.navigationBar.backgroundColor = .black
         self.navigationController?.overrideUserInterfaceStyle = .dark
         self.navigationItem.largeTitleDisplayMode = .never
-    }
-    
-    // MARK: - TableView Code
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.postVM == nil ? 0 : self.postVM.commentNumberOfSections
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postVM.commentNumberOfRowsInSection(section)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
-        
-        let comment = self.postVM.commentAtIndex(indexPath.row)
-        cell.commentLabel.text = comment
-        
-        return cell
     }
     
     // MARK: - Setup UI
@@ -174,5 +157,38 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
             commentTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             commentTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
         ])
+    }
+}
+
+extension PostDetailiViewController: UITextFieldDelegate {
+    
+    // MARK: - Write Comment
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        
+        commentTextField.resignFirstResponder()
+        
+        return true
+    }
+}
+
+extension PostDetailiViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - TableView Code
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.postVM == nil ? 0 : self.postVM.commentNumberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return postVM.commentNumberOfRowsInSection(section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
+        
+        let comment = self.postVM.commentAtIndex(indexPath.row)
+        cell.commentLabel.text = comment
+        
+        return cell
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddPostViewController: UIViewController, UITextViewDelegate {
+class AddPostViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,33 +19,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         setupUI()
         setupLayout()
         
-    }
-    
-    // MARK: - Function Code
-    @IBAction func writeButtonTapped(_ sender: Any) {
-        guard titleTextField.text != "" else { return showAlert("Check the title", "Title is empty.") }
-        guard textView.text != "Please enter your content." && textView.text != "" else { return showAlert("Check the content", "Content is empty.") }
-        FirebaseDB().writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: Date().writingTime())
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    // MARK: - Setup TextView
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Please enter your content." {
-            textView.text = nil
-            textView.textColor = .white
-            textView.becomeFirstResponder()
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let currentText = textView.text ?? ""
-        guard let stringeRange = Range(range, in: currentText) else { return false }
-        
-        let changeText = currentText.replacingCharacters(in: stringeRange, with: text)
-        
-        textCountLabel.text = "(\(changeText.count)/1000)"
-        return changeText.count <= 999
     }
     
     // MARK: - Setup Navigation
@@ -123,5 +96,35 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
             textCountLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: -12),
             textCountLabel.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: -12)
         ])
+    }
+}
+
+extension AddPostViewController: UITextViewDelegate {
+    
+    // MARK: - Write Post
+    @IBAction func writeButtonTapped(_ sender: Any) {
+        guard titleTextField.text != "" else { return showAlert("Check the title", "Title is empty.") }
+        guard textView.text != "Please enter your content." && textView.text != "" else { return showAlert("Check the content", "Content is empty.") }
+        FirebaseDB().writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: Date().writingTime())
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Setup TextView
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Please enter your content." {
+            textView.text = nil
+            textView.textColor = .white
+            textView.becomeFirstResponder()
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        guard let stringeRange = Range(range, in: currentText) else { return false }
+        
+        let changeText = currentText.replacingCharacters(in: stringeRange, with: text)
+        
+        textCountLabel.text = "(\(changeText.count)/1000)"
+        return changeText.count <= 999
     }
 }

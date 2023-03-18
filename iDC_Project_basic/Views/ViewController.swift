@@ -27,7 +27,7 @@ class ViewController: UITableViewController {
         roadData()
     }
     
-    // MARK: - Function Code
+    // MARK: - Road Data
     func roadData() {
         Task(priority: .userInitiated) {
             do {
@@ -55,6 +55,7 @@ class ViewController: UITableViewController {
         }
     }
     
+    // MARK: - Function Code
     @IBAction func plusViewTapped() {
         self.navigationController?.pushViewController(AddPostViewController(), animated: true)
     }
