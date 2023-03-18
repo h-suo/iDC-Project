@@ -164,9 +164,14 @@ extension PostDetailiViewController: UITextFieldDelegate {
     
     // MARK: - Write Comment
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        
-        commentTextField.resignFirstResponder()
+        if commentTextField.text == "" {
+            showAlert("Check the comment", "comment is empty")
+        } else {
+            var newComment = postVM.comment
+            newComment.append(commentTextField.text!)
+            FirebaseDB().writeComment(documentID: postVM.id, comment: newComment)
+            commentTextField.resignFirstResponder()
+        }
         
         return true
     }

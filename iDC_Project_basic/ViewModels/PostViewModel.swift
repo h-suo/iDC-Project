@@ -43,7 +43,7 @@ extension PostViewModel {
 
 extension PostViewModel {
     
-    var id: Int { return self.post.id }
+    var id: String { return self.post.id }
     var title: String { return self.post.title }
     var description: String { return self.post.description }
     var comment: [String] { return self.post.comment }

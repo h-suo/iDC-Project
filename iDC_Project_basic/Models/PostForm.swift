@@ -8,22 +8,14 @@
 import Foundation
 
 struct PostForm {
-    var id: Int
+    var id: String
     var title: String
     var description: String
     var comment: [String]
     var time: String
     
-    init (id: Int, title: String, description: String, comment: [String], time: String) {
-        self.id = id
-        self.title = title
-        self.description = description
-        self.comment = comment
-        self.time = time
-    }
-    
-    init?(dictionary: [String:Any]) {
-        self.id = dictionary["id"] as! Int
+    init?(dictionary: [String:Any], documentID: Any) {
+        self.id = documentID as! String
         self.title = dictionary["title"] as! String
         self.description = dictionary["description"] as! String
         self.comment = dictionary["comment"] as! [String]
@@ -31,6 +23,16 @@ struct PostForm {
     }
 }
 
-extension PostForm {
-    static let EMPTY = PostForm(id: 0, title: "title", description: "description", comment: [], time: "00:00")
+struct WritePostForm {
+    var title: String
+    var description: String
+    var comment: [String]
+    var time: String
+    
+    init (title: String, description: String, comment: [String], time: String) {
+        self.title = title
+        self.description = description
+        self.comment = comment
+        self.time = time
+    }
 }
