@@ -169,7 +169,9 @@ extension PostDetailiViewController: UITextFieldDelegate {
             var newComment = postVM.comment
             newComment.append(commentTextField.text!)
             FirebaseDB().writeComment(documentID: postVM.id, comment: newComment)
+            
             commentTextField.resignFirstResponder()
+            commentTextField.text = nil
         }
         
         return true

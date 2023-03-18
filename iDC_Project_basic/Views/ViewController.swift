@@ -23,16 +23,18 @@ class ViewController: UITableViewController {
         setupUI()
         setupLayout()
         setupRefreshController()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         loadData()
-        observeWritePost()
     }
     
     // MARK: - Load Data
+    /*
     func observeWritePost() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
     }
-    
+    */
     @objc func loadData() {
         Task(priority: .userInitiated) {
             do {
