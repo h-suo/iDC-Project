@@ -106,6 +106,8 @@ extension AddPostViewController: UITextViewDelegate {
         guard titleTextField.text != "" else { return showAlert("Check the title", "Title is empty.") }
         guard textView.text != "Please enter your content." && textView.text != "" else { return showAlert("Check the content", "Content is empty.") }
         FirebaseDB().writePost(title: titleTextField.text!, description: textView.text!, time: Date().writingTime())
+        NotificationCenter.default.post(name: NSNotification.Name("writePostNotification"), object: nil)
+        
         self.navigationController?.popViewController(animated: true)
     }
     

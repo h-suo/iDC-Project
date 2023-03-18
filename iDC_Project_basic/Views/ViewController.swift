@@ -24,17 +24,22 @@ class ViewController: UITableViewController {
         setupLayout()
         setupRefreshController()
         
-        roadData()
+        loadData()
+        observeWritePost()
     }
     
-    // MARK: - Road Data
-    func roadData() {
+    // MARK: - Load Data
+    func observeWritePost() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
+    }
+    
+    @objc func loadData() {
         Task(priority: .userInitiated) {
             do {
                 let postList = try await FirebaseDB().getPost()
                 self.postListVM = PostListViewModel(postList: postList)
                 self.tableView.reloadData()
-                print("road Data success")
+                print("Load Data success")
             } catch {
                 print("Error loading post: \(error)")
             }
@@ -48,7 +53,7 @@ class ViewController: UITableViewController {
                 self.postListVM = PostListViewModel(postList: postList)
                 self.tableView.reloadData()
                 refreshControl?.endRefreshing()
-                print("reload Data success")
+                print("Reload Data success")
             } catch {
                 print("Error reloading post: \(error)")
             }

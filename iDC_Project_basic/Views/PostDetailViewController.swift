@@ -57,7 +57,6 @@ class PostDetailiViewController: UIViewController {
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
-        debugPrint("keyboardWillHide")
         self.textFieldConstraint?.constant = 0
         self.view.layoutIfNeeded()
     }

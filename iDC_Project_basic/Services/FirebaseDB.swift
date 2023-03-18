@@ -49,24 +49,23 @@ class FirebaseDB {
             "time": newPost.time
         ]) { err in
             if let err = err {
-                print(err)
+                print("Error write post: \(err)")
             } else {
-                print("writePost success")
+                print("write post success")
             }
         }
     }
     
     func writeComment(documentID: String, comment: [String]) {
         
-        let docRef = db.collection("Post").document(documentID)
-        
-        docRef.updateData([
+        let documentRefernece = db.collection("Post").document(documentID)
+        documentRefernece.updateData([
             "comment" : comment
         ]) { err in
             if let err = err {
-                print(err)
+                print("Error write comment: \(err)")
             } else {
-                print("comment update success")
+                print("write comment success")
             }
         }
     }
