@@ -13,6 +13,7 @@ class AlarmViewController: UITableViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .black
+        
         setupNavigation()
     }
     

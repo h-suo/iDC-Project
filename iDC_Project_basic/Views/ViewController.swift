@@ -42,16 +42,17 @@ class ViewController: UITableViewController {
     }
     
     @IBAction func reloadData() {
-//        Task(priority: .userInitiated) {
-//            do {
-//                posts = try await vm.getPost()
-//                self.tableView.reloadData()
-//                print("reload Data success")
-//                refreshControl?.endRefreshing()
-//            } catch {
-//                print("Error loading post: \(error)")
-//            }
-//        }
+        Task(priority: .userInitiated) {
+            do {
+                let postList = try await FirebaseDB().getPost()
+                self.postListVM = PostListViewModel(postList: postList)
+                self.tableView.reloadData()
+                refreshControl?.endRefreshing()
+                print("reload Data success")
+            } catch {
+                print("Error reloading post: \(error)")
+            }
+        }
     }
     
     @IBAction func plusViewTapped() {
@@ -139,4 +140,3 @@ class ViewController: UITableViewController {
         ])
     }
 }
-

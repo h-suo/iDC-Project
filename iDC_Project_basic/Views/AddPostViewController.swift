@@ -18,6 +18,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         navigationItemSetting()
         setupUI()
         setupLayout()
+        
     }
     
     // MARK: - Function Code
@@ -26,19 +27,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         guard textView.text != "Please enter your content." && textView.text != "" else { return showAlert("Check the content", "Content is empty.") }
         FirebaseDB().writePost(id: 0, title: titleTextField.text!, description: textView.text!, time: Date().writingTime())
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    // MARK: - Setup Navigation
-    func setupNavigation() {
-        self.navigationItem.title = "Post"
-        self.navigationController?.navigationBar.backgroundColor = .black
-        self.navigationController?.overrideUserInterfaceStyle = .dark
-        self.navigationItem.largeTitleDisplayMode = .never
-    }
-    
-    func navigationItemSetting() {
-        let rightButton = UIBarButtonItem(title: "write", style: .plain, target: self, action: #selector(writeButtonTapped))
-        self.navigationItem.rightBarButtonItem = rightButton
     }
     
     // MARK: - Setup TextView
@@ -60,8 +48,17 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
         return changeText.count <= 999
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+    // MARK: - Setup Navigation
+    func setupNavigation() {
+        self.navigationItem.title = "Post"
+        self.navigationController?.navigationBar.backgroundColor = .black
+        self.navigationController?.overrideUserInterfaceStyle = .dark
+        self.navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    func navigationItemSetting() {
+        let rightButton = UIBarButtonItem(title: "write", style: .plain, target: self, action: #selector(writeButtonTapped))
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
     // MARK: - Setup UI

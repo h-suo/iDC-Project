@@ -21,14 +21,44 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         setupNavigation()
         setupUI()
         setupLayout()
+        
         updateData()
+        
+        setupTextField()
     }
     
     // MARK: - Function Code
     func updateData() {
         titleLabel.text = postVM.title
-        textView.text = postVM.description
+        contentTextView.text = postVM.description
         timeLabel.text = postVM.time
+    }
+    
+    // MARK: - Setup textField
+    var textFieldConstraint: NSLayoutConstraint?
+    
+    func setupTextField() {
+        
+        self.textFieldConstraint = NSLayoutConstraint(item: self.commentTextField, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
+        self.textFieldConstraint?.isActive = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight: CGFloat
+            keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            self.textFieldConstraint?.constant = -1 * keyboardHeight
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        debugPrint("keyboardWillHide")
+        self.textFieldConstraint?.constant = 0
+        self.view.layoutIfNeeded()
     }
     
     // MARK: - Setup Navigation
@@ -72,27 +102,28 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         return tl
     }()
     
-    let textView: UITextView = {
-        let tv = UITextView()
-        tv.font = .systemFont(ofSize: 18)
-        tv.textColor = .lightGray
-        tv.isEditable = false
+    let contentTextView: UITextView = {
+        let ctv = UITextView()
+        ctv.font = .systemFont(ofSize: 18)
+        ctv.textColor = .lightGray
+        ctv.isEditable = false
         
-        return tv
+        return ctv
     }()
     
     let tableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .systemFill
+        tv.backgroundColor = .tertiarySystemFill
         
         return tv
     }()
+    
     
     let commentTextField: UITextField = {
         let ctf = UITextField()
         ctf.borderStyle = .roundedRect
         ctf.placeholder = "Please enter a comment"
-        ctf.backgroundColor = .secondarySystemFill
+        ctf.backgroundColor = .systemFill
         ctf.font = .systemFont(ofSize: 18)
         
         return ctf
@@ -103,7 +134,7 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.backgroundColor = .black
         self.view.addSubview(titleLabel)
         self.view.addSubview(timeLabel)
-        self.view.addSubview(textView)
+        self.view.addSubview(contentTextView)
         self.view.addSubview(tableView)
         self.view.addSubview(commentTextField)
     }
@@ -112,7 +143,7 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
     func setupLayout() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -127,14 +158,13 @@ class PostDetailiViewController: UIViewController, UITableViewDataSource, UITabl
             timeLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
         ])
         NSLayoutConstraint.activate([
-            textView.heightAnchor.constraint(equalToConstant: 250),
-            textView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 4),
-            textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
+            contentTextView.heightAnchor.constraint(equalToConstant: 250),
+            contentTextView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 4),
+            contentTextView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            contentTextView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
         ])
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4),
-            tableView.bottomAnchor.constraint(equalTo: commentTextField.topAnchor),
+            tableView.topAnchor.constraint(equalTo: contentTextView.bottomAnchor, constant: 4),
             tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
         ])
