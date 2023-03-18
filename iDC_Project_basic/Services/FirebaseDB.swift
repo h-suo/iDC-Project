@@ -69,4 +69,13 @@ class FirebaseDB {
             }
         }
     }
+    
+    func getDocument(documentID: String) async throws -> PostForm {
+        
+        let documentRefernece = db.collection("Post").document(documentID)
+        let document = try await documentRefernece.getDocument()
+        guard let post = PostForm(dictionary: document.data()!, documentID: document.documentID) else { throw NSError(domain: "Error getting documents", code: 404) }
+        
+        return post
+    }
 }

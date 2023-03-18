@@ -170,6 +170,17 @@ extension PostDetailiViewController: UITextFieldDelegate {
             newComment.append(commentTextField.text!)
             FirebaseDB().writeComment(documentID: postVM.id, comment: newComment)
             
+            Task(priority: .userInitiated) {
+                do {
+                    let post = try await FirebaseDB().getDocument(documentID: postVM.id)
+                    self.postVM = PostViewModel(post)
+                    self.tableView.reloadData()
+                    print("Load comment success")
+                } catch {
+                    print("Error Loading comment: \(error)")
+                }
+            }
+            
             commentTextField.resignFirstResponder()
             commentTextField.text = nil
         }
