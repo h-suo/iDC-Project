@@ -161,7 +161,6 @@ class PostDetailViewController: UIViewController {
 
 // MARK: - PostDetailViewController extension
 extension PostDetailViewController: UITextFieldDelegate {
-    
     // MARK: - Write Comment
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if commentTextField.text == "" {
@@ -206,6 +205,7 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
         
         let comment = self.postVM.commentAtIndex(indexPath.row)
+        cell.selectionStyle = .none
         cell.commentLabel.text = comment
         
         return cell

@@ -70,6 +70,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
     }()
     
     func setupUI() {
+        self.view.backgroundColor = .black
         self.tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         self.tableView.rowHeight = 80
         self.view.addSubview(tableView)

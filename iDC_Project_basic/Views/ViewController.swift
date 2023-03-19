@@ -22,18 +22,20 @@ class ViewController: UITableViewController {
         navigationItemSetting()
         setupUI()
         setupRefreshController()
+        loadData()
+        observeWritePost()
+        
+        FirebaseDB().updateCheck(documentID: "bzaznSaSxbuB9zMYO60O")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadData()
+//        loadData()
     }
     
     // MARK: - Load Data
-    /*
     func observeWritePost() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
     }
-    */
     
     @objc func loadData() {
         Task(priority: .userInitiated) {
@@ -83,8 +85,8 @@ class ViewController: UITableViewController {
     
     // MARK: - Setup Navigation
     func setupNavigation() {
-        self.navigationController?.navigationBar.backgroundColor = .black
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.backgroundColor = .black
         self.navigationController?.overrideUserInterfaceStyle = .dark
         self.navigationItem.title = "iDC"
     }

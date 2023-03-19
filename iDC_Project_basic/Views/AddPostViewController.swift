@@ -108,7 +108,7 @@ extension AddPostViewController: UITextViewDelegate {
         guard textView.text != "Please enter your content." && textView.text != "" else { return showAlert("Check the content", "Content is empty.") }
         
         FirebaseDB().writePost(title: titleTextField.text!, description: textView.text!, time: Date().writingTime())
-//        NotificationCenter.default.post(name: NSNotification.Name("writePostNotification"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("writePostNotification"), object: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -116,7 +116,7 @@ extension AddPostViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Please enter your content." {
             textView.text = nil
-            textView.textColor = .white
+//            textView.textColor = .white
             textView.becomeFirstResponder()
         }
     }

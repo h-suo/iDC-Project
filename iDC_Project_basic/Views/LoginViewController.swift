@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import AuthenticationServices
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,16 +16,39 @@ class LoginViewController: UIViewController {
         setupUI()
         setupLayout()
     }
+    
+    // MARK: - Function Code
+    @objc func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
         
     // MARK: - Setup UI
     let imageView: UIImageView = {
         let iv = UIImageView()
-//        iv.image = UIImage(named: "pencil.circle.fill")
-        iv.backgroundColor = .white
+        iv.image = UIImage(named: "IMG_1622")
         
         return iv
     }()
     
+    let authorizationButton: ASAuthorizationAppleIDButton = {
+        let ab = ASAuthorizationAppleIDButton(authorizationButtonType: .default, authorizationButtonStyle: .white)
+        ab.cornerRadius = 4
+        
+        return ab
+    }()
+    
+    /*
     let LoginButton: UIButton = {
         let lb = UIButton()
         lb.backgroundColor = .white
@@ -34,17 +58,21 @@ class LoginViewController: UIViewController {
         
         return lb
     }()
+     */
     
     func setupUI() {
         self.view.backgroundColor = .black
         self.view.addSubview(imageView)
-        self.view.addSubview(LoginButton)
+//        self.view.addSubview(LoginButton)
+        self.view.addSubview(authorizationButton)
+        
+        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
     }
     
     // MARK: - Setup Layout
     func setupLayout() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        LoginButton.translatesAutoresizingMaskIntoConstraints = false
+        authorizationButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: 120),
@@ -53,10 +81,10 @@ class LoginViewController: UIViewController {
             imageView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor, constant: -60)
         ])
         NSLayoutConstraint.activate([
-            LoginButton.heightAnchor.constraint(equalToConstant: 40),
-            LoginButton.widthAnchor.constraint(equalToConstant: 200),
-            LoginButton.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
-            LoginButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 40)
+            authorizationButton.heightAnchor.constraint(equalToConstant: 40),
+            authorizationButton.widthAnchor.constraint(equalToConstant: 200),
+            authorizationButton.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            authorizationButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 40)
         ])
     }    
 }
