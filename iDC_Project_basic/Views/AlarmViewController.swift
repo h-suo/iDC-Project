@@ -17,6 +17,12 @@ class AlarmViewController: UITableViewController {
         setupNavigation()
     }
     
+    // MARK: - Update Data Check
+    func updataCheck() {
+        
+        FirebaseDB().updateCheck(documentID: "PHaj55JbhfFXW2gjrIZI")
+    }
+    
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationItem.title = "Alarm"

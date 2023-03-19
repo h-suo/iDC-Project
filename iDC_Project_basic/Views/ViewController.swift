@@ -67,6 +67,12 @@ class ViewController: UITableViewController {
         self.navigationController?.pushViewController(AddPostViewController(), animated: true)
     }
     
+    @IBAction func searchButtonTapped() {
+        let searchVC = SearchViewController()
+        searchVC.obscuresBackgroundDuringPresentation = true
+        present(searchVC, animated: true)
+    }
+    
     // MARK: - Setup TableView Refresh Controller
     func setupRefreshController() {
         self.tableView.refreshControl = UIRefreshControl()
@@ -83,7 +89,7 @@ class ViewController: UITableViewController {
     }
     
     func navigationItemSetting() {
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
         let backButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItems = [searchButton]
         self.navigationItem.backBarButtonItem = backButton
@@ -111,7 +117,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let NextVC = PostDetailiViewController()
+        let NextVC = PostDetailViewController()
         NextVC.postVM = self.postListVM.postAtIndex(indexPath.row)
         navigationController?.pushViewController(NextVC, animated: true)
     }

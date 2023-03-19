@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PostDetailiViewController: UIViewController {
+class PostDetailViewController: UIViewController {
     
     let cellId = "CommentTableViewCell"
     var postVM: PostViewModel!
@@ -159,7 +159,8 @@ class PostDetailiViewController: UIViewController {
     }
 }
 
-extension PostDetailiViewController: UITextFieldDelegate {
+// MARK: - PostDetailViewController extension
+extension PostDetailViewController: UITextFieldDelegate {
     
     // MARK: - Write Comment
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -189,7 +190,8 @@ extension PostDetailiViewController: UITextFieldDelegate {
     }
 }
 
-extension PostDetailiViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - PostDetailViewController extension
+extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - TableView Code
     func numberOfSections(in tableView: UITableView) -> Int {

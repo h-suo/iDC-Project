@@ -99,6 +99,7 @@ class AddPostViewController: UIViewController {
     }
 }
 
+// MARK: - AddPostViewController extension
 extension AddPostViewController: UITextViewDelegate {
     
     // MARK: - Write Post

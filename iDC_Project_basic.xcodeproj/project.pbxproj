@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4528228E29C6BB0E006B919C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4528228D29C6BB0E006B919C /* SearchViewController.swift */; };
 		453D797B29C0534A00444F5C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797A29C0534A00444F5C /* HomeTableViewCell.swift */; };
 		453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */; };
 		453D798029C4510500444F5C /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797F29C4510500444F5C /* Unit.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		02DE4FF5ECB7093FAA7D51A7 /* Pods-iDC_Project_basic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.release.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.release.xcconfig"; sourceTree = "<group>"; };
 		3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDC_Project_basic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4528228D29C6BB0E006B919C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		453D797A29C0534A00444F5C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		453D797F29C4510500444F5C /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				458E5ADC29B9A5FA00E48DBF /* ViewController.swift */,
 				458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */,
 				458E5AF829B9A7DF00E48DBF /* PostDetailViewController.swift */,
+				4528228D29C6BB0E006B919C /* SearchViewController.swift */,
 				458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */,
 				458E5AFC29B9A80800E48DBF /* SettingViewController.swift */,
 				458E5B0029B9ACAD00E48DBF /* Cell */,
@@ -308,6 +311,7 @@
 				458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */,
 				458E5AFB29B9A7FC00E48DBF /* AlarmViewController.swift in Sources */,
 				458E5AF729B9A7D000E48DBF /* TabBarController.swift in Sources */,
+				4528228E29C6BB0E006B919C /* SearchViewController.swift in Sources */,
 				458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */,
 				458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */,
 				453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */,

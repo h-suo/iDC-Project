@@ -16,7 +16,11 @@ class FirebaseDB {
     
     // MARK: - Function Code
     func getPost() async throws -> [PostForm] {
-        let querySnapshot = try await db.collection("Post").order(by: "time", descending: true).getDocuments()
+        let collectionRefernece = db.collection("Post")
+        let querySnapshot = try await collectionRefernece
+            .order(by: "time", descending: true)
+            .getDocuments()
+        
         var posts: [PostForm] = []
         for document in querySnapshot.documents {
             guard let post = PostForm(dictionary: document.data(), documentID: document.documentID) else { throw NSError(domain: "Error getting documents", code: 404) }
@@ -41,8 +45,10 @@ class FirebaseDB {
     }
     
     func writePost(title: String, description: String, time: String) {
+        let collectionRefernece = db.collection("Post")
         let newPost = WritePostForm(title: title, description: description, comment: [], time: time)
-        db.collection("Post").addDocument(data: [
+        collectionRefernece
+            .addDocument(data: [
             "title": newPost.title,
             "description": newPost.description,
             "comment": newPost.comment,
@@ -57,9 +63,9 @@ class FirebaseDB {
     }
     
     func writeComment(documentID: String, comment: [String]) {
-        
         let documentRefernece = db.collection("Post").document(documentID)
-        documentRefernece.updateData([
+        documentRefernece
+            .updateData([
             "comment" : comment
         ]) { err in
             if let err = err {
@@ -71,11 +77,39 @@ class FirebaseDB {
     }
     
     func getDocument(documentID: String) async throws -> PostForm {
-        
         let documentRefernece = db.collection("Post").document(documentID)
         let document = try await documentRefernece.getDocument()
         guard let post = PostForm(dictionary: document.data()!, documentID: document.documentID) else { throw NSError(domain: "Error getting documents", code: 404) }
         
         return post
+    }
+    
+    func updateCheck(documentID: String) {
+        let documentRefernece = db.collection("Post").document(documentID)
+        documentRefernece.addSnapshotListener { documentSnapshot, err in
+            if let err = err { print("Error updating Check: \(err)") }
+            if let data = documentSnapshot?.data() {
+                print("Update Data: \(data)")
+            } else {
+                print("Data is empty")
+            }
+        }
+    }
+    
+    func searchDocument(keyword: String) async throws -> [PostForm] {
+        
+        let documentRefernece = db.collection("Post")
+        let querySnapshot = try await documentRefernece
+            .order(by: "time", descending: true)
+            .whereField("keyword", arrayContains: keyword)
+            .getDocuments()
+        
+        var posts: [PostForm] = []
+        for document in querySnapshot.documents {
+            guard let post = PostForm(dictionary: document.data(), documentID: document.documentID) else { throw NSError(domain: "Error getting documents", code: 404) }
+            posts.append(post)
+        }
+        
+        return posts
     }
 }
