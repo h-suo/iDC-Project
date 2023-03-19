@@ -30,11 +30,11 @@ class TabBarController: UITabBarController {
         firstVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstVC.tabBarItem.title = "home"
         
-        /*
-        let secondVC = UINavigationController(rootViewController: AddPostViewController())
-        secondVC.tabBarItem.image = UIImage(systemName: "square.and.pencil")
-        secondVC.tabBarItem.title = "post"
-        */
+        
+        let secondVC = UINavigationController(rootViewController: SearchViewController())
+        secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        secondVC.tabBarItem.title = "search"
+        
          
         let thirdVC = UINavigationController(rootViewController: AlarmViewController())
         thirdVC.tabBarItem.image = UIImage(systemName: "bell")
@@ -44,6 +44,6 @@ class TabBarController: UITabBarController {
         forthVC.tabBarItem.image = UIImage(systemName: "gearshape")
         forthVC.tabBarItem.title = "setting"
         
-        viewControllers = [firstVC, thirdVC, forthVC]
+        viewControllers = [firstVC, secondVC, thirdVC, forthVC]
     }
 }

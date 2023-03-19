@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var postListVM: PostListViewModel!
-    let cellId = "HomeTableViewCell"
+    let cellId = "PostTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,6 @@ class ViewController: UITableViewController {
         setupNavigation()
         navigationItemSetting()
         setupUI()
-        setupLayout()
         setupRefreshController()
     }
     
@@ -35,6 +34,7 @@ class ViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
     }
     */
+    
     @objc func loadData() {
         Task(priority: .userInitiated) {
             do {
@@ -63,15 +63,16 @@ class ViewController: UITableViewController {
     }
     
     // MARK: - Function Code
-    @IBAction func plusViewTapped() {
+    @IBAction func plusButtonTapped() {
         self.navigationController?.pushViewController(AddPostViewController(), animated: true)
     }
-    
+    /*
     @IBAction func searchButtonTapped() {
-        let searchVC = SearchViewController()
+        let searchVC = UISearchController(searchResultsController: SearchViewController())
         searchVC.obscuresBackgroundDuringPresentation = true
         present(searchVC, animated: true)
     }
+     */
     
     // MARK: - Setup TableView Refresh Controller
     func setupRefreshController() {
@@ -89,7 +90,7 @@ class ViewController: UITableViewController {
     }
     
     func navigationItemSetting() {
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonTapped))
         let backButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItems = [searchButton]
         self.navigationItem.backBarButtonItem = backButton
@@ -97,7 +98,7 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Code
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.postListVM == nil ? 0 : self.postListVM.numberOfSections
+        return postListVM == nil ? 0 : postListVM.numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,7 +106,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? HomeTableViewCell else { fatalError("HomeTableViewCell not found") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? PostTableViewCell else { fatalError("PostTableViewCell not found") }
         
         let postVM = self.postListVM.postAtIndex(indexPath.row)
         cell.selectionStyle = .none
@@ -124,6 +125,7 @@ class ViewController: UITableViewController {
     
     
     // MARK: - Setup UI
+    /*
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "plus.circle")
@@ -132,17 +134,21 @@ class ViewController: UITableViewController {
         
         return iv
     }()
+     */
     
     func setupUI() {
         self.view.backgroundColor = .black
-        self.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: cellId)
+        self.tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         self.tableView.rowHeight = 80
+        /*
         self.view.addSubview(imageView)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusViewTapped)))
+         */
     }
     
     // MARK: - Setup Layout
+    /*
     func setupLayout() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -153,4 +159,5 @@ class ViewController: UITableViewController {
             imageView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
     }
+     */
 }

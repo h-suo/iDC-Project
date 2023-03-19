@@ -49,31 +49,31 @@ class FirebaseDB {
         let newPost = WritePostForm(title: title, description: description, comment: [], time: time)
         collectionRefernece
             .addDocument(data: [
-            "title": newPost.title,
-            "description": newPost.description,
-            "comment": newPost.comment,
-            "time": newPost.time
-        ]) { err in
-            if let err = err {
-                print("Error write post: \(err)")
-            } else {
-                print("write post success")
+                "title": newPost.title,
+                "description": newPost.description,
+                "comment": newPost.comment,
+                "time": newPost.time
+            ]) { err in
+                if let err = err {
+                    print("Error write post: \(err)")
+                } else {
+                    print("write post success")
+                }
             }
-        }
     }
     
     func writeComment(documentID: String, comment: [String]) {
         let documentRefernece = db.collection("Post").document(documentID)
         documentRefernece
             .updateData([
-            "comment" : comment
-        ]) { err in
-            if let err = err {
-                print("Error write comment: \(err)")
-            } else {
-                print("write comment success")
+                "comment" : comment
+            ]) { err in
+                if let err = err {
+                    print("Error write comment: \(err)")
+                } else {
+                    print("write comment success")
+                }
             }
-        }
     }
     
     func getDocument(documentID: String) async throws -> PostForm {
@@ -100,15 +100,20 @@ class FirebaseDB {
         
         let documentRefernece = db.collection("Post")
         let querySnapshot = try await documentRefernece
+//            .whereField("description", arrayContains: keyword)
+//            .whereField("description", isGreaterThanOrEqualTo: keyword)
+//            .whereField("description", isLessThan: keyword + "~")
             .order(by: "time", descending: true)
-            .whereField("keyword", arrayContains: keyword)
             .getDocuments()
         
         var posts: [PostForm] = []
         for document in querySnapshot.documents {
             guard let post = PostForm(dictionary: document.data(), documentID: document.documentID) else { throw NSError(domain: "Error getting documents", code: 404) }
-            posts.append(post)
+            if post.description.contains(keyword) || post.title.contains(keyword) {
+                posts.append(post)
+            }
         }
+        print(posts)
         
         return posts
     }

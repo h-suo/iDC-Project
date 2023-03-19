@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4528228E29C6BB0E006B919C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4528228D29C6BB0E006B919C /* SearchViewController.swift */; };
-		453D797B29C0534A00444F5C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797A29C0534A00444F5C /* HomeTableViewCell.swift */; };
+		453D797B29C0534A00444F5C /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797A29C0534A00444F5C /* PostTableViewCell.swift */; };
 		453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */; };
 		453D798029C4510500444F5C /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797F29C4510500444F5C /* Unit.swift */; };
 		4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4564202729BDEB7E007CA516 /* GoogleService-Info.plist */; };
@@ -33,7 +33,7 @@
 		02DE4FF5ECB7093FAA7D51A7 /* Pods-iDC_Project_basic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.release.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.release.xcconfig"; sourceTree = "<group>"; };
 		3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDC_Project_basic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4528228D29C6BB0E006B919C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		453D797A29C0534A00444F5C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		453D797A29C0534A00444F5C /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		453D797F29C4510500444F5C /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		4564202729BDEB7E007CA516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		458E5B0029B9ACAD00E48DBF /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				453D797A29C0534A00444F5C /* HomeTableViewCell.swift */,
+				453D797A29C0534A00444F5C /* PostTableViewCell.swift */,
 				453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */,
 			);
 			path = Cell;
@@ -304,7 +304,7 @@
 				453D798029C4510500444F5C /* Unit.swift in Sources */,
 				458E5AF929B9A7DF00E48DBF /* PostDetailViewController.swift in Sources */,
 				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
-				453D797B29C0534A00444F5C /* HomeTableViewCell.swift in Sources */,
+				453D797B29C0534A00444F5C /* PostTableViewCell.swift in Sources */,
 				458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */,
 				458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */,
 				458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */,
