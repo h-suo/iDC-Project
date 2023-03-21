@@ -12,6 +12,8 @@
 		453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */; };
 		453D798029C4510500444F5C /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797F29C4510500444F5C /* Unit.swift */; };
 		4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4564202729BDEB7E007CA516 /* GoogleService-Info.plist */; };
+		457F1FE429C98D170055420A /* WritePostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE329C98D170055420A /* WritePostForm.swift */; };
+		457F1FE829C98D690055420A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE729C98D690055420A /* PostListViewModel.swift */; };
 		458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */; };
 		458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */; };
 		458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADC29B9A5FA00E48DBF /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 		453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		453D797F29C4510500444F5C /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		4564202729BDEB7E007CA516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		457F1FE329C98D170055420A /* WritePostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostForm.swift; sourceTree = "<group>"; };
+		457F1FE729C98D690055420A /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		458E5AD529B9A5FA00E48DBF /* iDC_Project_basic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDC_Project_basic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				458E5AF229B9A75300E48DBF /* PostForm.swift */,
+				457F1FE329C98D170055420A /* WritePostForm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 		458E5AEF29B9A72200E48DBF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				457F1FE729C98D690055420A /* PostListViewModel.swift */,
 				458E5AF029B9A73F00E48DBF /* PostViewModel.swift */,
 			);
 			path = ViewModels;
@@ -303,6 +309,7 @@
 			files = (
 				453D798029C4510500444F5C /* Unit.swift in Sources */,
 				458E5AF929B9A7DF00E48DBF /* PostDetailViewController.swift in Sources */,
+				457F1FE429C98D170055420A /* WritePostForm.swift in Sources */,
 				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
 				453D797B29C0534A00444F5C /* PostTableViewCell.swift in Sources */,
 				458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */,
@@ -312,6 +319,7 @@
 				458E5AFB29B9A7FC00E48DBF /* AlarmViewController.swift in Sources */,
 				458E5AF729B9A7D000E48DBF /* TabBarController.swift in Sources */,
 				4528228E29C6BB0E006B919C /* SearchViewController.swift in Sources */,
+				457F1FE829C98D690055420A /* PostListViewModel.swift in Sources */,
 				458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */,
 				458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */,
 				453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */,

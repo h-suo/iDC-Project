@@ -39,7 +39,7 @@ class AddPostViewController: UIViewController {
         let ttf = UITextField()
         ttf.borderStyle = .roundedRect
         ttf.placeholder = "title"
-        ttf.backgroundColor = .systemFill
+        ttf.backgroundColor = .tertiarySystemFill
         ttf.font = .systemFont(ofSize: 20)
         
         return ttf
@@ -47,10 +47,10 @@ class AddPostViewController: UIViewController {
     
     let textView: UITextView = {
         let tv = UITextView()
-        tv.backgroundColor = .systemFill
+        tv.backgroundColor = .tertiarySystemFill
         tv.font = .systemFont(ofSize: 18)
         tv.text = "Please enter your content."
-        tv.textColor = .systemGray2
+        tv.textColor = .gray
         tv.layer.cornerRadius = 4
         
         return tv

@@ -6,29 +6,6 @@
 //
 
 import Foundation
-import UIKit
-
-// MARK: - PostList ViewModel
-struct PostListViewModel {
-//    static let shared = PostListViewModel()
-    let postList: [PostForm]
-}
-
-extension PostListViewModel {
-    
-    var numberOfSections: Int {
-        return 1
-    }
-    
-    func numberOfRowsInSection(_ section: Int) -> Int {
-        return self.postList.count
-    }
-    
-    func postAtIndex(_ index: Int) -> PostViewModel {
-        let post = self.postList[index]
-        return PostViewModel(post)
-    }
-}
 
 // MARK: - Post ViewModel
 struct PostViewModel {

@@ -41,16 +41,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
         guard let keyword = searchBar.text else { return }
         print(keyword)
         
-        Task(priority: .userInitiated) {
-            do {
-                let postList = try await FirebaseDB().searchDocument(keyword: keyword)
-                self.postListVM = PostListViewModel(postList: postList)
-                self.tableView.reloadData()
-                print("Search Data success")
-            } catch {
-                print("Error search post: \(error)")
-            }
-        }
+//        Task(priority: .userInitiated) {
+//            do {
+//                let postList = try await FirebaseDB().searchDocument(keyword: keyword)
+//                self.postListVM = PostListViewModel(postList: postList)
+//                self.tableView.reloadData()
+//                print("Search Data success")
+//            } catch {
+//                print("Error search post: \(error)")
+//            }
+//        }
     }
     
     // MARK: - Setup Navigation

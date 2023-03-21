@@ -14,9 +14,11 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.dataSource = self
         tableView.delegate = self
+        
+        postListVM = PostListViewModel()
         
         setupNavigation()
         navigationItemSetting()
@@ -25,7 +27,6 @@ class ViewController: UITableViewController {
         loadData()
         observeWritePost()
         
-        FirebaseDB().updateCheck(documentID: "bzaznSaSxbuB9zMYO60O")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,30 +39,28 @@ class ViewController: UITableViewController {
     }
     
     @objc func loadData() {
-        Task(priority: .userInitiated) {
-            do {
-                let postList = try await FirebaseDB().getPost()
-                self.postListVM = PostListViewModel(postList: postList)
+        postListVM.getPost { result in
+            switch result {
+            case .success:
                 self.tableView.reloadData()
-                print("Load Data success")
-            } catch {
-                print("Error loading post: \(error)")
+                print("Load Data Success")
+            case .failure(let err):
+                print("Error Load Data: \(err)")
             }
         }
     }
     
     @IBAction func reloadData() {
-        Task(priority: .userInitiated) {
-            do {
-                let postList = try await FirebaseDB().getPost()
-                self.postListVM = PostListViewModel(postList: postList)
-                self.tableView.reloadData()
-                refreshControl?.endRefreshing()
-                print("Reload Data success")
-            } catch {
-                print("Error reloading post: \(error)")
-            }
+        postListVM.getPost { result in
+        switch result {
+        case .success:
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            print("Reload Data Success")
+        case .failure(let err):
+            print("Error Reload Data: \(err)")
         }
+    }
     }
     
     // MARK: - Function Code

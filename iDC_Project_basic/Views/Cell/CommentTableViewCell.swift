@@ -23,7 +23,7 @@ class CommentTableViewCell: UITableViewCell {
     let commentLabel: UILabel = {
         let cl = UILabel()
         cl.font = UIFont.systemFont(ofSize: 14)
-//        cl.textColor = .white
+        cl.textColor = .white
         cl.numberOfLines = 1
         
         return cl

@@ -22,17 +22,3 @@ struct PostForm {
         self.time = dictionary["time"] as! String
     }
 }
-
-struct WritePostForm {
-    var title: String
-    var description: String
-    var comment: [String]
-    var time: String
-    
-    init (title: String, description: String, comment: [String], time: String) {
-        self.title = title
-        self.description = description
-        self.comment = comment
-        self.time = time
-    }
-}
