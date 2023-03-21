@@ -10,7 +10,7 @@ import UIKit
 class PostDetailViewController: UIViewController {
     
     let cellId = "CommentTableViewCell"
-    var postVM: PostViewModel!
+    var postViewModel: PostViewModel!
     var textFieldConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
@@ -32,9 +32,9 @@ class PostDetailViewController: UIViewController {
     
     // MARK: - Update Data
     func updateData() {
-        titleLabel.text = postVM.title
-        contentTextView.text = postVM.description
-        timeLabel.text = postVM.time
+        titleLabel.text = postViewModel.title
+        contentTextView.text = postViewModel.description
+        timeLabel.text = postViewModel.time
     }
     
     // MARK: - Observe textField
@@ -166,20 +166,19 @@ extension PostDetailViewController: UITextFieldDelegate {
         if commentTextField.text == "" {
             showAlert("Check the comment", "comment is empty")
         } else {
-            var newComment = postVM.comment
+            var newComment = postViewModel.comment
             newComment.append(commentTextField.text!)
-            FirebaseDB().writeComment(documentID: postVM.id, comment: newComment)
             
-            Task(priority: .userInitiated) {
-                do {
-                    let post = try await FirebaseDB().getDocument(documentID: postVM.id)
-                    self.postVM = PostViewModel(post)
+            postViewModel.writeComment(documentID: postViewModel.id, comment: newComment)
+            postViewModel.getDocument(documentID: postViewModel.id, completion: { result in
+                switch result {
+                case .success:
                     self.tableView.reloadData()
                     print("Load comment success")
-                } catch {
-                    print("Error Loading comment: \(error)")
+                case .failure(let err):
+                    print("Error Loading comment: \(err)")
                 }
-            }
+            })
             
             commentTextField.resignFirstResponder()
             commentTextField.text = nil
@@ -194,17 +193,17 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - TableView Code
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.postVM == nil ? 0 : self.postVM.commentNumberOfSections
+        return self.postViewModel == nil ? 0 : self.postViewModel.commentNumberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postVM.commentNumberOfRowsInSection(section)
+        return postViewModel.commentNumberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
         
-        let comment = self.postVM.commentAtIndex(indexPath.row)
+        let comment = self.postViewModel.commentAtIndex(indexPath.row)
         cell.selectionStyle = .none
         cell.commentLabel.text = comment
         

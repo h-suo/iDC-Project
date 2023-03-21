@@ -9,8 +9,12 @@ import Foundation
 
 // MARK: - PostList ViewModel
 class PostListViewModel {
-    var postList: [PostForm] = []
     
+    private var postList: [PostForm] = []
+}
+
+extension PostListViewModel {
+    // IntPut
     func getPost(completion: @escaping(Result<Void, Error>) -> Void) {
         Task(priority: .userInitiated) {
             do {
@@ -24,8 +28,25 @@ class PostListViewModel {
             }
         }
     }
+    
+    func searchPost(keyword: String, completion: @escaping(Result<Void, Error>) -> Void) {
+        Task(priority: .background) {
+            do {
+                let postList = try await FirebaseDB().searchPost(keyword: keyword)
+                print(postList)
+                self.postList = postList
+                DispatchQueue.main.async {
+                    completion(.success(()))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }
 
+// Output
 extension PostListViewModel {
     
     var numberOfSections: Int {

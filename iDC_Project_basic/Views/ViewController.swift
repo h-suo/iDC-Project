@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var postListVM: PostListViewModel!
+    var postListViewModel: PostListViewModel!
     let cellId = "PostTableViewCell"
     
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ class ViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        postListVM = PostListViewModel()
+        postListViewModel = PostListViewModel()
         
         setupNavigation()
         navigationItemSetting()
@@ -39,7 +39,7 @@ class ViewController: UITableViewController {
     }
     
     @objc func loadData() {
-        postListVM.getPost { result in
+        postListViewModel.getPost { result in
             switch result {
             case .success:
                 self.tableView.reloadData()
@@ -51,7 +51,7 @@ class ViewController: UITableViewController {
     }
     
     @IBAction func reloadData() {
-        postListVM.getPost { result in
+        postListViewModel.getPost { result in
             switch result {
             case .success:
                 self.tableView.reloadData()
@@ -99,17 +99,17 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Code
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return postListVM == nil ? 0 : postListVM.numberOfSections
+        return postListViewModel == nil ? 0 : postListViewModel.numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postListVM.numberOfRowsInSection(section)
+        return postListViewModel.numberOfRowsInSection(section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? PostTableViewCell else { fatalError("PostTableViewCell not found") }
         
-        let postVM = self.postListVM.postAtIndex(indexPath.row)
+        let postVM = self.postListViewModel.postAtIndex(indexPath.row)
         cell.selectionStyle = .none
         cell.titleLabel.text = postVM.title
         cell.descriptionLabel.text = postVM.description
@@ -120,7 +120,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let NextVC = PostDetailViewController()
-        NextVC.postVM = self.postListVM.postAtIndex(indexPath.row)
+        NextVC.postViewModel = self.postListViewModel.postAtIndex(indexPath.row)
         navigationController?.pushViewController(NextVC, animated: true)
     }
     

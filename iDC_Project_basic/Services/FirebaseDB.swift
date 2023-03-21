@@ -44,9 +44,9 @@ class FirebaseDB {
         return posts
     }
     
-    func writePost(title: String, description: String, time: String) {
+    func writePost(_ newPost: WritePostForm) {
         let collectionRefernece = db.collection("Post")
-        let newPost = WritePostForm(title: title, description: description, comment: [], time: time)
+        let newPost = WritePostForm(title: newPost.title, description: newPost.description, comment: newPost.comment, time: newPost.time)
         collectionRefernece
             .addDocument(data: [
                 "title": newPost.title,
@@ -96,7 +96,7 @@ class FirebaseDB {
         }
     }
     
-    func searchDocument(keyword: String) async throws -> [PostForm] {
+    func searchPost(keyword: String) async throws -> [PostForm] {
         
         let documentRefernece = db.collection("Post")
         let querySnapshot = try await documentRefernece

@@ -14,6 +14,14 @@ struct PostForm {
     var comment: [String]
     var time: String
     
+    init (id: String, title: String, description: String, comment: [String], time: String) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.comment = comment
+        self.time = time
+    }
+    
     init?(dictionary: [String:Any], documentID: Any) {
         self.id = documentID as! String
         self.title = dictionary["title"] as! String

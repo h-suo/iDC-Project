@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
-    var postListVM: PostListViewModel!
+    var postListViewModel: PostListViewModel!
     let searchController = UISearchController(searchResultsController: nil)
     let cellId = "PostTableViewCell"
     
@@ -28,6 +28,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
         tableView.delegate = self
         tableView.dataSource = self
         
+        postListViewModel = PostListViewModel()
+        
         setupNavigation()
         setupUI()
         setupLayout()
@@ -40,17 +42,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text else { return }
         print(keyword)
-        
-//        Task(priority: .userInitiated) {
-//            do {
-//                let postList = try await FirebaseDB().searchDocument(keyword: keyword)
-//                self.postListVM = PostListViewModel(postList: postList)
-//                self.tableView.reloadData()
-//                print("Search Data success")
-//            } catch {
-//                print("Error search post: \(error)")
-//            }
-//        }
+                
+        postListViewModel.searchPost(keyword: keyword, completion: { result in
+            switch result {
+            case .success:
+                self.tableView.reloadData()
+                print("Search Data Success")
+            case .failure(let err):
+                print("Error search Data: \(err)")
+            }
+        })
     }
     
     // MARK: - Setup Navigation
@@ -92,28 +93,28 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return postListVM == nil ? 0 : self.postListVM.numberOfSections
+        return postListViewModel == nil ? 0 : self.postListViewModel.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postListVM.numberOfRowsInSection(section)
+        return postListViewModel.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? PostTableViewCell else { fatalError("PostTableViewCell not found") }
         
-        let postVM = self.postListVM.postAtIndex(indexPath.row)
+        let post = self.postListViewModel.postAtIndex(indexPath.row)
         cell.selectionStyle = .none
-        cell.titleLabel.text = postVM.title
-        cell.descriptionLabel.text = postVM.description
-        cell.timeLabel.text = postVM.time
+        cell.titleLabel.text = post.title
+        cell.descriptionLabel.text = post.description
+        cell.timeLabel.text = post.time
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let NextVC = PostDetailViewController()
-        NextVC.postVM = self.postListVM.postAtIndex(indexPath.row)
+        NextVC.postViewModel = self.postListViewModel.postAtIndex(indexPath.row)
         navigationController?.pushViewController(NextVC, animated: true)
     }
 }

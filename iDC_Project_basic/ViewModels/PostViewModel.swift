@@ -8,16 +8,47 @@
 import Foundation
 
 // MARK: - Post ViewModel
-struct PostViewModel {
-    private let post: PostForm
-}
-
-extension PostViewModel {
+class PostViewModel {
+    private var post: PostForm
+    
+    init() {
+        self.post = PostForm(id: "", title: "", description: "", comment: [], time: "")
+    }
+    
     init(_ post: PostForm) {
         self.post = post
     }
 }
 
+// Input Function
+extension PostViewModel {
+    
+    func writePost(title: String, description: String, time: String) {
+        let newWritePost: WritePostForm = WritePostForm(title: title, description: description, comment: [], time: time)
+        FirebaseDB().writePost(newWritePost)
+    }
+    
+    func writeComment(documentID: String, comment: [String]) {
+        
+        FirebaseDB().writeComment(documentID: documentID, comment: comment)
+    }
+    
+    func getDocument(documentID: String, completion: @escaping(Result<Void, Error>) -> Void) {
+        Task(priority: .userInitiated) {
+            do {
+                let post = try await FirebaseDB().getDocument(documentID: documentID)
+                self.post = post
+                DispatchQueue.main.async {
+                    completion(.success(()))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+// Output
 extension PostViewModel {
     
     var id: String { return self.post.id }
