@@ -14,7 +14,7 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -30,7 +30,7 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        loadData()
+        //        loadData()
     }
     
     // MARK: - Load Data
@@ -52,15 +52,15 @@ class ViewController: UITableViewController {
     
     @IBAction func reloadData() {
         postListVM.getPost { result in
-        switch result {
-        case .success:
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-            print("Reload Data Success")
-        case .failure(let err):
-            print("Error Reload Data: \(err)")
+            switch result {
+            case .success:
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                print("Reload Data Success")
+            case .failure(let err):
+                print("Error Reload Data: \(err)")
+            }
         }
-    }
     }
     
     // MARK: - Function Code
@@ -68,11 +68,11 @@ class ViewController: UITableViewController {
         self.navigationController?.pushViewController(AddPostViewController(), animated: true)
     }
     /*
-    @IBAction func searchButtonTapped() {
-        let searchVC = UISearchController(searchResultsController: SearchViewController())
-        searchVC.obscuresBackgroundDuringPresentation = true
-        present(searchVC, animated: true)
-    }
+     @IBAction func searchButtonTapped() {
+     let searchVC = UISearchController(searchResultsController: SearchViewController())
+     searchVC.obscuresBackgroundDuringPresentation = true
+     present(searchVC, animated: true)
+     }
      */
     
     // MARK: - Setup TableView Refresh Controller
@@ -127,14 +127,14 @@ class ViewController: UITableViewController {
     
     // MARK: - Setup UI
     /*
-    let imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "plus.circle")
-        iv.tintColor = .gray
-        iv.backgroundColor = .clear
-        
-        return iv
-    }()
+     let imageView: UIImageView = {
+     let iv = UIImageView()
+     iv.image = UIImage(systemName: "plus.circle")
+     iv.tintColor = .gray
+     iv.backgroundColor = .clear
+     
+     return iv
+     }()
      */
     
     func setupUI() {
@@ -142,23 +142,23 @@ class ViewController: UITableViewController {
         self.tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         self.tableView.rowHeight = 80
         /*
-        self.view.addSubview(imageView)
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusViewTapped)))
+         self.view.addSubview(imageView)
+         imageView.isUserInteractionEnabled = true
+         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusViewTapped)))
          */
     }
     
     // MARK: - Setup Layout
     /*
-    func setupLayout() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 60),
-            imageView.widthAnchor.constraint(equalToConstant: 60),
-            imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
-            imageView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
-        ])
-    }
+     func setupLayout() {
+     imageView.translatesAutoresizingMaskIntoConstraints = false
+     
+     NSLayoutConstraint.activate([
+     imageView.heightAnchor.constraint(equalToConstant: 60),
+     imageView.widthAnchor.constraint(equalToConstant: 60),
+     imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
+     imageView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
+     ])
+     }
      */
 }

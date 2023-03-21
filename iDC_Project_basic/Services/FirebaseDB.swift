@@ -100,9 +100,9 @@ class FirebaseDB {
         
         let documentRefernece = db.collection("Post")
         let querySnapshot = try await documentRefernece
-//            .whereField("description", arrayContains: keyword)
-//            .whereField("description", isGreaterThanOrEqualTo: keyword)
-//            .whereField("description", isLessThan: keyword + "~")
+        //            .whereField("description", arrayContains: keyword)
+        //            .whereField("description", isGreaterThanOrEqualTo: keyword)
+        //            .whereField("description", isLessThan: keyword + "~")
             .order(by: "time", descending: true)
             .getDocuments()
         
