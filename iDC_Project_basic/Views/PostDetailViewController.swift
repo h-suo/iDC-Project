@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PostDetailViewController: UIViewController {
+class PostDetailViewController: UIViewController, UITextViewDelegate {
     
     let cellId = "CommentTableViewCell"
     var postViewModel: PostViewModel!
@@ -18,6 +18,10 @@ class PostDetailViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isScrollEnabled = false
+        
+        contentTextView.delegate = self
+        contentTextView.isScrollEnabled = false
         
         commentTextField.delegate = self
         
@@ -69,6 +73,18 @@ class PostDetailViewController: UIViewController {
     }
     
     // MARK: - Setup UI
+    let contentView: UIScrollView = {
+        let sv = UIScrollView()
+        
+        return sv
+    }()
+    
+    let contentScrollView: UIScrollView = {
+        let bv = UIScrollView()
+        
+        return bv
+    }()
+    
     let titleLabel: UILabel = {
         let tl = UILabel()
         tl.font = .systemFont(ofSize: 20)
@@ -87,7 +103,7 @@ class PostDetailViewController: UIViewController {
     let contentTextView: UITextView = {
         let ctv = UITextView()
         ctv.font = .systemFont(ofSize: 18)
-        ctv.textColor = .lightGray
+        ctv.textColor = .white
         ctv.isEditable = false
         
         return ctv
@@ -95,7 +111,7 @@ class PostDetailViewController: UIViewController {
     
     let tableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .tertiarySystemFill
+//        tv.backgroundColor = .tertiarySystemFill
         
         return tv
     }()
@@ -113,12 +129,16 @@ class PostDetailViewController: UIViewController {
     
     func setupUI() {
         self.tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: cellId)
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 44
         self.view.backgroundColor = .black
-        self.view.addSubview(titleLabel)
-        self.view.addSubview(timeLabel)
-        self.view.addSubview(contentTextView)
-        self.view.addSubview(tableView)
+        self.view.addSubview(contentScrollView)
         self.view.addSubview(commentTextField)
+        self.contentScrollView.addSubview(contentView)
+        self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(timeLabel)
+        self.contentView.addSubview(contentTextView)
+        self.contentView.addSubview(tableView)
     }
     
     // MARK: - Setup Layout
@@ -128,9 +148,26 @@ class PostDetailViewController: UIViewController {
         contentTextView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            contentScrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            contentScrollView.bottomAnchor.constraint(equalTo: commentTextField.topAnchor),
+            contentScrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            contentScrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo:  contentScrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo:  contentScrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo:  contentScrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo:  contentScrollView.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
@@ -140,18 +177,20 @@ class PostDetailViewController: UIViewController {
             timeLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
         ])
         NSLayoutConstraint.activate([
-            contentTextView.heightAnchor.constraint(equalToConstant: 250),
             contentTextView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 4),
             contentTextView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             contentTextView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
         ])
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: contentTextView.bottomAnchor, constant: 4),
+//            tableView.heightAnchor.constraint(equalToConstant: 500),
+            tableView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1),
+            tableView.topAnchor.constraint(equalTo: contentTextView.bottomAnchor, constant: 12),
+            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
         ])
         NSLayoutConstraint.activate([
-            commentTextField.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            commentTextField.topAnchor.constraint(equalTo: contentView.bottomAnchor),
             commentTextField.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             commentTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             commentTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)

@@ -20,7 +20,6 @@ class AlarmViewController: UITableViewController {
     // MARK: - Update Data Check
     func updataCheck() {
         
-        FirebaseDB().updateCheck(documentID: "PHaj55JbhfFXW2gjrIZI")
     }
     
     // MARK: - Setup Navigation
@@ -30,8 +29,7 @@ class AlarmViewController: UITableViewController {
         self.navigationController?.overrideUserInterfaceStyle = .dark
     }
 
-    // MARK: - Table view data source
-
+    // MARK: - TableView Code
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 0

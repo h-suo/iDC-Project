@@ -22,9 +22,9 @@ class CommentTableViewCell: UITableViewCell {
     // MARK: - Setup UI
     let commentLabel: UILabel = {
         let cl = UILabel()
-        cl.font = UIFont.systemFont(ofSize: 14)
-        cl.textColor = .white
-        cl.numberOfLines = 1
+        cl.font = UIFont.systemFont(ofSize: 16)
+        cl.textColor = .lightGray
+        cl.numberOfLines = 0
         
         return cl
     }()
@@ -42,6 +42,8 @@ class CommentTableViewCell: UITableViewCell {
             commentLabel.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
             commentLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             commentLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -12),
+            commentLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 12),
+            commentLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -12),
         ])
     }
 }
