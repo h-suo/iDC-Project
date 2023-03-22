@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class SearchViewController: UIViewController {
     
     var postListViewModel: PostListViewModel!
     let searchController = UISearchController(searchResultsController: nil)
@@ -16,42 +16,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Configure search bar
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Please enter your keyword."
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
         searchController.searchBar.delegate = self
         
-        // Configure table view
         tableView.delegate = self
         tableView.dataSource = self
         
         postListViewModel = PostListViewModel()
         
+        setupSearchBar()
         setupNavigation()
         setupUI()
         setupLayout()
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text else { return }
-        print(keyword)
-                
-        postListViewModel.searchPost(keyword: keyword, completion: { result in
-            switch result {
-            case .success:
-                self.tableView.reloadData()
-                print("Search Data Success")
-            case .failure(let err):
-                print("Error search Data: \(err)")
-            }
-        })
+    // MARK: -Setup SearchBar
+    func setupSearchBar() {
+        searchController.searchBar.placeholder = "Please enter your keyword."
+        searchController.obscuresBackgroundDuringPresentation = true
+        navigationItem.searchController = searchController
     }
     
     // MARK: - Setup Navigation
@@ -90,6 +72,26 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchResul
     }
 }
 
+// MARK: - SearchViewController extension
+extension SearchViewController: UISearchBarDelegate {
+    // MARK: - Search Action
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text else { return }
+        print(keyword)
+                
+        postListViewModel.searchPost(keyword: keyword, completion: { result in
+            switch result {
+            case .success:
+                self.tableView.reloadData()
+                print("Search Data Success")
+            case .failure(let err):
+                print("Error search Data: \(err)")
+            }
+        })
+    }
+}
+
+// MARK: - SearchViewController extension
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

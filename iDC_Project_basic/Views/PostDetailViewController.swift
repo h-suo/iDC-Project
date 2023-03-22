@@ -29,9 +29,6 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         observeKeyboard()
     }
     
-    // MARK: - Update Data
-    
-    
     // MARK: - Observe textField
     func observeKeyboard() {
         
@@ -98,7 +95,6 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            //            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
@@ -127,7 +123,6 @@ extension PostDetailViewController: UITextFieldDelegate {
                 switch result {
                 case .success:
                     self.tableView.reloadData()
-                    self.setupLayout()
                     print("Load comment success")
                 case .failure(let err):
                     print("Error Loading comment: \(err)")
@@ -147,11 +142,11 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - TableView Code
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.postViewModel == nil ? 0 : self.postViewModel.commentNumberOfSections
+        return self.postViewModel == nil ? 0 : self.postViewModel.NumberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postViewModel.commentNumberOfRowsInSection(section) + 1
+        return postViewModel.postDetailNumberOfRowInSection(section) + postViewModel.commentNumberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -168,11 +163,15 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: commentCellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
         
-        let comment = self.postViewModel.commentAtIndex(indexPath.row - 1)
+        let comment = self.postViewModel.commentAtIndex(indexPath.row)
         cell.commentLabel.text = comment
         cell.selectionStyle = .none
         
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.endEditing(true)
     }
 }

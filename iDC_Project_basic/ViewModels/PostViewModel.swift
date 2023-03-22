@@ -60,7 +60,11 @@ extension PostViewModel {
 
 extension PostViewModel {
     
-    var commentNumberOfSections: Int {
+    var NumberOfSections: Int {
+        return 1
+    }
+    
+    func postDetailNumberOfRowInSection(_ section: Int) -> Int {
         return 1
     }
     
@@ -69,7 +73,7 @@ extension PostViewModel {
     }
     
     func commentAtIndex(_ index: Int) -> String {
-        let comment = self.comment.reversed()[index]
+        let comment = self.comment.reversed()[index - 1]
         return comment
     }
 }
