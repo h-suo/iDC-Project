@@ -69,7 +69,7 @@ extension PostViewModel {
     }
     
     func commentAtIndex(_ index: Int) -> String {
-        let comment = self.comment[index]
+        let comment = self.comment.reversed()[index]
         return comment
     }
 }

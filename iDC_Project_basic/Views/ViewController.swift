@@ -109,11 +109,11 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? PostTableViewCell else { fatalError("PostTableViewCell not found") }
         
-        let postVM = self.postListViewModel.postAtIndex(indexPath.row)
+        let postViewModel = self.postListViewModel.postAtIndex(indexPath.row)
         cell.selectionStyle = .none
-        cell.titleLabel.text = postVM.title
-        cell.descriptionLabel.text = postVM.description
-        cell.timeLabel.text = postVM.time
+        cell.titleLabel.text = postViewModel.title
+        cell.descriptionLabel.text = postViewModel.description
+        cell.timeLabel.text = postViewModel.time
         
         return cell
     }

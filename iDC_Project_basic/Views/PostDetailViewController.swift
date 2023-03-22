@@ -9,7 +9,8 @@ import UIKit
 
 class PostDetailViewController: UIViewController, UITextViewDelegate {
     
-    let cellId = "CommentTableViewCell"
+    let commentCellId = "CommentTableViewCell"
+    let detailCellId = "PostDetailTableViewCell"
     var postViewModel: PostViewModel!
     var textFieldConstraint: NSLayoutConstraint?
     
@@ -18,10 +19,6 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.isScrollEnabled = false
-        
-        contentTextView.delegate = self
-        contentTextView.isScrollEnabled = false
         
         commentTextField.delegate = self
         
@@ -29,17 +26,11 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         setupUI()
         setupLayout()
         
-        updateData()
-        
         observeKeyboard()
     }
     
     // MARK: - Update Data
-    func updateData() {
-        titleLabel.text = postViewModel.title
-        contentTextView.text = postViewModel.description
-        timeLabel.text = postViewModel.time
-    }
+    
     
     // MARK: - Observe textField
     func observeKeyboard() {
@@ -73,45 +64,8 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     // MARK: - Setup UI
-    let contentView: UIScrollView = {
-        let sv = UIScrollView()
-        
-        return sv
-    }()
-    
-    let contentScrollView: UIScrollView = {
-        let bv = UIScrollView()
-        
-        return bv
-    }()
-    
-    let titleLabel: UILabel = {
-        let tl = UILabel()
-        tl.font = .systemFont(ofSize: 20)
-        
-        return tl
-    }()
-    
-    let timeLabel: UILabel = {
-        let tl = UILabel()
-        tl.font = UIFont.systemFont(ofSize: 14)
-        tl.textColor = .gray
-        
-        return tl
-    }()
-    
-    let contentTextView: UITextView = {
-        let ctv = UITextView()
-        ctv.font = .systemFont(ofSize: 18)
-        ctv.textColor = .white
-        ctv.isEditable = false
-        
-        return ctv
-    }()
-    
     let tableView: UITableView = {
         let tv = UITableView()
-//        tv.backgroundColor = .tertiarySystemFill
         
         return tv
     }()
@@ -128,69 +82,29 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     }()
     
     func setupUI() {
-        self.tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: cellId)
+        self.tableView.register(PostDetailTableViewCell.self, forCellReuseIdentifier: detailCellId)
+        self.tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: commentCellId)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.view.backgroundColor = .black
-        self.view.addSubview(contentScrollView)
+        self.view.addSubview(tableView)
         self.view.addSubview(commentTextField)
-        self.contentScrollView.addSubview(contentView)
-        self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(timeLabel)
-        self.contentView.addSubview(contentTextView)
-        self.contentView.addSubview(tableView)
     }
     
     // MARK: - Setup Layout
     func setupLayout() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentTextView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            contentScrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            contentScrollView.bottomAnchor.constraint(equalTo: commentTextField.topAnchor),
-            contentScrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            contentScrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            contentView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor),
-            contentView.topAnchor.constraint(equalTo:  contentScrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo:  contentScrollView.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo:  contentScrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo:  contentScrollView.trailingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
-        NSLayoutConstraint.activate([
-            timeLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            timeLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            timeLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
-        ])
-        NSLayoutConstraint.activate([
-            contentTextView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 4),
-            contentTextView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            contentTextView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
-        ])
-        NSLayoutConstraint.activate([
-//            tableView.heightAnchor.constraint(equalToConstant: 500),
-            tableView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1),
-            tableView.topAnchor.constraint(equalTo: contentTextView.bottomAnchor, constant: 12),
-            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            //            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
+        
         NSLayoutConstraint.activate([
-            commentTextField.topAnchor.constraint(equalTo: contentView.bottomAnchor),
+            commentTextField.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             commentTextField.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             commentTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             commentTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
@@ -213,6 +127,7 @@ extension PostDetailViewController: UITextFieldDelegate {
                 switch result {
                 case .success:
                     self.tableView.reloadData()
+                    self.setupLayout()
                     print("Load comment success")
                 case .failure(let err):
                     print("Error Loading comment: \(err)")
@@ -236,16 +151,28 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postViewModel.commentNumberOfRowsInSection(section)
+        return postViewModel.commentNumberOfRowsInSection(section) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
+        if indexPath.row == 0 {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: detailCellId, for: indexPath) as? PostDetailTableViewCell else { fatalError("PostDetailTableViewCell not found") }
+            cell.titleLabel.text = postViewModel.title
+            cell.timeLabel.text = postViewModel.time
+            cell.contentTextView.text = postViewModel.description
+            cell.selectionStyle = .none
+            
+            return cell
+        }
         
-        let comment = self.postViewModel.commentAtIndex(indexPath.row)
-        cell.selectionStyle = .none
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: commentCellId, for: indexPath) as? CommentTableViewCell else { fatalError("CommentTableViewCell not found") }
+        
+        let comment = self.postViewModel.commentAtIndex(indexPath.row - 1)
         cell.commentLabel.text = comment
+        cell.selectionStyle = .none
         
         return cell
+        
     }
 }
