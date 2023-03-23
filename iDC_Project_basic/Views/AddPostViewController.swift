@@ -10,6 +10,16 @@ import UIKit
 class AddPostViewController: UIViewController {
         
     var postViewModel: PostViewModel!
+    let textViewPlaceholder: String = "Please enter your content."
+    
+    init(postViewModel: PostViewModel!) {
+        self.postViewModel = postViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +31,6 @@ class AddPostViewController: UIViewController {
         setupUI()
         setupLayout()
         
-        postViewModel = PostViewModel()
     }
     
     // MARK: - Setup Navigation
@@ -59,7 +68,7 @@ class AddPostViewController: UIViewController {
         return tv
     }()
     
-    let textCountLabel: UILabel = {
+    lazy var textCountLabel: UILabel = {
         let tcl = UILabel()
         tcl.font = UIFont.systemFont(ofSize: 14)
         tcl.textColor = .gray
@@ -107,17 +116,17 @@ extension AddPostViewController: UITextViewDelegate {
     
     // MARK: - Write Post
     @IBAction func writeButtonTapped(_ sender: Any) {
-        guard titleTextField.text != "" else { return showAlert("Check the title", "Title is empty.") }
-        guard textView.text != "Please enter your content." && textView.text != "" else { return showAlert("Check the content", "Content is empty.") }
+        guard let title = titleTextField.text, !title.isEmpty else { return showAlert("Check the title", "Title is empty.") }
+        guard let description = textView.text, !description.isEmpty, textView.text != textViewPlaceholder else { return showAlert("Check the content", "Content is empty.") }
         
-        postViewModel.writePost(title: titleTextField.text!, description: textView.text!, time: Date().writingTime())
+        postViewModel.writePost(title: title, description: description, time: Date().writingTime())
         NotificationCenter.default.post(name: NSNotification.Name("writePostNotification"), object: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Setup TextView
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Please enter your content." {
+        if textView.text == textViewPlaceholder {
             textView.text = nil
             textView.textColor = .white
             textView.becomeFirstResponder()
@@ -131,6 +140,13 @@ extension AddPostViewController: UITextViewDelegate {
         let changeText = currentText.replacingCharacters(in: stringeRange, with: text)
         
         textCountLabel.text = "(\(changeText.count)/1000)"
+        
+        if changeText.count == 10 {
+            textCountLabel.textColor = .red
+        } else {
+            textCountLabel.textColor = .gray
+        }
+        
         return changeText.count <= 999
     }
 }

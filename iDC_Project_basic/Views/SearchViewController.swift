@@ -13,6 +13,15 @@ class SearchViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let cellId = "PostTableViewCell"
     
+    init(postListViewModel: PostListViewModel!) {
+        self.postListViewModel = postListViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +30,8 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        postListViewModel = PostListViewModel()
-        
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
+                
         setupSearchBar()
         setupNavigation()
         setupUI()
@@ -48,14 +57,13 @@ class SearchViewController: UIViewController {
     let tableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .black
+        tv.rowHeight = 80
         
         return tv
     }()
     
     func setupUI() {
         self.view.backgroundColor = .black
-        self.tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
-        self.tableView.rowHeight = 80
         self.view.addSubview(tableView)
     }
     
@@ -76,7 +84,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     // MARK: - Search Action
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text else { return }
+        guard let keyword = searchBar.text, let postListViewModel = postListViewModel else { return }
         print(keyword)
                 
         postListViewModel.searchPost(keyword: keyword, completion: { result in
@@ -84,8 +92,8 @@ extension SearchViewController: UISearchBarDelegate {
             case .success:
                 self.tableView.reloadData()
                 print("Search Data Success")
-            case .failure(let err):
-                print("Error search Data: \(err)")
+            case .failure(let error):
+                print("Error search Data: \(error.localizedDescription)")
             }
         })
     }

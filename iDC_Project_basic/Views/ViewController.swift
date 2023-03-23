@@ -12,14 +12,23 @@ class ViewController: UITableViewController {
     var postListViewModel: PostListViewModel!
     let cellId = "PostTableViewCell"
     
+    init(postListViewModel: PostListViewModel!) {
+        self.postListViewModel = postListViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        postListViewModel = PostListViewModel()
-        
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
+                
         setupNavigation()
         navigationItemSetting()
         setupUI()
@@ -44,8 +53,8 @@ class ViewController: UITableViewController {
             case .success:
                 self.tableView.reloadData()
                 print("Load Data Success")
-            case .failure(let err):
-                print("Error Load Data: \(err)")
+            case .failure(let error):
+                print("Error Load Data: \(error.localizedDescription)")
             }
         }
     }
@@ -57,15 +66,15 @@ class ViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
                 print("Reload Data Success")
-            case .failure(let err):
-                print("Error Reload Data: \(err)")
+            case .failure(let error):
+                print("Error Reload Data: \(error.localizedDescription)")
             }
         }
     }
     
     // MARK: - Function Code
     @IBAction func plusButtonTapped() {
-        self.navigationController?.pushViewController(AddPostViewController(), animated: true)
+        self.navigationController?.pushViewController(AddPostViewController(postViewModel: PostViewModel()), animated: true)
     }
     /*
      @IBAction func searchButtonTapped() {
@@ -139,7 +148,6 @@ class ViewController: UITableViewController {
     
     func setupUI() {
         self.view.backgroundColor = .black
-        self.tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         self.tableView.rowHeight = 80
         /*
          self.view.addSubview(imageView)

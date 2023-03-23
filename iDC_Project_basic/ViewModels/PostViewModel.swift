@@ -20,7 +20,7 @@ class PostViewModel {
     }
 }
 
-// Input Function
+// Input
 extension PostViewModel {
     
     func writePost(title: String, description: String, time: String) {

@@ -22,6 +22,9 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         
         commentTextField.delegate = self
         
+        tableView.register(PostDetailTableViewCell.self, forCellReuseIdentifier: detailCellId)
+        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: commentCellId)
+        
         setupNavigation()
         setupUI()
         setupLayout()
@@ -35,8 +38,8 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         self.textFieldConstraint = NSLayoutConstraint(item: self.commentTextField, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.textFieldConstraint?.isActive = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -79,8 +82,6 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     }()
     
     func setupUI() {
-        self.tableView.register(PostDetailTableViewCell.self, forCellReuseIdentifier: detailCellId)
-        self.tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: commentCellId)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.view.backgroundColor = .black
@@ -124,8 +125,8 @@ extension PostDetailViewController: UITextFieldDelegate {
                 case .success:
                     self.tableView.reloadData()
                     print("Load comment success")
-                case .failure(let err):
-                    print("Error Loading comment: \(err)")
+                case .failure(let error):
+                    print("Error Loading comment: \(error.localizedDescription)")
                 }
             })
             
@@ -151,8 +152,8 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: detailCellId, for: indexPath) as? PostDetailTableViewCell else { fatalError("PostDetailTableViewCell not found") }
+            
             cell.titleLabel.text = postViewModel.title
             cell.timeLabel.text = postViewModel.time
             cell.contentTextView.text = postViewModel.description

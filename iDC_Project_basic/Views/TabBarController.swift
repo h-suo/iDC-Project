@@ -25,13 +25,13 @@ class TabBarController: UITabBarController {
     
     func setupTabBarItem() {
         
-        let firstVC = UINavigationController(rootViewController: ViewController())
+        let firstVC = UINavigationController(rootViewController: ViewController(postListViewModel: PostListViewModel()))
         firstVC.tabBarItem.image = UIImage(systemName: "house")
         firstVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstVC.tabBarItem.title = "home"
         
         
-        let secondVC = UINavigationController(rootViewController: SearchViewController())
+        let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
         secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         secondVC.tabBarItem.title = "search"
         

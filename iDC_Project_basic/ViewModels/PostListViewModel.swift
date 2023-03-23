@@ -13,8 +13,9 @@ class PostListViewModel {
     private var postList: [PostForm] = []
 }
 
+// IntPut
 extension PostListViewModel {
-    // IntPut
+
     func getPost(completion: @escaping(Result<Void, Error>) -> Void) {
         Task(priority: .userInitiated) {
             do {

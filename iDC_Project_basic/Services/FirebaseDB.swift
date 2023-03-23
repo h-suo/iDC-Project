@@ -28,9 +28,9 @@ class FirebaseDB {
         }
         
         /*
-         db.collection("Post").getDocuments() { (querySnapshot, err) in
-         if let err = err {
-         print("Error getting documents: \(err)")
+         db.collection("Post").getDocuments() { (querySnapshot, error) in
+         if let error = error {
+         print("Error getting documents: \(error)")
          } else {
          for document in querySnapshot!.documents {
          
@@ -40,6 +40,7 @@ class FirebaseDB {
          }
          }
          }*/
+        print("Get Post Success")
         
         return posts
     }
@@ -53,9 +54,9 @@ class FirebaseDB {
                 "description": newPost.description,
                 "comment": newPost.comment,
                 "time": newPost.time
-            ]) { err in
-                if let err = err {
-                    print("Error write post: \(err)")
+            ]) { error in
+                if let error = error {
+                    print("Error write post: \(error.localizedDescription)")
                 } else {
                     print("write post success")
                 }
@@ -67,9 +68,9 @@ class FirebaseDB {
         documentRefernece
             .updateData([
                 "comment" : comment
-            ]) { err in
-                if let err = err {
-                    print("Error write comment: \(err)")
+            ]) { error in
+                if let error = error {
+                    print("Error write comment: \(error.localizedDescription)")
                 } else {
                     print("write comment success")
                 }
@@ -86,8 +87,8 @@ class FirebaseDB {
     
     func updateCheck(documentID: String) {
         let documentRefernece = db.collection("Post").document(documentID)
-        documentRefernece.addSnapshotListener { documentSnapshot, err in
-            if let err = err { print("Error updating Check: \(err)") }
+        documentRefernece.addSnapshotListener { documentSnapshot, error in
+            if let error = error { print("Error updating Check: \(error.localizedDescription)") }
             if let data = documentSnapshot?.data() {
                 print("Update Data: \(data)")
             } else {
@@ -113,7 +114,7 @@ class FirebaseDB {
                 posts.append(post)
             }
         }
-        print(posts)
+        print("Get Post Scuccess")
         
         return posts
     }
