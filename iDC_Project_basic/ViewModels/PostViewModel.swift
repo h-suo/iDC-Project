@@ -29,22 +29,12 @@ extension PostViewModel {
     }
     
     func writeComment(documentID: String, comment: [String]) {
-        
         FirebaseDB().writeComment(documentID: documentID, comment: comment)
     }
     
-    func getDocument(documentID: String, completion: @escaping(Result<Void, Error>) -> Void) {
-        Task(priority: .userInitiated) {
-            do {
-                let post = try await FirebaseDB().getDocument(documentID: documentID)
-                self.post = post
-                DispatchQueue.main.async {
-                    completion(.success(()))
-                }
-            } catch {
-                completion(.failure(error))
-            }
-        }
+    func getDocument(documentID: String) async throws {
+        let post = try await FirebaseDB().getDocument(documentID: documentID)
+        self.post = post
     }
 }
 

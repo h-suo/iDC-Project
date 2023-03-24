@@ -120,15 +120,18 @@ extension PostDetailViewController: UITextFieldDelegate {
             newComment.append(commentTextField.text!)
             
             postViewModel.writeComment(documentID: postViewModel.id, comment: newComment)
-            postViewModel.getDocument(documentID: postViewModel.id, completion: { result in
-                switch result {
-                case .success:
-                    self.tableView.reloadData()
-                    print("Load comment success")
-                case .failure(let error):
-                    print("Error Loading comment: \(error.localizedDescription)")
+            
+            Task(priority: .userInitiated) {
+                do {
+                    try await postViewModel.getDocument(documentID: postViewModel.id)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    print("Load comment Success")
+                } catch {
+                    print("Error Load comment: \(error.localizedDescription)")
                 }
-            })
+            }
             
             commentTextField.resignFirstResponder()
             commentTextField.text = nil

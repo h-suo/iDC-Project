@@ -86,16 +86,18 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text, let postListViewModel = postListViewModel else { return }
         print(keyword)
-                
-        postListViewModel.searchPost(keyword: keyword, completion: { result in
-            switch result {
-            case .success:
-                self.tableView.reloadData()
+        
+        Task(priority: .userInitiated) {
+            do {
+                try await postListViewModel.searchPost(keyword: keyword)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 print("Search Data Success")
-            case .failure(let error):
-                print("Error search Data: \(error.localizedDescription)")
+            } catch {
+                print("Error Search Data: \(error.localizedDescription)")
             }
-        })
+        }
     }
 }
 

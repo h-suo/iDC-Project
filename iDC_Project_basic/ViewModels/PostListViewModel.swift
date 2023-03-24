@@ -16,35 +16,15 @@ class PostListViewModel {
 // IntPut
 extension PostListViewModel {
 
-    func getPost(completion: @escaping(Result<Void, Error>) -> Void) {
-        Task(priority: .userInitiated) {
-            do {
-                let postList = try await FirebaseDB().getPost()
-                self.postList = postList
-                DispatchQueue.main.async {
-                    completion(.success(()))
-                }
-            } catch {
-                completion(.failure(error))
-            }
-        }
+    func getPost() async throws {
+        let postList = try await FirebaseDB().getPost()
+        self.postList = postList
     }
     
-    func searchPost(keyword: String, completion: @escaping(Result<Void, Error>) -> Void) {
-        Task(priority: .background) {
-            do {
-                let postList = try await FirebaseDB().searchPost(keyword: keyword)
-                print(postList)
-                self.postList = postList
-                DispatchQueue.main.async {
-                    completion(.success(()))
-                }
-            } catch {
-                completion(.failure(error))
-            }
-        }
+    func searchPost(keyword: String) async throws {
+        let postList = try await FirebaseDB().searchPost(keyword: keyword)
+        self.postList = postList
     }
-    
 }
 
 // Output

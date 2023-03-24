@@ -28,7 +28,7 @@ class ViewController: UITableViewController {
         tableView.delegate = self
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
-                
+        
         setupNavigation()
         navigationItemSetting()
         setupUI()
@@ -38,35 +38,35 @@ class ViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //        loadData()
-    }
-    
     // MARK: - Load Data
     func observeWritePost() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
     }
     
     @objc func loadData() {
-        postListViewModel.getPost { result in
-            switch result {
-            case .success:
-                self.tableView.reloadData()
+        Task(priority: .userInitiated) {
+            do {
+                try await postListViewModel.getPost()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 print("Load Data Success")
-            case .failure(let error):
+            } catch {
                 print("Error Load Data: \(error.localizedDescription)")
             }
         }
     }
     
     @IBAction func reloadData() {
-        postListViewModel.getPost { result in
-            switch result {
-            case .success:
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
+        Task(priority: .userInitiated) {
+            do {
+                try await postListViewModel.getPost()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
                 print("Reload Data Success")
-            case .failure(let error):
+            } catch {
                 print("Error Reload Data: \(error.localizedDescription)")
             }
         }
