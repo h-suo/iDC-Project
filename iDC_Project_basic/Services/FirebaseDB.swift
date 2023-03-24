@@ -27,19 +27,6 @@ class FirebaseDB {
             posts.append(post)
         }
         
-        /*
-         db.collection("Post").getDocuments() { (querySnapshot, error) in
-         if let error = error {
-         print("Error getting documents: \(error)")
-         } else {
-         for document in querySnapshot!.documents {
-         
-         guard let post = PostForm(dictionary: document.data()) else { return }
-         self.posts.append(post)
-         print(post)
-         }
-         }
-         }*/
         print("Get Post Success")
         
         return posts

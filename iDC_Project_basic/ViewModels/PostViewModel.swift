@@ -10,6 +10,7 @@ import Foundation
 // MARK: - Post ViewModel
 class PostViewModel {
     private var post: PostForm
+    let firebase = FirebaseDB()
     
     init() {
         self.post = PostForm(id: "", title: "", description: "", comment: [], time: "")
@@ -25,15 +26,15 @@ extension PostViewModel {
     
     func writePost(title: String, description: String, time: String) {
         let newWritePost: WritePostForm = WritePostForm(title: title, description: description, comment: [], time: time)
-        FirebaseDB().writePost(newWritePost)
+        firebase.writePost(newWritePost)
     }
     
     func writeComment(documentID: String, comment: [String]) {
-        FirebaseDB().writeComment(documentID: documentID, comment: comment)
+        firebase.writeComment(documentID: documentID, comment: comment)
     }
     
     func getDocument(documentID: String) async throws {
-        let post = try await FirebaseDB().getDocument(documentID: documentID)
+        let post = try await firebase.getDocument(documentID: documentID)
         self.post = post
     }
 }

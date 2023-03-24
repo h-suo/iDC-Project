@@ -11,18 +11,19 @@ import Foundation
 class PostListViewModel {
     
     private var postList: [PostForm] = []
+    let firebase = FirebaseDB()
 }
 
 // IntPut
 extension PostListViewModel {
 
     func getPost() async throws {
-        let postList = try await FirebaseDB().getPost()
+        let postList = try await firebase.getPost()
         self.postList = postList
     }
     
     func searchPost(keyword: String) async throws {
-        let postList = try await FirebaseDB().searchPost(keyword: keyword)
+        let postList = try await firebase.searchPost(keyword: keyword)
         self.postList = postList
     }
 }
