@@ -16,6 +16,7 @@
 		457F1FE829C98D690055420A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE729C98D690055420A /* PostListViewModel.swift */; };
 		457F1FEA29C9C5C10055420A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE929C9C5C10055420A /* SettingViewModel.swift */; };
 		457F1FEC29CA8C7F0055420A /* PostDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FEB29CA8C7F0055420A /* PostDetailTableViewCell.swift */; };
+		457F1FF229CEC8090055420A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FF129CEC8090055420A /* UserData.swift */; };
 		458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */; };
 		458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */; };
 		458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADC29B9A5FA00E48DBF /* ViewController.swift */; };
@@ -45,6 +46,8 @@
 		457F1FE729C98D690055420A /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		457F1FE929C9C5C10055420A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		457F1FEB29CA8C7F0055420A /* PostDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewCell.swift; sourceTree = "<group>"; };
+		457F1FF029CEC1030055420A /* iDC_Project_basic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iDC_Project_basic.entitlements; sourceTree = "<group>"; };
+		457F1FF129CEC8090055420A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		458E5AD529B9A5FA00E48DBF /* iDC_Project_basic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDC_Project_basic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		458E5AD729B9A5FA00E48DBF /* iDC_Project_basic */ = {
 			isa = PBXGroup;
 			children = (
+				457F1FF029CEC1030055420A /* iDC_Project_basic.entitlements */,
 				458E5AEC29B9A6D300E48DBF /* Delegate */,
 				458E5B0329BCBC8D00E48DBF /* Services */,
 				458E5AED29B9A6F400E48DBF /* Models */,
@@ -133,6 +137,7 @@
 			children = (
 				458E5AF229B9A75300E48DBF /* PostForm.swift */,
 				457F1FE329C98D170055420A /* WritePostForm.swift */,
+				457F1FF129CEC8090055420A /* UserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */,
 				458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */,
 				458E5B0529BCBCD200E48DBF /* FirebaseDB.swift in Sources */,
+				457F1FF229CEC8090055420A /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,8 +476,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iDC_Project_basic/iDC_Project_basic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MBUQ2HHA5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iDC_Project_basic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -500,8 +508,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iDC_Project_basic/iDC_Project_basic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MBUQ2HHA5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iDC_Project_basic/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
