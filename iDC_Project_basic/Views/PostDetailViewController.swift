@@ -109,7 +109,6 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     }
 }
 
-// MARK: - PostDetailViewController extension
 extension PostDetailViewController: UITextFieldDelegate {
     // MARK: - Write Comment
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -141,7 +140,6 @@ extension PostDetailViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - PostDetailViewController extension
 extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - TableView Code

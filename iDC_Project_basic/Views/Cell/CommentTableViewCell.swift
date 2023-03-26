@@ -30,7 +30,6 @@ class CommentTableViewCell: UITableViewCell {
     }()
     
     func setupUI() {
-        self.backgroundColor = .clear
         self.addSubview(commentLabel)
     }
     

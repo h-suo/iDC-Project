@@ -7,14 +7,13 @@
 
 import Foundation
 
-// MARK: - PostList ViewModel
 class PostListViewModel {
     
     private var postList: [PostForm] = []
     let firebase = FirebaseDB()
 }
 
-// IntPut
+// MARK: - IntPut
 extension PostListViewModel {
 
     func getPost() async throws {
@@ -28,7 +27,7 @@ extension PostListViewModel {
     }
 }
 
-// Output
+// MARK: - Output
 extension PostListViewModel {
     
     var numberOfSections: Int {

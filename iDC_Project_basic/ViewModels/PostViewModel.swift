@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Post ViewModel
 class PostViewModel {
     private var post: PostForm
     let firebase = FirebaseDB()
@@ -21,7 +20,7 @@ class PostViewModel {
     }
 }
 
-// Input
+// MARK: - Input
 extension PostViewModel {
     
     func writePost(title: String, description: String, time: String) {
@@ -39,7 +38,7 @@ extension PostViewModel {
     }
 }
 
-// Output
+// MARK: - Output
 extension PostViewModel {
     
     var id: String { return self.post.id }

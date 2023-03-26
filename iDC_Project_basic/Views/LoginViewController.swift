@@ -8,56 +8,42 @@
 import UIKit
 import AuthenticationServices
 
-class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-        
+class LoginViewController: UIViewController, ASAuthorizationControllerPresentationContextProviding {
+    
+    var loginViewModel: LoginViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        loginViewModel = LoginViewModel()
+        
         setupUI()
         setupLayout()
+        loginCheck()
     }
     
     // MARK: - Function Code
     @objc func handleAuthorizationAppleIDButtonPress() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+        loginViewModel.loginWithApple()
     }
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
     
-    // Apple ID 연동 성공 시
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        // Apple ID
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
-                
-            // 계정 정보 가져오기
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-                
-            print("User ID : \(userIdentifier)")
-            print("User Email : \(email ?? "")")
-            print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
-
-        default:
-            break
+    func loginCheck() {
+        loginViewModel.onLoginSuccess = { [weak self] in
+            let homeVC = TabBarController()
+            homeVC.modalPresentationStyle = .fullScreen
+            self?.present(homeVC, animated: true)
+        }
+        
+        loginViewModel.onLoginFailure = { [weak self] error in
+            self?.showAlert("Login fail", "Sign in with apple.")
+            print(error)
         }
     }
-        
-    // Apple ID 연동 실패 시
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        // Handle error.
-    }
-        
+    
     // MARK: - Setup UI
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -73,24 +59,10 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, 
         return ab
     }()
     
-    /*
-    let LoginButton: UIButton = {
-        let lb = UIButton()
-        lb.backgroundColor = .white
-        lb.layer.cornerRadius = 4
-        lb.setTitle(" Sign in with Apple", for: .normal)
-        lb.setTitleColor(.black, for: .normal)
-        
-        return lb
-    }()
-     */
-    
     func setupUI() {
         self.view.backgroundColor = .black
         self.view.addSubview(imageView)
-//        self.view.addSubview(LoginButton)
         self.view.addSubview(authorizationButton)
-        
         authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
     }
     
@@ -111,5 +83,7 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, 
             authorizationButton.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
             authorizationButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 40)
         ])
-    }    
+    }
 }
+
+

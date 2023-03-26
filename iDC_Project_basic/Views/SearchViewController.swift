@@ -80,8 +80,8 @@ class SearchViewController: UIViewController {
     }
 }
 
-// MARK: - SearchViewController extension
 extension SearchViewController: UISearchBarDelegate {
+    
     // MARK: - Search Action
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text, let postListViewModel = postListViewModel else { return }
@@ -101,9 +101,9 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - SearchViewController extension
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - TableView Code
     func numberOfSections(in tableView: UITableView) -> Int {
         return postListViewModel == nil ? 0 : self.postListViewModel.numberOfSections
     }
