@@ -56,6 +56,6 @@
         self.comment = dictionary["comment"] as! [String]
         self.time = dictionary["time"] as! String
     }
-}
+  }
   ```
 - Apple 로그인 기능으로 앱을 처음 시작할 때 로그인 할 수 있도록 하였고, 로그인 정보 중 사용자 ID만 저장하여 게시글을 작성할 때 누가 작성한 것인지 알 수 있도록 Model값에 userIdentifier를 추가하여 관리하였습니다.
