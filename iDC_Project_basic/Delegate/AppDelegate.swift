@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 import AuthenticationServices
 
 @main
@@ -22,28 +23,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Thread.sleep(forTimeInterval: 2)
         
         // apple Login set
-        /*
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-            appleIDProvider.getCredentialState(forUserID: ) { (credentialState, error) in
-                switch credentialState {
+        if let userID = KeychainWrapper.standard.string(forKey: "userID") {
+            appleIDProvider.getCredentialState(forUserID: userID) { credential, error in
+                switch credential {
                 case .authorized:
-                    // The Apple ID credential is valid.
-                    print("해당 ID는 연동되어있습니다.")
-                case .revoked
-                    // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
-                    print("해당 ID는 연동되어있지않습니다.")
+                    print("User ID is connected")
+                case .revoked:
+                    print("User ID is not connected")
                 case .notFound:
-                    // The Apple ID credential is either was not found, so show the sign-in UI.
-                    print("해당 ID를 찾을 수 없습니다.")
+                    print("Can't found User ID connected")
                 default:
                     break
                 }
             }
-         */
+        }
         
         NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
             print("Revoked Notification")
-            // 로그인 페이지로 이동
+            
         }
         
         return true
