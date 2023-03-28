@@ -79,20 +79,12 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
         
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-
-            print("User ID : \(userIdentifier)")
-            print("User Email : \(email ?? "")")
-            print("User Name : \((fullName?.givenName ?? "") + (fullName?.familyName ?? ""))")
-            
-            KeychainWrapper.standard.set(userIdentifier, forKey: "userID")
+            KeychainWrapper.standard.set(appleIDCredential.user, forKey: "userID")
             
         default:
             break
         }
-         
+        
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
@@ -118,10 +110,7 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
                 if let user = authResult?.user {
                     print("Login Success: ", user.uid, user.email ?? "-")
                     self.onLoginSuccess?()
-                }
-                
-                if let error = error {
-                    
+                } else if let error = error {
                     print(error.localizedDescription)
                     return
                 }
@@ -133,6 +122,4 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
         // Call the login failure callback with the error message
         self.onLoginFailure?(error.localizedDescription)
     }
-    
-    
 }
