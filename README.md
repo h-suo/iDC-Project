@@ -37,10 +37,10 @@
     
     private var postList: [PostForm] = []
     let firebase = FirebaseDB()
-}
+  }
 
-// MARK: - IntPut
-extension PostListViewModel {
+  // MARK: - IntPut
+  extension PostListViewModel {
 
     func getPost() async throws {
         let postList = try await firebase.getPost()
@@ -51,10 +51,10 @@ extension PostListViewModel {
         let postList = try await firebase.searchPost(keyword: keyword)
         self.postList = postList
     }
-}
+  }
 
-// MARK: - Output
-extension PostListViewModel {
+  // MARK: - Output
+  extension PostListViewModel {
     
     var numberOfSections: Int {
         return 1
@@ -68,7 +68,7 @@ extension PostListViewModel {
         let post = self.postList[index]
         return PostViewModel(post)
     }
-}
+  }
   ```
 - 게시글의 Model을 만들어 데이터를 관리하기 편하게 하였고, FirebaseDB에서 데이터를 가져올 때 딕셔너리로 가져오는 것을 토대로 초기화할 수 있도록 코드를 작성하였습니다.
   ```swift
