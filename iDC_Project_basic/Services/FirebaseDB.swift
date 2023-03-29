@@ -8,10 +8,12 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import UserNotifications
 
 class FirebaseDB {
     
     var db: Firestore = Firestore.firestore()
+    var listener: ListenerRegistration?
     var posts: [PostForm] = []
     
     // MARK: - Function Code
@@ -82,15 +84,24 @@ class FirebaseDB {
                 print("Data is empty")
             }
         }
+        
+        // Register for remote notifications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            guard granted else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func handleNotification(_ notification: UNNotification) {
+        // Handle the notification here
     }
     
     func searchPost(keyword: String) async throws -> [PostForm] {
         
         let documentRefernece = db.collection("Post")
         let querySnapshot = try await documentRefernece
-        //            .whereField("description", arrayContains: keyword)
-        //            .whereField("description", isGreaterThanOrEqualTo: keyword)
-        //            .whereField("description", isLessThan: keyword + "~")
             .order(by: "time", descending: true)
             .getDocuments()
         
@@ -105,4 +116,13 @@ class FirebaseDB {
         
         return posts
     }
+}
+
+extension FirebaseDB {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        handleNotification(response.notification)
+        completionHandler()
+    }
+    
 }

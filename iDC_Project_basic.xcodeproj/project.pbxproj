@@ -16,7 +16,6 @@
 		457F1FE829C98D690055420A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE729C98D690055420A /* PostListViewModel.swift */; };
 		457F1FEA29C9C5C10055420A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE929C9C5C10055420A /* SettingViewModel.swift */; };
 		457F1FEC29CA8C7F0055420A /* PostDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FEB29CA8C7F0055420A /* PostDetailTableViewCell.swift */; };
-		457F1FF229CEC8090055420A /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FF129CEC8090055420A /* UserData.swift */; };
 		4580009D29D06D4C00ED237C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4580009C29D06D4C00ED237C /* LoginViewModel.swift */; };
 		458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */; };
 		458E5ADB29B9A5FA00E48DBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5ADA29B9A5FA00E48DBF /* SceneDelegate.swift */; };
@@ -32,6 +31,8 @@
 		458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFC29B9A80800E48DBF /* SettingViewController.swift */; };
 		458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */; };
 		458E5B0529BCBCD200E48DBF /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */; };
+		45D0B23929D3E936003B91E2 /* SettingImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0B23829D3E936003B91E2 /* SettingImageTableViewCell.swift */; };
+		45D0B23B29D40672003B91E2 /* SettingToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0B23A29D40672003B91E2 /* SettingToggleTableViewCell.swift */; };
 		EA67BF6A8D6A37E897B96534 /* Pods_iDC_Project_basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +49,6 @@
 		457F1FE929C9C5C10055420A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		457F1FEB29CA8C7F0055420A /* PostDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewCell.swift; sourceTree = "<group>"; };
 		457F1FF029CEC1030055420A /* iDC_Project_basic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iDC_Project_basic.entitlements; sourceTree = "<group>"; };
-		457F1FF129CEC8090055420A /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4580009C29D06D4C00ED237C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		458E5AD529B9A5FA00E48DBF /* iDC_Project_basic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDC_Project_basic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E5AD829B9A5FA00E48DBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +66,8 @@
 		458E5AFC29B9A80800E48DBF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
+		45D0B23829D3E936003B91E2 /* SettingImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingImageTableViewCell.swift; sourceTree = "<group>"; };
+		45D0B23A29D40672003B91E2 /* SettingToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingToggleTableViewCell.swift; sourceTree = "<group>"; };
 		EA7C1219EA2E1AF636A969F3 /* Pods-iDC_Project_basic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.debug.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +141,6 @@
 			children = (
 				458E5AF229B9A75300E48DBF /* PostForm.swift */,
 				457F1FE329C98D170055420A /* WritePostForm.swift */,
-				457F1FF129CEC8090055420A /* UserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -153,8 +154,8 @@
 				458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */,
 				458E5AF829B9A7DF00E48DBF /* PostDetailViewController.swift */,
 				4528228D29C6BB0E006B919C /* SearchViewController.swift */,
-				458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */,
 				458E5AFC29B9A80800E48DBF /* SettingViewController.swift */,
+				458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */,
 				458E5B0029B9ACAD00E48DBF /* Cell */,
 			);
 			path = Views;
@@ -177,6 +178,8 @@
 				453D797A29C0534A00444F5C /* PostTableViewCell.swift */,
 				457F1FEB29CA8C7F0055420A /* PostDetailTableViewCell.swift */,
 				453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */,
+				45D0B23829D3E936003B91E2 /* SettingImageTableViewCell.swift */,
+				45D0B23A29D40672003B91E2 /* SettingToggleTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -321,11 +324,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D0B23929D3E936003B91E2 /* SettingImageTableViewCell.swift in Sources */,
 				457F1FEC29CA8C7F0055420A /* PostDetailTableViewCell.swift in Sources */,
 				453D798029C4510500444F5C /* Unit.swift in Sources */,
 				4580009D29D06D4C00ED237C /* LoginViewModel.swift in Sources */,
 				457F1FEA29C9C5C10055420A /* SettingViewModel.swift in Sources */,
 				458E5AF929B9A7DF00E48DBF /* PostDetailViewController.swift in Sources */,
+				45D0B23B29D40672003B91E2 /* SettingToggleTableViewCell.swift in Sources */,
 				457F1FE429C98D170055420A /* WritePostForm.swift in Sources */,
 				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
 				453D797B29C0534A00444F5C /* PostTableViewCell.swift in Sources */,
@@ -342,7 +347,6 @@
 				453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */,
 				458E5AF329B9A75300E48DBF /* PostForm.swift in Sources */,
 				458E5B0529BCBCD200E48DBF /* FirebaseDB.swift in Sources */,
-				457F1FF229CEC8090055420A /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

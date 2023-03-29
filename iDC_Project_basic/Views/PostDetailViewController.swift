@@ -74,7 +74,7 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     let commentTextField: UITextField = {
         let ctf = UITextField()
         ctf.borderStyle = .roundedRect
-        ctf.placeholder = "Please enter a comment"
+        ctf.placeholder = " Please enter a comment"
         ctf.backgroundColor = .systemFill
         ctf.font = .systemFont(ofSize: 18)
         
