@@ -26,7 +26,7 @@ class SettingViewModel {
 extension SettingViewModel {
     
     func themeSelected() {
-        
+        UserDefaults.standard.set("Light", forKey: "Appearance")
     }
     
     func notificationON() {

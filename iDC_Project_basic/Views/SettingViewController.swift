@@ -11,9 +11,10 @@ class SettingViewController: UITableViewController {
     
     let imageCellId = "SettingImageTableViewCell"
     let toggleCellId = "SettingToggleTableViewCell"
-    let settingViewModel: SettingViewModel = SettingViewModel()
+    let settingViewModel: SettingViewModel!
     
-    override init(style: UITableView.Style) {
+    init(style: UITableView.Style, settingViewModel: SettingViewModel!) {
+        self.settingViewModel = settingViewModel
         super.init(style: .insetGrouped)
     }
     
@@ -31,6 +32,31 @@ class SettingViewController: UITableViewController {
         tableView.isScrollEnabled = false
         
         setupNavigation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    // MARK: Function Code
+    func AppearanceCheck(_ viewController: UIViewController) {
+        guard let appearance = UserDefaults.standard.string(forKey: "Appearance") else { return }
+        if appearance == "Dark" {
+            viewController.overrideUserInterfaceStyle = .dark
+            if #available(iOS 13.0, *) {
+                UIApplication.shared.statusBarStyle = .lightContent
+            } else {
+                UIApplication.shared.statusBarStyle = .default
+            }
+        } else {
+            viewController.overrideUserInterfaceStyle = .light
+            if #available(iOS 13.0, *) {
+                UIApplication.shared.statusBarStyle = .darkContent
+            } else {
+                UIApplication.shared.statusBarStyle = .default
+            }
+        }
     }
     
     // MARK: - Setup Navigation
@@ -81,6 +107,8 @@ class SettingViewController: UITableViewController {
         if indexPath.section == settingViewModel.themeSettingSection {
             if let cell = tableView.cellForRow(at: indexPath) as? SettingImageTableViewCell {
                 cell.itemImageView.image = UIImage(systemName: "checkmark.circle.fill")
+                settingViewModel.themeSelected()
+                self.viewWillAppear(true)
             }
             
             for row in 0..<tableView.numberOfRows(inSection: indexPath.section) {
@@ -91,7 +119,5 @@ class SettingViewController: UITableViewController {
             }
         }
     }
-    
-    
     
 }

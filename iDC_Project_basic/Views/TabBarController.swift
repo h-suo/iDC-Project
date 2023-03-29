@@ -41,7 +41,7 @@ class TabBarController: UITabBarController {
         thirdVC.tabBarItem.title = "alarm"
         */
         
-        let forthVC = UINavigationController(rootViewController: SettingViewController(style: .insetGrouped))
+        let forthVC = UINavigationController(rootViewController: SettingViewController(style: .insetGrouped, settingViewModel: SettingViewModel()))
         forthVC.tabBarItem.image = UIImage(systemName: "gearshape")
         forthVC.tabBarItem.title = "setting"
         
