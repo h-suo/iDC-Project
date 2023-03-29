@@ -48,22 +48,21 @@ class SearchViewController: UIViewController {
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationItem.title = "Search"
-        self.navigationController?.navigationBar.backgroundColor = .black
-        self.navigationController?.overrideUserInterfaceStyle = .dark
+        self.navigationController?.navigationBar.backgroundColor = .systemBackground
         self.navigationItem.largeTitleDisplayMode = .never
     }
     
     // MARK: - Setup UI
     let tableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .black
+        tv.backgroundColor = .systemBackground
         tv.rowHeight = 80
         
         return tv
     }()
     
     func setupUI() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .systemBackground
         self.view.addSubview(tableView)
     }
     

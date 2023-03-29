@@ -41,15 +41,12 @@ class PostDetailTableViewCell: UITableViewCell, UITextViewDelegate {
     let contentTextView: UITextView = {
         let ctv = UITextView()
         ctv.font = .systemFont(ofSize: 18)
-        ctv.textColor = .white
         ctv.isEditable = false
         
         return ctv
     }()
     
-    func setupUI() {
-        self.backgroundColor = .black
-        
+    func setupUI() {        
         self.addSubview(titleLabel)
         self.addSubview(timeLabel)
         self.addSubview(contentTextView)

@@ -14,7 +14,7 @@ class SettingViewModel {
     
     init() {
         sections = [
-            ["Light", "Dark", "Auto"],
+            ["Light", "Dark"],
             ["Notifications", "Sounds"],
             ["Log out", "Withdraw"]
         ]
@@ -25,8 +25,12 @@ class SettingViewModel {
 // MARK: - Input
 extension SettingViewModel {
     
-    func themeSelected() {
+    func lightThemeSelected() {
         UserDefaults.standard.set("Light", forKey: "Appearance")
+    }
+    
+    func darkThemeSelected() {
+        UserDefaults.standard.set("Dark", forKey: "Appearance")
     }
     
     func notificationON() {

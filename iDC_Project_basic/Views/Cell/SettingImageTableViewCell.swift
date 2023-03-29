@@ -23,7 +23,6 @@ class SettingImageTableViewCell: UITableViewCell {
     let label: UILabel = {
         let cl = UILabel()
         cl.font = UIFont.systemFont(ofSize: 18)
-        cl.textColor = .white
         
         return cl
     }()
@@ -36,6 +35,7 @@ class SettingImageTableViewCell: UITableViewCell {
     }()
     
     func setupUI() {
+        self.backgroundColor = .quaternarySystemFill
         self.addSubview(label)
         self.addSubview(itemImageView)
     }

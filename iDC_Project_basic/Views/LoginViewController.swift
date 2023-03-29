@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, ASAuthorizationControllerPresentati
     }()
     
     func setupUI() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .systemBackground
         self.view.addSubview(imageView)
         self.view.addSubview(authorizationButton)
         authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)

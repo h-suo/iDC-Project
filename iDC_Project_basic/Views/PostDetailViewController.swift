@@ -58,8 +58,7 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - Setup Navigation
     func setupNavigation() {
-        self.navigationController?.navigationBar.backgroundColor = .black
-        self.navigationController?.overrideUserInterfaceStyle = .dark
+        self.navigationController?.navigationBar.backgroundColor = .systemBackground
         self.navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -84,7 +83,7 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     func setupUI() {
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .systemBackground
         self.view.addSubview(tableView)
         self.view.addSubview(commentTextField)
     }

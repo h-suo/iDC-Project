@@ -12,16 +12,10 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTabBar()
         setupTabBarItem()
     }
     
     // MARK: - Setup TapBar
-    func setupTabBar() {
-        self.tabBar.barTintColor = .black
-        self.tabBar.tintColor = .white
-        self.tabBar.unselectedItemTintColor = .gray
-    }
     
     func setupTabBarItem() {
         

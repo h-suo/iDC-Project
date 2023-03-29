@@ -76,26 +76,17 @@ class ViewController: UITableViewController {
     @IBAction func plusButtonTapped() {
         self.navigationController?.pushViewController(AddPostViewController(postViewModel: PostViewModel()), animated: true)
     }
-    /*
-     @IBAction func searchButtonTapped() {
-     let searchVC = UISearchController(searchResultsController: SearchViewController())
-     searchVC.obscuresBackgroundDuringPresentation = true
-     present(searchVC, animated: true)
-     }
-     */
     
     // MARK: - Setup TableView Refresh Controller
     func setupRefreshController() {
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
-        self.tableView.refreshControl?.tintColor = .white
     }
     
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.backgroundColor = .black
-        self.navigationController?.overrideUserInterfaceStyle = .dark
+        self.navigationController?.navigationBar.backgroundColor = .systemBackground
         self.navigationItem.title = "iDC"
     }
     
@@ -135,38 +126,9 @@ class ViewController: UITableViewController {
     
     
     // MARK: - Setup UI
-    /*
-     let imageView: UIImageView = {
-     let iv = UIImageView()
-     iv.image = UIImage(systemName: "plus.circle")
-     iv.tintColor = .gray
-     iv.backgroundColor = .clear
-     
-     return iv
-     }()
-     */
-    
     func setupUI() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .systemBackground
         self.tableView.rowHeight = 80
-        /*
-         self.view.addSubview(imageView)
-         imageView.isUserInteractionEnabled = true
-         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(plusViewTapped)))
-         */
     }
     
-    // MARK: - Setup Layout
-    /*
-     func setupLayout() {
-     imageView.translatesAutoresizingMaskIntoConstraints = false
-     
-     NSLayoutConstraint.activate([
-     imageView.heightAnchor.constraint(equalToConstant: 60),
-     imageView.widthAnchor.constraint(equalToConstant: 60),
-     imageView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
-     imageView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
-     ])
-     }
-     */
 }

@@ -57,6 +57,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        if #available(iOS 13.0, *) {
+            if let appearance = UserDefaults.standard.string(forKey: "Appearance") {
+                if appearance == "Light" {
+                    self.window?.overrideUserInterfaceStyle = .light
+                } else {
+                    self.window?.overrideUserInterfaceStyle = .dark
+                }
+            }
+        }
+        
         return true
     }
     

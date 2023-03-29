@@ -36,8 +36,7 @@ class AddPostViewController: UIViewController {
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationItem.title = "Post"
-        self.navigationController?.navigationBar.backgroundColor = .black
-        self.navigationController?.overrideUserInterfaceStyle = .dark
+        self.navigationController?.navigationBar.backgroundColor = .systemBackground
         self.navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -62,7 +61,7 @@ class AddPostViewController: UIViewController {
         tv.backgroundColor = .tertiarySystemFill
         tv.font = .systemFont(ofSize: 18)
         tv.text = "Please enter your content."
-        tv.textColor = .gray
+        tv.textColor = .placeholderText
         tv.layer.cornerRadius = 4
         
         return tv
@@ -71,7 +70,7 @@ class AddPostViewController: UIViewController {
     lazy var textCountLabel: UILabel = {
         let tcl = UILabel()
         tcl.font = UIFont.systemFont(ofSize: 14)
-        tcl.textColor = .gray
+        tcl.textColor = .placeholderText
         tcl.textAlignment = .right
         tcl.text = "(0/1000)"
         
@@ -79,7 +78,7 @@ class AddPostViewController: UIViewController {
     }()
     
     func setupUI() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .systemBackground
         self.view.addSubview(titleTextField)
         self.view.addSubview(textView)
         self.view.addSubview(textCountLabel)
@@ -127,7 +126,7 @@ extension AddPostViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceholder {
             textView.text = nil
-            textView.textColor = .white
+            textView.textColor = UIColor(named: "Color")
             textView.becomeFirstResponder()
         }
     }

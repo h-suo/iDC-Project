@@ -25,7 +25,7 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .systemBackground
         
         tableView.register(SettingImageTableViewCell.self, forCellReuseIdentifier: imageCellId)
         tableView.register(SettingToggleTableViewCell.self, forCellReuseIdentifier: toggleCellId)
@@ -34,36 +34,10 @@ class SettingViewController: UITableViewController {
         setupNavigation()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    // MARK: Function Code
-    func AppearanceCheck(_ viewController: UIViewController) {
-        guard let appearance = UserDefaults.standard.string(forKey: "Appearance") else { return }
-        if appearance == "Dark" {
-            viewController.overrideUserInterfaceStyle = .dark
-            if #available(iOS 13.0, *) {
-                UIApplication.shared.statusBarStyle = .lightContent
-            } else {
-                UIApplication.shared.statusBarStyle = .default
-            }
-        } else {
-            viewController.overrideUserInterfaceStyle = .light
-            if #available(iOS 13.0, *) {
-                UIApplication.shared.statusBarStyle = .darkContent
-            } else {
-                UIApplication.shared.statusBarStyle = .default
-            }
-        }
-    }
-    
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationItem.title = "Setting"
-        self.navigationController?.navigationBar.backgroundColor = .black
-        self.navigationController?.overrideUserInterfaceStyle = .dark
+        self.navigationController?.navigationBar.backgroundColor = .systemBackground
     }
     
     // MARK: - TableView Code
@@ -107,15 +81,22 @@ class SettingViewController: UITableViewController {
         if indexPath.section == settingViewModel.themeSettingSection {
             if let cell = tableView.cellForRow(at: indexPath) as? SettingImageTableViewCell {
                 cell.itemImageView.image = UIImage(systemName: "checkmark.circle.fill")
-                settingViewModel.themeSelected()
                 self.viewWillAppear(true)
             }
             
-            for row in 0..<tableView.numberOfRows(inSection: indexPath.section) {
+            for row in 0..<settingViewModel.settingNumberOfRowInSection(indexPath.section) {
                 let otherIndexPath = IndexPath(row: row, section: indexPath.section)
                 if otherIndexPath != indexPath, let otherCell = tableView.cellForRow(at: otherIndexPath) as? SettingImageTableViewCell {
                     otherCell.itemImageView.image = UIImage(systemName: "circle")
                 }
+            }
+            
+            if indexPath.row == 0 {
+                settingViewModel.lightThemeSelected()
+                view.window?.overrideUserInterfaceStyle = .light
+            } else {
+                settingViewModel.darkThemeSelected()
+                view.window?.overrideUserInterfaceStyle = .dark
             }
         }
     }

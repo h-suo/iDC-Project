@@ -23,7 +23,6 @@ class PostTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let tl = UILabel()
         tl.font = UIFont.systemFont(ofSize: 18)
-        tl.textColor = .white
         tl.numberOfLines = 1
         
         return tl
@@ -46,9 +45,7 @@ class PostTableViewCell: UITableViewCell {
         return tl
     }()
     
-    func setupUI() {
-        self.backgroundColor = .black
-        
+    func setupUI() {        
         self.addSubview(titleLabel)
         self.addSubview(descriptionLabel)
         self.addSubview(timeLabel)
