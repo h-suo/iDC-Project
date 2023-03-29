@@ -20,14 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.window = appDelegate.window
+        }
+        
         window?.windowScene = windowScene
-
-        //viewcontroller 세팅
-        let viewcontroller = LoginViewController()
-        //첫 화면에 viewController을 띄우기
-        window?.rootViewController = viewcontroller
-        //화면 보이게 하기
         window?.makeKeyAndVisible()
     }
 

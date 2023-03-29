@@ -30,30 +30,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get user credential state from Apple ID provider
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         if let userID = KeychainWrapper.standard.string(forKey: "userID") {
-            appleIDProvider.getCredentialState(forUserID: userID) { [weak self] credential, error in
+            appleIDProvider.getCredentialState(forUserID: userID) { credentialState, error in
                 DispatchQueue.main.async {
-                    switch credential {
+                    var initialViewController: UIViewController
+                    switch credentialState {
                     case .authorized:
                         print("User ID is conneted")
-                        // Set VC as the root view controller when user is authorized
-                        let vc = TabBarController()
-                        self?.window?.rootViewController = vc
-                        self?.window?.makeKeyAndVisible()
-                        
+                        initialViewController = TabBarController() // or any other authorized view controller
                     case .revoked, .notFound, .transferred:
-                        print("User ID is not conneted or Can't Found")
-                        // Set LoginVC as the root view controller when user is revoked, not found, or transferred
-                        let loginVC = LoginViewController()
-                        self?.window?.rootViewController = loginVC
-                        self?.window?.makeKeyAndVisible()
-                        
+                        print("User ID is not conneted or Can't found")
+                        initialViewController = LoginViewController() // or any other login view controller
                     @unknown default:
-                        break
+                        initialViewController = LoginViewController() // or any other login view controller
                     }
+                    self.window?.rootViewController = initialViewController
                 }
             }
+        } else {
+            // No user ID found in keychain, show the login screen by default
+            let initialViewController = LoginViewController()
+            self.window?.rootViewController = initialViewController
         }
-         
+        
         NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
             print("Revoked Notification")
             
