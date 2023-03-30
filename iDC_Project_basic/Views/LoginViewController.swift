@@ -44,11 +44,6 @@ class LoginViewController: UIViewController, ASAuthorizationControllerPresentati
         }
     }
     
-    // MARK: - Setup StatusBar
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Setup UI
     let imageView: UIImageView = {
         let iv = UIImageView()

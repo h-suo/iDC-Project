@@ -60,6 +60,13 @@ class SettingViewController: UITableViewController {
         
         switch indexPath.section {
         case settingViewModel.themeSettingSection:
+            if let appearance = UserDefaults.standard.string(forKey: "Appearance") {
+                if appearance == "Light", indexPath.row == 0 {
+                    imageCell.itemImageView.image = UIImage(systemName: "checkmark.circle.fill")
+                } else if appearance == "Dark", indexPath.row == 1 {
+                    imageCell.itemImageView.image = UIImage(systemName: "checkmark.circle.fill")
+                }
+            }
             imageCell.label.text = settingViewModel.sections[settingViewModel.themeSettingSection][indexPath.row]
             imageCell.selectionStyle = .none
             return imageCell
