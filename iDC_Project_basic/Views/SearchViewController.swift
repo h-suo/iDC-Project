@@ -91,6 +91,7 @@ extension SearchViewController: UISearchBarDelegate {
                 try await postListViewModel.searchPost(keyword: keyword)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.searchController.resignFirstResponder()
                 }
                 print("Search Data Success")
             } catch {
