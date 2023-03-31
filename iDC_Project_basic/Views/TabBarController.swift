@@ -13,6 +13,8 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         setupTabBarItem()
+        
+        self.delegate = self
     }
     
     // MARK: - Setup TapBar
@@ -23,7 +25,6 @@ class TabBarController: UITabBarController {
         firstVC.tabBarItem.image = UIImage(systemName: "house")
         firstVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstVC.tabBarItem.title = "home"
-        
         
         let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
         secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
@@ -40,5 +41,19 @@ class TabBarController: UITabBarController {
         forthVC.tabBarItem.title = "setting"
         
         viewControllers = [firstVC, secondVC, forthVC]
+    }
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.title {
+        case "home":
+            NotificationCenter.default.post(name: NSNotification.Name("homeTabBarTappedNotification"), object: nil)
+        case "search":
+//            NotificationCenter.default.post(name: NSNotification.Name("searchTabBarTappedNotification"), object: nil)
+        default:
+            break
+        }
     }
 }

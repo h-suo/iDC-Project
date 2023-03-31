@@ -28,14 +28,14 @@ class ViewController: UITableViewController {
         tableView.delegate = self
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
-        
+                
         setupNavigation()
         navigationItemSetting()
         setupUI()
         setupRefreshController()
         loadData()
         observeWritePost()
-        
+        observeTabBarTap()
     }
     
     // MARK: - Load Data
@@ -75,6 +75,14 @@ class ViewController: UITableViewController {
     // MARK: - Function Code
     @IBAction func plusButtonTapped() {
         self.navigationController?.pushViewController(AddPostViewController(postViewModel: PostViewModel()), animated: true)
+    }
+    
+    func observeTabBarTap() {
+        NotificationCenter.default.addObserver(self, selector: #selector(homeTabBarTapped), name: NSNotification.Name("homeTabBarTappedNotification"), object: nil)
+    }
+    
+    @IBAction func homeTabBarTapped() {
+        tableView.setContentOffset(CGPoint(x: 0, y: -tableView.adjustedContentInset.top), animated: true)
     }
     
     // MARK: - Setup TableView Refresh Controller

@@ -31,7 +31,7 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
-                
+        
         setupSearchBar()
         setupNavigation()
         setupUI()
@@ -41,8 +41,10 @@ class SearchViewController: UIViewController {
     // MARK: -Setup SearchBar
     func setupSearchBar() {
         searchController.searchBar.placeholder = "Please enter your keyword."
-        searchController.obscuresBackgroundDuringPresentation = true
+//        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     // MARK: - Setup Navigation
@@ -91,7 +93,7 @@ extension SearchViewController: UISearchBarDelegate {
                 try await postListViewModel.searchPost(keyword: keyword)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.searchController.resignFirstResponder()
+                    self.searchController.searchBar.endEditing(true)
                 }
                 print("Search Data Success")
             } catch {
