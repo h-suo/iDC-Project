@@ -26,9 +26,9 @@ class TabBarController: UITabBarController {
         firstVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstVC.tabBarItem.title = "home"
         
-        let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
-        secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        secondVC.tabBarItem.title = "search"
+//        let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
+//        secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+//        secondVC.tabBarItem.title = "search"
         
         /*
         let thirdVC = UINavigationController(rootViewController: AlarmViewController())
@@ -40,20 +40,15 @@ class TabBarController: UITabBarController {
         forthVC.tabBarItem.image = UIImage(systemName: "gearshape")
         forthVC.tabBarItem.title = "setting"
         
-        viewControllers = [firstVC, secondVC, forthVC]
+        viewControllers = [firstVC, forthVC]
     }
 }
 
 extension TabBarController: UITabBarControllerDelegate {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        switch item.title {
-        case "home":
+        if item.title == "home" {
             NotificationCenter.default.post(name: NSNotification.Name("homeTabBarTappedNotification"), object: nil)
-        case "search":
-//            NotificationCenter.default.post(name: NSNotification.Name("searchTabBarTappedNotification"), object: nil)
-        default:
-            break
         }
     }
 }

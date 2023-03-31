@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var postListViewModel: PostListViewModel!
+    let searchController = UISearchController(searchResultsController: SearchViewController(postListViewModel: PostListViewModel()))
     let cellId = "PostTableViewCell"
     
     init(postListViewModel: PostListViewModel!) {
@@ -27,6 +28,8 @@ class ViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        searchController.searchBar.delegate = self
+        
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
                 
         setupNavigation()
@@ -36,6 +39,7 @@ class ViewController: UITableViewController {
         loadData()
         observeWritePost()
         observeTabBarTap()
+        setupSearchBar()
     }
     
     // MARK: - Load Data
@@ -91,6 +95,13 @@ class ViewController: UITableViewController {
         self.tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
     }
     
+    // MARK: -Setup SearchBar
+    func setupSearchBar() {
+        searchController.searchBar.placeholder = "Please enter your keyword."
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+    
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -139,4 +150,14 @@ class ViewController: UITableViewController {
         self.tableView.rowHeight = 80
     }
     
+}
+
+extension ViewController: UISearchBarDelegate {
+    
+    // MARK: - Search Action
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text else { return }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("searchButtonTappedNotification"), object: keyword)
+    }
 }

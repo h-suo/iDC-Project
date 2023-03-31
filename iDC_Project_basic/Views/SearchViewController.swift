@@ -10,7 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     var postListViewModel: PostListViewModel!
-    let searchController = UISearchController(searchResultsController: nil)
+//    let searchController = UISearchController(searchResultsController: nil)
     let cellId = "PostTableViewCell"
     
     init(postListViewModel: PostListViewModel!) {
@@ -22,16 +22,26 @@ class SearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    init(postListViewModel: PostListViewModel!) {
+//        self.postListViewModel = postListViewModel
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchController.searchBar.delegate = self
+//        searchController.searchBar.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         
+        observeWritePost()
         setupSearchBar()
         setupNavigation()
         setupUI()
@@ -40,11 +50,33 @@ class SearchViewController: UIViewController {
     
     // MARK: -Setup SearchBar
     func setupSearchBar() {
-        searchController.searchBar.placeholder = "Please enter your keyword."
+//        searchController.searchBar.placeholder = "Please enter your keyword."
 //        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.hidesNavigationBarDuringPresentation = false
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+//        searchController.hidesNavigationBarDuringPresentation = false
+//        navigationItem.searchController = searchController
+//        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    // MARK: -Function Code
+    func observeWritePost() {
+        NotificationCenter.default.addObserver(self, selector: #selector(searchButtonTapped(_:)), name: NSNotification.Name("searchButtonTappedNotification"), object: nil)
+    }
+    
+    @objc func searchButtonTapped(_ notification: Notification) {
+        guard let keyword = notification.object as? String else { return }
+        
+        Task(priority: .userInitiated) {
+            do {
+                try await postListViewModel.searchPost(keyword: keyword)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+//                    self.searchController.searchBar.endEditing(true)
+                }
+                print("Search Data Success")
+            } catch {
+                print("Error Search Data: \(error.localizedDescription)")
+            }
+        }
     }
     
     // MARK: - Setup Navigation
@@ -85,21 +117,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     // MARK: - Search Action
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text, let postListViewModel = postListViewModel else { return }
-        print(keyword)
         
-        Task(priority: .userInitiated) {
-            do {
-                try await postListViewModel.searchPost(keyword: keyword)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.searchController.searchBar.endEditing(true)
-                }
-                print("Search Data Success")
-            } catch {
-                print("Error Search Data: \(error.localizedDescription)")
-            }
-        }
     }
 }
 
@@ -129,7 +147,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let NextVC = PostDetailViewController()
         NextVC.postViewModel = self.postListViewModel.postAtIndex(indexPath.row)
-        navigationController?.pushViewController(NextVC, animated: true)
+//        navigationController?.pushViewController(NextVC, animated: true)
+        present(NextVC, animated: true)
     }
 }
 
