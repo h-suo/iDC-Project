@@ -70,14 +70,14 @@ class SettingViewController: UITableViewController {
             imageCell.label.text = settingViewModel.sections[settingViewModel.themeSettingSection][indexPath.row]
             imageCell.selectionStyle = .none
             return imageCell
-        case settingViewModel.notificationSettingSection:
-            toggleCell.label.text = settingViewModel.sections[ settingViewModel.notificationSettingSection][indexPath.row]
-            toggleCell.selectionStyle = .none
-            return toggleCell
-        case settingViewModel.accountSettingSection:
-            imageCell.label.text = settingViewModel.sections[settingViewModel.accountSettingSection][indexPath.row]
-            imageCell.itemImageView.image = UIImage(systemName: "")
-            imageCell.selectionStyle = .none
+            //        case settingViewModel.notificationSettingSection:
+            //            toggleCell.label.text = settingViewModel.sections[ settingViewModel.notificationSettingSection][indexPath.row]
+            //            toggleCell.selectionStyle = .none
+            //            return toggleCell
+            //        case settingViewModel.accountSettingSection:
+            //            imageCell.label.text = settingViewModel.sections[settingViewModel.accountSettingSection][indexPath.row]
+            //            imageCell.itemImageView.image = UIImage(systemName: "link")
+            //            imageCell.selectionStyle = .none
             return imageCell
         default:
             return imageCell
@@ -106,6 +106,15 @@ class SettingViewController: UITableViewController {
                 view.window?.overrideUserInterfaceStyle = .dark
             }
         }
+        
+        //        if indexPath.section == settingViewModel.accountSettingSection {
+        //            if indexPath.row == 0 {
+        //                if let url = URL(string: "https://github.com/h-suo/TEST-UIKit/blob/main/Test%20UIKit.md") {
+        //                    UIApplication.shared.open(url, options: [:])
+        //                }
+        //            } else {
+        //
+        //            }
+        //        }
     }
-    
 }

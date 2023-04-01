@@ -36,9 +36,10 @@ class FirebaseDB {
     
     func writePost(_ newPost: WritePostForm) {
         let collectionRefernece = db.collection("Post")
-        let newPost = WritePostForm(title: newPost.title, description: newPost.description, comment: newPost.comment, time: newPost.time)
+        let newPost = WritePostForm(UID: newPost.UID, title: newPost.title, description: newPost.description, comment: newPost.comment, time: newPost.time)
         collectionRefernece
             .addDocument(data: [
+                "UID": newPost.UID,
                 "title": newPost.title,
                 "description": newPost.description,
                 "comment": newPost.comment,

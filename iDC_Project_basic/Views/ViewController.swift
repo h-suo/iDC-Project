@@ -31,7 +31,7 @@ class ViewController: UITableViewController {
         searchController.searchBar.delegate = self
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
-                
+        
         setupNavigation()
         navigationItemSetting()
         setupUI()
@@ -100,6 +100,7 @@ class ViewController: UITableViewController {
         searchController.searchBar.placeholder = "Please enter your keyword."
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     // MARK: - Setup Navigation

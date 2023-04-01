@@ -8,12 +8,14 @@
 import Foundation
 
 struct WritePostForm {
+    var UID: String
     var title: String
     var description: String
     var comment: [String]
     var time: String
     
-    init (title: String, description: String, comment: [String], time: String) {
+    init (UID: String, title: String, description: String, comment: [String], time: String) {
+        self.UID = UID
         self.title = title
         self.description = description
         self.comment = comment

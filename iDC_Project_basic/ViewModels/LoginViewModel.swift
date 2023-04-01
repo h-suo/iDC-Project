@@ -109,6 +109,7 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
                 
                 if let user = authResult?.user {
                     print("Login Success: ", user.uid, user.email ?? "-")
+                    KeychainWrapper.standard.set(user.uid, forKey: "UID")
                     self.onLoginSuccess?()
                 } else if let error = error {
                     print(error.localizedDescription)

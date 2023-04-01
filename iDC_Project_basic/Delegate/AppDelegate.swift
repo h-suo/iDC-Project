@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     switch credentialState {
                     case .authorized:
                         print("User ID is conneted")
-                        initialViewController = TabBarController() // or any other authorized view controller
+                        initialViewController = LoginViewController() // or any other authorized view controller
                     case .revoked, .notFound, .transferred:
                         print("User ID is not conneted or Can't found")
                         initialViewController = LoginViewController() // or any other login view controller
@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         NotificationCenter.default.addObserver(forName: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil, queue: nil) { (Notification) in
-            print("Revoked Notification")
-            
+            let initialViewController = LoginViewController()
+            self.window?.rootViewController = initialViewController
         }
         
         if #available(iOS 13.0, *) {

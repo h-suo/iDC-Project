@@ -15,10 +15,14 @@ class SettingViewModel {
     init() {
         sections = [
             ["Light", "Dark"],
-            ["Notifications", "Sounds"],
-            ["Log out", "Withdraw"]
+//            ["Notifications", "Sounds"],
+//            ["Log out", "Withdraw"]
         ]
-        sectionTitles = ["Theme Settings", "Notification Settings", "Account Settings"]
+        sectionTitles = [
+            "Theme Settings",
+//            "Notification Settings",
+//            "Account Settings"
+        ]
     }
 }
 
@@ -61,13 +65,13 @@ extension SettingViewModel {
         return sectionTitles.firstIndex(of: "Theme Settings")!
     }
     
-    var notificationSettingSection: Int {
-        return sectionTitles.firstIndex(of: "Notification Settings")!
-    }
+//    var notificationSettingSection: Int {
+//        return sectionTitles.firstIndex(of: "Notification Settings")!
+//    }
     
-    var accountSettingSection: Int {
-        return sectionTitles.firstIndex(of: "Account Settings")!
-    }
+//    var accountSettingSection: Int {
+//        return sectionTitles.firstIndex(of: "Account Settings")!
+//    }
     
     func titleForHeaderInSection(_ section: Int) -> String? {
         return sectionTitles[section]

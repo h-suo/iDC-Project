@@ -25,6 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="90C-bq-DiE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1dU-N6-NO0"/>
                             <constraint firstItem="90C-bq-DiE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Wzx-5t-5rr"/>

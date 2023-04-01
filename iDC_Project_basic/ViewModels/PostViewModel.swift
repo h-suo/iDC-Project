@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class PostViewModel {
     private var post: PostForm
@@ -24,7 +25,8 @@ class PostViewModel {
 extension PostViewModel {
     
     func writePost(title: String, description: String, time: String) {
-        let newWritePost: WritePostForm = WritePostForm(title: title, description: description, comment: [], time: time)
+        let UID = KeychainWrapper.standard.string(forKey: "UID")!
+        let newWritePost: WritePostForm = WritePostForm(UID: UID, title: title, description: description, comment: [], time: time)
         firebase.writePost(newWritePost)
     }
     
