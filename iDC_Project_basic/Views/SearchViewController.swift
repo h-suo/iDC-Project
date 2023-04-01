@@ -10,7 +10,6 @@ import UIKit
 class SearchViewController: UIViewController {
     
     var postListViewModel: PostListViewModel!
-//    let searchController = UISearchController(searchResultsController: nil)
     let cellId = "PostTableViewCell"
     
     init(postListViewModel: PostListViewModel!) {
@@ -22,43 +21,21 @@ class SearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    init(postListViewModel: PostListViewModel!) {
-//        self.postListViewModel = postListViewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        searchController.searchBar.delegate = self
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         
-        observeWritePost()
-        setupSearchBar()
-        setupNavigation()
+        observeSearchButtonTapped()
         setupUI()
         setupLayout()
     }
     
-    // MARK: -Setup SearchBar
-    func setupSearchBar() {
-//        searchController.searchBar.placeholder = "Please enter your keyword."
-//        searchController.obscuresBackgroundDuringPresentation = true
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        navigationItem.searchController = searchController
-//        navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    // MARK: -Function Code
-    func observeWritePost() {
+    // MARK: -Load Data
+    func observeSearchButtonTapped() {
         NotificationCenter.default.addObserver(self, selector: #selector(searchButtonTapped(_:)), name: NSNotification.Name("searchButtonTappedNotification"), object: nil)
     }
     
@@ -70,20 +47,13 @@ class SearchViewController: UIViewController {
                 try await postListViewModel.searchPost(keyword: keyword)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-//                    self.searchController.searchBar.endEditing(true)
+                    self.view.endEditing(true)
                 }
                 print("Search Data Success")
             } catch {
                 print("Error Search Data: \(error.localizedDescription)")
             }
         }
-    }
-    
-    // MARK: - Setup Navigation
-    func setupNavigation() {
-        self.navigationItem.title = "Search"
-        self.navigationController?.navigationBar.backgroundColor = .systemBackground
-        self.navigationItem.largeTitleDisplayMode = .never
     }
     
     // MARK: - Setup UI
@@ -110,14 +80,6 @@ class SearchViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-}
-
-extension SearchViewController: UISearchBarDelegate {
-    
-    // MARK: - Search Action
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
     }
 }
 

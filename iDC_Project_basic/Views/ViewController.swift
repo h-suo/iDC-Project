@@ -38,11 +38,11 @@ class ViewController: UITableViewController {
         setupRefreshController()
         loadData()
         observeWritePost()
-        observeTabBarTap()
+        observeTabBarTapped()
         setupSearchBar()
     }
     
-    // MARK: - Load Data
+    // MARK: -Load Data
     func observeWritePost() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
     }
@@ -81,7 +81,7 @@ class ViewController: UITableViewController {
         self.navigationController?.pushViewController(AddPostViewController(postViewModel: PostViewModel()), animated: true)
     }
     
-    func observeTabBarTap() {
+    func observeTabBarTapped() {
         NotificationCenter.default.addObserver(self, selector: #selector(homeTabBarTapped), name: NSNotification.Name("homeTabBarTappedNotification"), object: nil)
     }
     

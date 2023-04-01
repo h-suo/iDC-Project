@@ -35,7 +35,7 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     // MARK: - Observe textField
     func observeKeyboard() {
         
-        self.textFieldConstraint = NSLayoutConstraint(item: self.commentTextField, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
+        self.textFieldConstraint = NSLayoutConstraint(item: self.textFieldView, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.textFieldConstraint?.isActive = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -69,6 +69,12 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         return tv
     }()
     
+    let textFieldView: UIView = {
+        let tfv = UIView()
+        tfv.backgroundColor = .quaternarySystemFill
+        
+        return tfv
+    }()
     
     let commentTextField: UITextField = {
         let ctf = UITextField()
@@ -85,12 +91,15 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         self.tableView.estimatedRowHeight = 44
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(tableView)
-        self.view.addSubview(commentTextField)
+        self.view.addSubview(textFieldView)
+        self.textFieldView.addSubview(commentTextField)
+//        self.view.addSubview(commentTextField)
     }
     
     // MARK: - Setup Layout
     func setupLayout() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        textFieldView.translatesAutoresizingMaskIntoConstraints = false
         commentTextField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -100,10 +109,18 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
         ])
         
         NSLayoutConstraint.activate([
-            commentTextField.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            commentTextField.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            commentTextField.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            commentTextField.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+            textFieldView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            textFieldView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
+            textFieldView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            textFieldView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            textFieldView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        NSLayoutConstraint.activate([
+            commentTextField.topAnchor.constraint(equalTo: textFieldView.topAnchor, constant: 4),
+            commentTextField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -4),
+            commentTextField.leadingAnchor.constraint(equalTo: textFieldView.leadingAnchor, constant: 4),
+            commentTextField.trailingAnchor.constraint(equalTo: textFieldView.trailingAnchor, constant: -4),
         ])
     }
 }

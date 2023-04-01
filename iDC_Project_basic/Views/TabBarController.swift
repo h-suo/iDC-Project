@@ -25,12 +25,12 @@ class TabBarController: UITabBarController {
         firstVC.tabBarItem.image = UIImage(systemName: "house")
         firstVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstVC.tabBarItem.title = "home"
-        
-//        let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
-//        secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-//        secondVC.tabBarItem.title = "search"
-        
         /*
+        let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
+        secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        secondVC.tabBarItem.title = "search"
+        
+        
         let thirdVC = UINavigationController(rootViewController: AlarmViewController())
         thirdVC.tabBarItem.image = UIImage(systemName: "bell")
         thirdVC.tabBarItem.title = "alarm"
