@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import FirebaseMessaging
+//import FirebaseMessaging
 import UserNotifications
 import SwiftKeychainWrapper
 import AuthenticationServices
@@ -21,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         // Firebase code
         FirebaseApp.configure()
+        
+        FirebaseDB().updateCheck { result in
+            switch result {
+            case .success(let post):
+                NotificationCenter.default.post(name: Notification.Name("updatePostNotification"), object: post)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        /*
         Messaging.messaging().delegate = self
         
         UNUserNotificationCenter.current().delegate = self
@@ -33,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             }
         }
         application.registerForRemoteNotifications()
+         */
         
         // LaunchScreen time set
         Thread.sleep(forTimeInterval: 2)
@@ -50,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
                     switch credentialState {
                     case .authorized:
                         print("User ID is conneted")
-                        initialViewController = LoginViewController() // or any other authorized view controller
+                        initialViewController = TabBarController() // or any other authorized view controller
                     case .revoked, .notFound, .transferred:
                         print("User ID is not conneted or Can't found")
                         initialViewController = LoginViewController() // or any other login view controller
@@ -100,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
 }
 
-
+/*
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
@@ -120,3 +132,4 @@ extension AppDelegate: MessagingDelegate {
         print("FCM Token: \(fcmToken ?? "nil")")
     }
 }
+*/

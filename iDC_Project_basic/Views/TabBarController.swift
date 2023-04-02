@@ -29,18 +29,17 @@ class TabBarController: UITabBarController {
         let secondVC = UINavigationController(rootViewController: SearchViewController(postListViewModel: PostListViewModel()))
         secondVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         secondVC.tabBarItem.title = "search"
-        
+         */
         
         let thirdVC = UINavigationController(rootViewController: AlarmViewController())
         thirdVC.tabBarItem.image = UIImage(systemName: "bell")
         thirdVC.tabBarItem.title = "alarm"
-        */
         
         let forthVC = UINavigationController(rootViewController: SettingViewController(style: .insetGrouped, settingViewModel: SettingViewModel()))
         forthVC.tabBarItem.image = UIImage(systemName: "gearshape")
         forthVC.tabBarItem.title = "setting"
         
-        viewControllers = [firstVC, forthVC]
+        viewControllers = [firstVC,thirdVC, forthVC]
     }
 }
 

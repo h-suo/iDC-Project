@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import UserNotifications
+import SwiftKeychainWrapper
 
 class FirebaseDB {
     
@@ -75,14 +76,26 @@ class FirebaseDB {
         return post
     }
     
-    func updateCheck(documentID: String) {
-        let documentRefernece = db.collection("Post").document(documentID)
-        documentRefernece.addSnapshotListener { documentSnapshot, error in
-            if let error = error { print("Error updating Check: \(error.localizedDescription)") }
-            if let data = documentSnapshot?.data() {
-                print("Update Data: \(data)")
-            } else {
-                print("Data is empty")
+    func updateCheck(completion: @escaping (Result<PostForm, Error>) -> Void) {
+        guard let UID = KeychainWrapper.standard.string(forKey: "UID") else {
+            completion(.failure(NSError(domain: "AppErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Error: No UID found"])))
+            return
+        }
+        let documentRefernece = db.collection("Post").whereField("UID", isEqualTo: UID)
+        
+        documentRefernece.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                completion(.failure(error!))
+                return
+            }
+            
+            for document in snapshot.documents {
+                guard let post = PostForm(dictionary: document.data(), documentID: document.documentID) else {
+                    completion(.failure(NSError(domain: "AppErrorDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "Error getting documents"])))
+                    return
+                }
+                completion(.success(post))
+                print("Your post has been updated. \(post)")
             }
         }
         

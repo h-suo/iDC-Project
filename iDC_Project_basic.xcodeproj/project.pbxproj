@@ -12,6 +12,7 @@
 		453D797D29C1BCD900444F5C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */; };
 		453D798029C4510500444F5C /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797F29C4510500444F5C /* Unit.swift */; };
 		4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4564202729BDEB7E007CA516 /* GoogleService-Info.plist */; };
+		457E88D929D976AD00940A6C /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E88D829D976AD00940A6C /* AlarmTableViewCell.swift */; };
 		457F1FE429C98D170055420A /* WritePostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE329C98D170055420A /* WritePostForm.swift */; };
 		457F1FE829C98D690055420A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE729C98D690055420A /* PostListViewModel.swift */; };
 		457F1FEA29C9C5C10055420A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE929C9C5C10055420A /* SettingViewModel.swift */; };
@@ -44,6 +45,7 @@
 		453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		453D797F29C4510500444F5C /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		4564202729BDEB7E007CA516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		457E88D829D976AD00940A6C /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		457F1FE329C98D170055420A /* WritePostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostForm.swift; sourceTree = "<group>"; };
 		457F1FE729C98D690055420A /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		457F1FE929C9C5C10055420A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -154,8 +156,8 @@
 				458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */,
 				458E5AF829B9A7DF00E48DBF /* PostDetailViewController.swift */,
 				4528228D29C6BB0E006B919C /* SearchViewController.swift */,
-				458E5AFC29B9A80800E48DBF /* SettingViewController.swift */,
 				458E5AFA29B9A7FC00E48DBF /* AlarmViewController.swift */,
+				458E5AFC29B9A80800E48DBF /* SettingViewController.swift */,
 				458E5B0029B9ACAD00E48DBF /* Cell */,
 			);
 			path = Views;
@@ -178,6 +180,7 @@
 				453D797A29C0534A00444F5C /* PostTableViewCell.swift */,
 				457F1FEB29CA8C7F0055420A /* PostDetailTableViewCell.swift */,
 				453D797C29C1BCD900444F5C /* CommentTableViewCell.swift */,
+				457E88D829D976AD00940A6C /* AlarmTableViewCell.swift */,
 				45D0B23829D3E936003B91E2 /* SettingImageTableViewCell.swift */,
 				45D0B23A29D40672003B91E2 /* SettingToggleTableViewCell.swift */,
 			);
@@ -335,6 +338,7 @@
 				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
 				453D797B29C0534A00444F5C /* PostTableViewCell.swift in Sources */,
 				458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */,
+				457E88D929D976AD00940A6C /* AlarmTableViewCell.swift in Sources */,
 				458E5ADD29B9A5FA00E48DBF /* ViewController.swift in Sources */,
 				458E5AD929B9A5FA00E48DBF /* AppDelegate.swift in Sources */,
 				458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */,
