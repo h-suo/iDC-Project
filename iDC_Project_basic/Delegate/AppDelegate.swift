@@ -7,11 +7,13 @@
 
 import UIKit
 import Firebase
+import FirebaseMessaging
+import UserNotifications
 import SwiftKeychainWrapper
 import AuthenticationServices
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -19,6 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Firebase code
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
+            if granted {
+                print("Notification registration is complete.")
+            } else if let error = error {
+                print("Notification registratino is fail: \(error.localizedDescription)")
+            }
+        }
+        application.registerForRemoteNotifications()
         
         // LaunchScreen time set
         Thread.sleep(forTimeInterval: 2)
@@ -86,3 +100,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+
+    // Make notifications visible in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge])
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        // Here we now need to send the fcmToken back to the server.
+        // However, since we do not have a server, we print the fcmTocken
+        print("FCM Token: \(fcmToken ?? "nil")")
+    }
+}
