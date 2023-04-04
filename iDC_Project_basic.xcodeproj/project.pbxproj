@@ -13,6 +13,7 @@
 		453D798029C4510500444F5C /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D797F29C4510500444F5C /* Unit.swift */; };
 		4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4564202729BDEB7E007CA516 /* GoogleService-Info.plist */; };
 		457E88D929D976AD00940A6C /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E88D829D976AD00940A6C /* AlarmTableViewCell.swift */; };
+		457E88DB29DC467400940A6C /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E88DA29DC467400940A6C /* AlarmViewModel.swift */; };
 		457F1FE429C98D170055420A /* WritePostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE329C98D170055420A /* WritePostForm.swift */; };
 		457F1FE829C98D690055420A /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE729C98D690055420A /* PostListViewModel.swift */; };
 		457F1FEA29C9C5C10055420A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F1FE929C9C5C10055420A /* SettingViewModel.swift */; };
@@ -46,6 +47,7 @@
 		453D797F29C4510500444F5C /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		4564202729BDEB7E007CA516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		457E88D829D976AD00940A6C /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
+		457E88DA29DC467400940A6C /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		457F1FE329C98D170055420A /* WritePostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostForm.swift; sourceTree = "<group>"; };
 		457F1FE729C98D690055420A /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
 		457F1FE929C9C5C10055420A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				4580009C29D06D4C00ED237C /* LoginViewModel.swift */,
 				457F1FE729C98D690055420A /* PostListViewModel.swift */,
 				458E5AF029B9A73F00E48DBF /* PostViewModel.swift */,
+				457E88DA29DC467400940A6C /* AlarmViewModel.swift */,
 				457F1FE929C9C5C10055420A /* SettingViewModel.swift */,
 			);
 			path = ViewModels;
@@ -336,6 +339,7 @@
 				45D0B23B29D40672003B91E2 /* SettingToggleTableViewCell.swift in Sources */,
 				457F1FE429C98D170055420A /* WritePostForm.swift in Sources */,
 				458E5AF529B9A7BC00E48DBF /* LoginViewController.swift in Sources */,
+				457E88DB29DC467400940A6C /* AlarmViewModel.swift in Sources */,
 				453D797B29C0534A00444F5C /* PostTableViewCell.swift in Sources */,
 				458E5AF129B9A73F00E48DBF /* PostViewModel.swift in Sources */,
 				457E88D929D976AD00940A6C /* AlarmTableViewCell.swift in Sources */,
