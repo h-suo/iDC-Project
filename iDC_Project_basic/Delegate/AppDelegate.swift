@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         // Firebase code
         FirebaseApp.configure()
         
+        /*
         FirebaseDB().updateCheck { result in
             switch result {
             case .success(let post):
@@ -31,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             }
         }
         
-        /*
         Messaging.messaging().delegate = self
         
         UNUserNotificationCenter.current().delegate = self

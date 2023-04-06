@@ -9,8 +9,8 @@ import UIKit
 
 class SettingViewController: UITableViewController {
     
-    let imageCellId = "SettingImageTableViewCell"
-    let toggleCellId = "SettingToggleTableViewCell"
+    private let imageCellId = "SettingImageTableViewCell"
+    private let toggleCellId = "SettingToggleTableViewCell"
     let settingViewModel: SettingViewModel!
     
     init(style: UITableView.Style, settingViewModel: SettingViewModel!) {
@@ -74,10 +74,11 @@ class SettingViewController: UITableViewController {
             //            toggleCell.label.text = settingViewModel.sections[ settingViewModel.notificationSettingSection][indexPath.row]
             //            toggleCell.selectionStyle = .none
             //            return toggleCell
-            //        case settingViewModel.accountSettingSection:
-            //            imageCell.label.text = settingViewModel.sections[settingViewModel.accountSettingSection][indexPath.row]
-            //            imageCell.itemImageView.image = UIImage(systemName: "link")
-            //            imageCell.selectionStyle = .none
+        case settingViewModel.accountSettingSection:
+            imageCell.label.text = settingViewModel.sections[settingViewModel.accountSettingSection][indexPath.row]
+            imageCell.itemImageView.image = UIImage(systemName: "")
+            imageCell.label.textColor = .systemRed
+            imageCell.selectionStyle = .none
             return imageCell
         default:
             return imageCell

@@ -9,8 +9,8 @@ import UIKit
 
 class PostDetailViewController: UIViewController, UITextViewDelegate {
     
-    let commentCellId = "CommentTableViewCell"
-    let detailCellId = "PostDetailTableViewCell"
+    private let commentCellId = "CommentTableViewCell"
+    private let detailCellId = "PostDetailTableViewCell"
     var postViewModel: PostViewModel!
     var textFieldConstraint: NSLayoutConstraint?
     

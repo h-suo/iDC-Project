@@ -9,8 +9,8 @@ import UIKit
 
 class AddPostViewController: UIViewController {
         
+    private let textViewPlaceholder: String = "Please enter your content."
     var postViewModel: PostViewModel!
-    let textViewPlaceholder: String = "Please enter your content."
     
     init(postViewModel: PostViewModel!) {
         self.postViewModel = postViewModel

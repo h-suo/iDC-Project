@@ -9,8 +9,8 @@ import UIKit
 
 class AlarmViewController: UITableViewController {
     
+    private let cellId = "AlarmTableViewCell"
     var alarmViewModel: AlarmViewModel! = AlarmViewModel()
-    let cellId = "AlarmTableViewCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()

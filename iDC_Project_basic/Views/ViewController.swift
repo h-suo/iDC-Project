@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UITableViewController {
     
+    private let cellId = "PostTableViewCell"
     var postListViewModel: PostListViewModel!
     let searchController = UISearchController(searchResultsController: SearchViewController(postListViewModel: PostListViewModel()))
-    let cellId = "PostTableViewCell"
     
     init(postListViewModel: PostListViewModel!) {
         self.postListViewModel = postListViewModel
