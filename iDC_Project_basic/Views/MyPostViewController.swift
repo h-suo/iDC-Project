@@ -12,6 +12,9 @@ class MyPostViewController: UITableViewController {
     private let cellId = "PostTableViewCell"
     var postListViewModel: PostListViewModel!
     
+    var editButton: UIBarButtonItem!
+    var doneButton: UIBarButtonItem!
+    
     init(postListViewModel: PostListViewModel!) {
         self.postListViewModel = postListViewModel
         super.init(nibName: nil, bundle: nil)
@@ -26,13 +29,13 @@ class MyPostViewController: UITableViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-                
+        
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellId)
         
         setupNavigation()
         navigationItemSetting()
         setupUI()
-        setupRefreshController()
+        //        setupRefreshController()
         loadData()
     }
     
@@ -40,7 +43,7 @@ class MyPostViewController: UITableViewController {
     @objc func loadData() {
         Task(priority: .userInitiated) {
             do {
-                try await postListViewModel.getPost()
+                try await postListViewModel.getMyPost()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -51,30 +54,15 @@ class MyPostViewController: UITableViewController {
         }
     }
     
-    @IBAction func reloadData() {
-        Task(priority: .userInitiated) {
-            do {
-                try await postListViewModel.getPost()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.refreshControl?.endRefreshing()
-                }
-                print("Reload Data Success")
-            } catch {
-                print("Error Reload Data: \(error.localizedDescription)")
-            }
-        }
-    }
-    
     // MARK: - Function Code
-    @IBAction func settingButtonTapped() {
-        
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        navigationItem.rightBarButtonItem = doneButton
+        self.tableView.setEditing(true, animated: true)
     }
     
-    // MARK: - Setup TableView Refresh Controller
-    func setupRefreshController() {
-        self.tableView.refreshControl = UIRefreshControl()
-        self.tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        navigationItem.rightBarButtonItem = editButton
+        self.tableView.setEditing(false, animated: true)
     }
     
     // MARK: - Setup Navigation
@@ -84,9 +72,10 @@ class MyPostViewController: UITableViewController {
     }
     
     func navigationItemSetting() {
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(settingButtonTapped))
+        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped(_:)))
+        doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped(_:)))
         let backButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItems = [searchButton]
+        self.navigationItem.rightBarButtonItems = [editButton]
         self.navigationItem.backBarButtonItem = backButton
     }
     
@@ -115,6 +104,28 @@ class MyPostViewController: UITableViewController {
         let NextVC = PostDetailViewController()
         NextVC.postViewModel = self.postListViewModel.postAtIndex(indexPath.row)
         navigationController?.pushViewController(NextVC, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alertVC = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete the post?", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                let documentID = self.postListViewModel.postAtIndex(indexPath.row).id
+                self.postListViewModel.deletePost(documentID: documentID)
+                self.loadData()
+                NotificationCenter.default.post(name: NSNotification.Name("deletePostNotification"), object: nil)
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+            present(alertVC, animated: true, completion: nil)
+        }
     }
     
     

@@ -30,12 +30,18 @@ class SettingViewController: UITableViewController {
         tableView.isScrollEnabled = false
         
         setupNavigation()
+        navigationItemSetting()
     }
     
     // MARK: - Setup Navigation
     func setupNavigation() {
         self.navigationItem.title = "Setting"
         self.navigationController?.navigationBar.backgroundColor = .systemBackground
+    }
+    
+    func navigationItemSetting() {
+        let backButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backButton
     }
     
     // MARK: - TableView Code
@@ -105,6 +111,10 @@ class SettingViewController: UITableViewController {
                 settingViewModel.darkThemeSelected()
                 view.window?.overrideUserInterfaceStyle = .dark
             }
+        }
+        
+        if indexPath.section == settingViewModel.postSettingSection {
+            navigationController?.pushViewController(MyPostViewController(postListViewModel: PostListViewModel()), animated: true)
         }
         
         //        if indexPath.section == settingViewModel.accountSettingSection {

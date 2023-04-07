@@ -108,6 +108,7 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
             FirebaseAuth.Auth.auth().signIn(with: credential) { (authResult, error) in
                 
                 if let user = authResult?.user {
+                    KeychainWrapper.standard.set(user.uid, forKey: "UID")
                     print("Login Success: ", user.uid, user.email ?? "-")
                     self.onLoginSuccess?()
                 } else if let error = error {

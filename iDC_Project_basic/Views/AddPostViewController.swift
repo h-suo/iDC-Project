@@ -140,9 +140,9 @@ extension AddPostViewController: UITextViewDelegate {
         textCountLabel.text = "(\(changeText.count)/1000)"
         
         if changeText.count == 1000 {
-            textCountLabel.textColor = .red
+            textCountLabel.textColor = .systemRed
         } else {
-            textCountLabel.textColor = .gray
+            textCountLabel.textColor = .systemGray
         }
         
         return changeText.count <= 999

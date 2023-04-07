@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
     let descriptionLabel: UILabel = {
         let dl = UILabel()
         dl.font = UIFont.systemFont(ofSize: 14)
-        dl.textColor = .gray
+        dl.textColor = .systemGray
         dl.numberOfLines = 1
         
         return dl
@@ -40,7 +40,7 @@ class PostTableViewCell: UITableViewCell {
     let timeLabel: UILabel = {
         let tl = UILabel()
         tl.font = UIFont.systemFont(ofSize: 14)
-        tl.textColor = .gray
+        tl.textColor = .systemGray
         
         return tl
     }()

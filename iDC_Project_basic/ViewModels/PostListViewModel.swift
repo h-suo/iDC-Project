@@ -25,6 +25,15 @@ extension PostListViewModel {
         let postList = try await firebase.searchPost(keyword: keyword)
         self.postList = postList
     }
+    
+    func getMyPost() async throws {
+        let myPostList = try await firebase.getMyPost()
+        self.postList = myPostList
+    }
+    
+    func deletePost(documentID: String) {
+        firebase.deletePost(documentID: documentID)
+    }
 }
 
 // MARK: - Output

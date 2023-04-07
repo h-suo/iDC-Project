@@ -45,6 +45,7 @@ class ViewController: UITableViewController {
     // MARK: -Load Data
     func observeWritePost() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("writePostNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("deletePostNotification"), object: nil)
     }
     
     @objc func loadData() {

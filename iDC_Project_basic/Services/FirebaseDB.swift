@@ -31,7 +31,7 @@ class FirebaseDB {
         }
         
         print("Get Post Success")
-        
+                
         return posts
     }
     
@@ -62,7 +62,26 @@ class FirebaseDB {
         return posts
     }
     
-    // MARK: - Add Data in DB
+    func getMyPost() async throws -> [PostForm] {
+        guard let UID = KeychainWrapper.standard.string(forKey: "UID") else { throw NSError(domain: "Error getting Keychain Data", code: -1) }
+        
+        let collectionRefernece = db.collection("Post")
+        let querySnapshot = try await collectionRefernece
+            .whereField("UID", isEqualTo: UID)
+            .getDocuments()
+        
+        var posts: [PostForm] = []
+        for document in querySnapshot.documents {
+            guard let post = PostForm(dictionary: document.data(), documentID: document.documentID) else { throw NSError(domain: "Error getting documents", code: 404) }
+            posts.append(post)
+        }
+        
+        print("Get My Post Success")
+        
+        return posts
+    }
+    
+    // MARK: - Add, Edit, Delete Data in DB
     func writePost(_ newPost: WritePostForm) {
         let collectionRefernece = db.collection("Post")
         let newPost = WritePostForm(UID: newPost.UID, title: newPost.title, description: newPost.description, comment: newPost.comment, time: newPost.time)
@@ -94,5 +113,11 @@ class FirebaseDB {
                     print("write comment success")
                 }
             }
+    }
+    
+    func deletePost(documentID: String) {
+        let documentRefernece = db.collection("Post").document(documentID)
+        documentRefernece
+            .delete()
     }
 }

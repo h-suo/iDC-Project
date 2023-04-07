@@ -33,7 +33,7 @@ class PostDetailTableViewCell: UITableViewCell, UITextViewDelegate {
     let timeLabel: UILabel = {
         let tl = UILabel()
         tl.font = UIFont.systemFont(ofSize: 14)
-        tl.textColor = .gray
+        tl.textColor = .systemGray
         
         return tl
     }()
