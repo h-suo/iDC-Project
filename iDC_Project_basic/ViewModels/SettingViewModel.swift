@@ -15,13 +15,11 @@ class SettingViewModel {
     init() {
         sections = [
             ["Light", "Dark"],
-//            ["Notifications", "Sounds"],
             ["Posts written by me"],
             ["Withdraw"]
         ]
         sectionTitles = [
             "Theme Settings",
-//            "Notification Settings",
             "Post Settings",
             "Account Settings"
         ]
@@ -39,18 +37,6 @@ extension SettingViewModel {
         UserDefaults.standard.set("Dark", forKey: "Appearance")
     }
     
-    func notificationON() {
-        
-    }
-    
-    func notificationOFF() {
-        
-    }
-    
-    func logOut() {
-        
-    }
-    
     func withdraw() {
         
     }
@@ -66,11 +52,7 @@ extension SettingViewModel {
     var themeSettingSection: Int {
         return sectionTitles.firstIndex(of: "Theme Settings")!
     }
-    
-//    var notificationSettingSection: Int {
-//        return sectionTitles.firstIndex(of: "Notification Settings")!
-//    }
-    
+        
     var postSettingSection: Int {
         return sectionTitles.firstIndex(of: "Post Settings")!
     }
@@ -86,7 +68,6 @@ extension SettingViewModel {
     func settingNumberOfRowInSection(_ section: Int) -> Int {
         return sections[section].count
     }
-    
 }
 
 

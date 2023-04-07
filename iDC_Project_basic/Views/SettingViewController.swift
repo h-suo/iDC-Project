@@ -9,8 +9,7 @@ import UIKit
 
 class SettingViewController: UITableViewController {
     
-    private let imageCellId = "SettingImageTableViewCell"
-    private let toggleCellId = "SettingToggleTableViewCell"
+    private let cellId = "SettingImageTableViewCell"
     let settingViewModel: SettingViewModel!
     
     init(style: UITableView.Style, settingViewModel: SettingViewModel!) {
@@ -27,8 +26,7 @@ class SettingViewController: UITableViewController {
         
         self.view.backgroundColor = .systemBackground
         
-        tableView.register(SettingImageTableViewCell.self, forCellReuseIdentifier: imageCellId)
-        tableView.register(SettingToggleTableViewCell.self, forCellReuseIdentifier: toggleCellId)
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.isScrollEnabled = false
         
         setupNavigation()
@@ -55,8 +53,7 @@ class SettingViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let imageCell = tableView.dequeueReusableCell(withIdentifier: imageCellId, for: indexPath) as? SettingImageTableViewCell else { fatalError("SettingImageTableViewCell not found") }
-//        guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: toggleCellId, for: indexPath) as? SettingToggleTableViewCell else { fatalError("SettingToggleTableViewCell not found") }
+        guard let imageCell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? SettingTableViewCell else { fatalError("SettingImageTableViewCell not found") }
         
         switch indexPath.section {
         case settingViewModel.themeSettingSection:
@@ -70,10 +67,6 @@ class SettingViewController: UITableViewController {
             imageCell.label.text = settingViewModel.sections[settingViewModel.themeSettingSection][indexPath.row]
             imageCell.selectionStyle = .none
             return imageCell
-            //        case settingViewModel.notificationSettingSection:
-            //            toggleCell.label.text = settingViewModel.sections[ settingViewModel.notificationSettingSection][indexPath.row]
-            //            toggleCell.selectionStyle = .none
-            //            return toggleCell
         case settingViewModel.postSettingSection:
             imageCell.label.text = settingViewModel.sections[settingViewModel.postSettingSection][indexPath.row]
             imageCell.itemImageView.image = UIImage(systemName: "chevron.compact.right")
@@ -93,14 +86,14 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == settingViewModel.themeSettingSection {
-            if let cell = tableView.cellForRow(at: indexPath) as? SettingImageTableViewCell {
+            if let cell = tableView.cellForRow(at: indexPath) as? SettingTableViewCell {
                 cell.itemImageView.image = UIImage(systemName: "checkmark.circle.fill")
                 self.viewWillAppear(true)
             }
             
             for row in 0..<settingViewModel.settingNumberOfRowInSection(indexPath.section) {
                 let otherIndexPath = IndexPath(row: row, section: indexPath.section)
-                if otherIndexPath != indexPath, let otherCell = tableView.cellForRow(at: otherIndexPath) as? SettingImageTableViewCell {
+                if otherIndexPath != indexPath, let otherCell = tableView.cellForRow(at: otherIndexPath) as? SettingTableViewCell {
                     otherCell.itemImageView.image = UIImage(systemName: "circle")
                 }
             }
