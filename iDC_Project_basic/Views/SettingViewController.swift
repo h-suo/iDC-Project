@@ -56,7 +56,7 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let imageCell = tableView.dequeueReusableCell(withIdentifier: imageCellId, for: indexPath) as? SettingImageTableViewCell else { fatalError("SettingImageTableViewCell not found") }
-        guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: toggleCellId, for: indexPath) as? SettingToggleTableViewCell else { fatalError("SettingToggleTableViewCell not found") }
+//        guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: toggleCellId, for: indexPath) as? SettingToggleTableViewCell else { fatalError("SettingToggleTableViewCell not found") }
         
         switch indexPath.section {
         case settingViewModel.themeSettingSection:
@@ -74,6 +74,12 @@ class SettingViewController: UITableViewController {
             //            toggleCell.label.text = settingViewModel.sections[ settingViewModel.notificationSettingSection][indexPath.row]
             //            toggleCell.selectionStyle = .none
             //            return toggleCell
+        case settingViewModel.postSettingSection:
+            imageCell.label.text = settingViewModel.sections[settingViewModel.postSettingSection][indexPath.row]
+            imageCell.itemImageView.image = UIImage(systemName: "chevron.compact.right")
+            imageCell.itemImageView.tintColor = .systemGray
+            imageCell.selectionStyle = .none
+            return imageCell
         case settingViewModel.accountSettingSection:
             imageCell.label.text = settingViewModel.sections[settingViewModel.accountSettingSection][indexPath.row]
             imageCell.itemImageView.image = UIImage(systemName: "")

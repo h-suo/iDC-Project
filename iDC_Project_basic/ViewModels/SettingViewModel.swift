@@ -16,11 +16,13 @@ class SettingViewModel {
         sections = [
             ["Light", "Dark"],
 //            ["Notifications", "Sounds"],
+            ["Posts written by me"],
             ["Withdraw"]
         ]
         sectionTitles = [
             "Theme Settings",
 //            "Notification Settings",
+            "Post Settings",
             "Account Settings"
         ]
     }
@@ -68,6 +70,10 @@ extension SettingViewModel {
 //    var notificationSettingSection: Int {
 //        return sectionTitles.firstIndex(of: "Notification Settings")!
 //    }
+    
+    var postSettingSection: Int {
+        return sectionTitles.firstIndex(of: "Post Settings")!
+    }
     
     var accountSettingSection: Int {
         return sectionTitles.firstIndex(of: "Account Settings")!

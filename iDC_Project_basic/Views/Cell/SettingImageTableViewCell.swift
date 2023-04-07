@@ -53,8 +53,8 @@ class SettingImageTableViewCell: UITableViewCell {
             itemImageView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
             itemImageView.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 20),
             itemImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            itemImageView.heightAnchor.constraint(equalToConstant: 24),
-            itemImageView.widthAnchor.constraint(equalToConstant: 24)
+            itemImageView.heightAnchor.constraint(equalToConstant: 20),
+            itemImageView.widthAnchor.constraint(equalToConstant: 20)
         ])
     }
 }
