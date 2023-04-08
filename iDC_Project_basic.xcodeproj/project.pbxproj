@@ -31,7 +31,7 @@
 		458E5AFD29B9A80800E48DBF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFC29B9A80800E48DBF /* SettingViewController.swift */; };
 		458E5AFF29B9A81100E48DBF /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */; };
 		458E5B0529BCBCD200E48DBF /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */; };
-		45B30E1829E1442400BB4768 /* AuthKey_JW4474FQ22.p8 in Resources */ = {isa = PBXBuildFile; fileRef = 45B30E1729E1442400BB4768 /* AuthKey_JW4474FQ22.p8 */; };
+		45B30E1C29E1A29200BB4768 /* KeyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45B30E1B29E1A29200BB4768 /* KeyList.plist */; };
 		45D0B23929D3E936003B91E2 /* SettingImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0B23829D3E936003B91E2 /* SettingImageTableViewCell.swift */; };
 		EA67BF6A8D6A37E897B96534 /* Pods_iDC_Project_basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5025A10CA55AB8B7947488 /* Pods_iDC_Project_basic.framework */; };
 /* End PBXBuildFile section */
@@ -66,7 +66,7 @@
 		458E5AFC29B9A80800E48DBF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		458E5AFE29B9A81100E48DBF /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		458E5B0429BCBCD200E48DBF /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
-		45B30E1729E1442400BB4768 /* AuthKey_JW4474FQ22.p8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AuthKey_JW4474FQ22.p8; sourceTree = "<group>"; };
+		45B30E1B29E1A29200BB4768 /* KeyList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KeyList.plist; sourceTree = "<group>"; };
 		45D0B23829D3E936003B91E2 /* SettingImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingImageTableViewCell.swift; sourceTree = "<group>"; };
 		EA7C1219EA2E1AF636A969F3 /* Pods-iDC_Project_basic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDC_Project_basic.debug.xcconfig"; path = "Target Support Files/Pods-iDC_Project_basic/Pods-iDC_Project_basic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,9 +121,9 @@
 				453D797E29C450EF00444F5C /* Units */,
 				458E5AE129B9A5FB00E48DBF /* Assets.xcassets */,
 				458E5AE329B9A5FB00E48DBF /* LaunchScreen.storyboard */,
+				45B30E1B29E1A29200BB4768 /* KeyList.plist */,
 				458E5AE629B9A5FB00E48DBF /* Info.plist */,
 				4564202729BDEB7E007CA516 /* GoogleService-Info.plist */,
-				45B30E1729E1442400BB4768 /* AuthKey_JW4474FQ22.p8 */,
 			);
 			path = iDC_Project_basic;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B30E1829E1442400BB4768 /* AuthKey_JW4474FQ22.p8 in Resources */,
+				45B30E1C29E1A29200BB4768 /* KeyList.plist in Resources */,
 				458E5AE529B9A5FB00E48DBF /* LaunchScreen.storyboard in Resources */,
 				458E5AE229B9A5FB00E48DBF /* Assets.xcassets in Resources */,
 				4564202829BDEB7E007CA516 /* GoogleService-Info.plist in Resources */,

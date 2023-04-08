@@ -203,10 +203,10 @@ extension LoginViewModel {
     
     func getClientSecret() -> String {
         let privateKeyId = "JW4474FQ22"
-        let downloadsFolder = "/Users/pyohyeonsu/desktop/certification"
-        let privateKeyPath1 = URL(fileURLWithPath: "/Users/pyohyeonsu/Documents/iOS/iDC_Project_basic/iDC_Project_basic/AuthKey_JW4474FQ22.p8")
-        let privateKeyPath = URL(fileURLWithPath: "\(downloadsFolder)/AuthKey_\(privateKeyId).p8")
-        let privateKey: Data = try! Data(contentsOf: privateKeyPath1, options: .alwaysMapped)
+        let privateKeyPath = URL(fileURLWithPath: "/Users/pyohyeonsu/Documents/iOS/iDC_Project_basic/iDC_Project_basic/AuthKey_JW4474FQ22.p8")
+        let privateKey: Data = try! Data(contentsOf: privateKeyPath, options: .alwaysMapped)
+//        guard let privateKeyData =
+//        let privateKey1: Data = Data(privateKeyData.utf8)
         let header = Header(kid: privateKeyId)
         
         struct MyClaims: Claims {
@@ -242,6 +242,17 @@ extension LoginViewModel {
                 UserDefaults.standard.set(nil, forKey: "AppleRefreshToken")
             }
         }
+        // Firebase Code
+        if let currentUser = FirebaseAuth.Auth.auth().currentUser {
+            currentUser.delete { error in
+                if let error = error {
+                    print("Firebase User Delete Fail - \(error.localizedDescription)")
+                } else {
+                    print("Firebase User Delete Success")
+                }
+            }
+        }
+        
     }
 }
 

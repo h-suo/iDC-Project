@@ -54,16 +54,16 @@ class MyPostViewController: UITableViewController {
         }
     }
     
-    // MARK: - Function Code
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        navigationItem.rightBarButtonItem = doneButton
-        self.tableView.setEditing(true, animated: true)
-    }
-    
-    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
-        navigationItem.rightBarButtonItem = editButton
-        self.tableView.setEditing(false, animated: true)
-    }
+//    // MARK: - Function Code
+//    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+//        navigationItem.rightBarButtonItem = doneButton
+//        self.tableView.setEditing(true, animated: true)
+//    }
+//
+//    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+//        navigationItem.rightBarButtonItem = editButton
+//        self.tableView.setEditing(false, animated: true)
+//    }
     
     // MARK: - Setup Navigation
     func setupNavigation() {
@@ -72,10 +72,10 @@ class MyPostViewController: UITableViewController {
     }
     
     func navigationItemSetting() {
-        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped(_:)))
-        doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped(_:)))
+//        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped(_:)))
+//        doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped(_:)))
         let backButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItems = [editButton]
+//        self.navigationItem.rightBarButtonItems = [editButton]
         self.navigationItem.backBarButtonItem = backButton
     }
     
