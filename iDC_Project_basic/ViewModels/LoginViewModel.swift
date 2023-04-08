@@ -10,6 +10,8 @@ import FirebaseAuth
 import CryptoKit
 import SwiftKeychainWrapper
 import AuthenticationServices
+import Alamofire
+import SwiftJWT
 
 class LoginViewModel: NSObject {
     
@@ -117,10 +119,136 @@ extension LoginViewModel: ASAuthorizationControllerDelegate {
                 }
             }
         }
+        
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            // authorization code
+            if let authorizationCode = credential.authorizationCode {
+                let code = String(decoding: authorizationCode, as: UTF8.self)
+                print("Code - \(code)")
+                
+                self.getAppleRefreshToken(code: code) { data in
+                    UserDefaults.standard.set(data.refreshToken, forKey: "AppleRefreshToken")
+                }
+            }
+        }
+        
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Call the login failure callback with the error message
         self.onLoginFailure?(error.localizedDescription)
+    }
+    
+}
+
+extension LoginViewModel {
+    func revokeAppleToken(clientSecret: String, token: String, completionHandler: @escaping () -> Void) {
+        let url = "https://appleid.apple.com/auth/revoke"
+        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+        let parameters: Parameters = [
+            "client_id": "com.hyeonsu.iDC-Project-basic",
+            "client_secret": clientSecret,
+            "token": token
+        ]
+        
+        AF.request(url,
+                   method: .post,
+                   parameters: parameters,
+                   headers: header)
+        .validate(statusCode: 200..<300)
+        .responseData { response in
+            guard let statusCode = response.response?.statusCode else { return }
+            if statusCode == 200 {
+                print("Delete apple token success")
+                completionHandler()
+            }
+        }
+    }
+    
+    func getAppleRefreshToken(code: String, completionHandler: @escaping (AppleTokenResponse) -> Void) {
+        let clientSecret = self.getClientSecret()
+        
+        let url = "https://appleid.apple.com/auth/token"
+        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+        let parameters: Parameters = [
+            "client_id": "com.hyeonsu.iDC-Project-basic",
+            "client_secret": "\(clientSecret)",
+            "code": code,
+            "grant_type": "authorization_code"
+        ]
+        
+        AF.request(url,
+                   method: .post,
+                   parameters: parameters,
+                   headers: header)
+        .validate(statusCode: 200..<300)
+        .responseData { response in
+            switch response.result {
+            case .success:
+                guard let data = response.data else { return }
+                
+                guard let output = try? JSONDecoder().decode(AppleTokenResponse.self, from: data) else {
+                    print("Error: JSON Data Parsing failed")
+                    return
+                }
+                
+                completionHandler(output)
+            case .failure:
+                print("Get Apple Token Failed - \(response.error.debugDescription)")
+            }
+        }
+    }
+    
+    
+    func getClientSecret() -> String {
+        let privateKeyId = "JW4474FQ22"
+        let downloadsFolder = "/Users/pyohyeonsu/desktop/certification"
+        let privateKeyPath1 = URL(fileURLWithPath: "/Users/pyohyeonsu/Documents/iOS/iDC_Project_basic/iDC_Project_basic/AuthKey_JW4474FQ22.p8")
+        let privateKeyPath = URL(fileURLWithPath: "\(downloadsFolder)/AuthKey_\(privateKeyId).p8")
+        let privateKey: Data = try! Data(contentsOf: privateKeyPath1, options: .alwaysMapped)
+        let header = Header(kid: privateKeyId)
+        
+        struct MyClaims: Claims {
+            let iss: String
+            let iat: Date
+            let exp: Date
+            let aud: String
+            let sub: String
+        }
+        
+        let claims = MyClaims(iss: "MBUQ2HHA5U",
+                              iat: Date(),
+                              exp: Date(timeIntervalSinceNow: 3600),
+                              aud: "https://appleid.apple.com",
+                              sub: "com.hyeonsu.iDC-Project-basic" )
+        
+        var jwt = JWT(header: header, claims: claims)
+        let jwtSigner = JWTSigner.es256(privateKey: privateKey)
+        let signedJwt = try! jwt.sign(using: jwtSigner)
+        
+        print("get JWT Success\(signedJwt)")
+        UserDefaults.standard.set(signedJwt, forKey: "AppleClientSecret")
+        return signedJwt
+    }
+    
+    func Withdraw() {
+        if let clientSecret = UserDefaults.standard.string(forKey: "AppleClientSecret"),
+           let refreshToken = UserDefaults.standard.string(forKey: "AppleRefreshToken") {
+            
+            self.revokeAppleToken(clientSecret: clientSecret, token: refreshToken) {
+                print("Success Apple Withdraw")
+                UserDefaults.standard.set(nil, forKey: "AppleClientSecret")
+                UserDefaults.standard.set(nil, forKey: "AppleRefreshToken")
+            }
+        }
+    }
+}
+
+struct AppleTokenResponse: Codable {
+    let refreshToken: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case refreshToken = "refresh_token"
     }
 }

@@ -117,13 +117,13 @@ class MyPostViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alertVC = UIAlertController(title: "Delete Post", message: "Are you sure you want to delete the post?", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            alertVC.addAction(UIAlertAction(title: "OK", style: .destructive) { _ in
                 let documentID = self.postListViewModel.postAtIndex(indexPath.row).id
                 self.postListViewModel.deletePost(documentID: documentID)
                 self.loadData()
                 NotificationCenter.default.post(name: NSNotification.Name("deletePostNotification"), object: nil)
             })
-            alertVC.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             present(alertVC, animated: true, completion: nil)
         }
     }

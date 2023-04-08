@@ -117,14 +117,18 @@ class SettingViewController: UITableViewController {
             navigationController?.pushViewController(MyPostViewController(postListViewModel: PostListViewModel()), animated: true)
         }
         
-        //        if indexPath.section == settingViewModel.accountSettingSection {
-        //            if indexPath.row == 0 {
-        //                if let url = URL(string: "https://github.com/h-suo/TEST-UIKit/blob/main/Test%20UIKit.md") {
-        //                    UIApplication.shared.open(url, options: [:])
-        //                }
-        //            } else {
-        //
-        //            }
-        //        }
+        if indexPath.section == settingViewModel.accountSettingSection {
+            let alertVC = UIAlertController(title: "account withdrawal", message: "Are you sure you want to close your account?", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .destructive) { _ in
+                LoginViewModel().Withdraw()
+                let loginVC = LoginViewController()
+                loginVC.modalPresentationStyle = .fullScreen
+                self.present(loginVC, animated: true)
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(alertVC, animated: true, completion: nil)
+        }
+        
     }
+    
 }

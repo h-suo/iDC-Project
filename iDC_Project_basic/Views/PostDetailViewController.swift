@@ -71,7 +71,7 @@ class PostDetailViewController: UIViewController, UITextViewDelegate {
     
     let textFieldView: UIView = {
         let tfv = UIView()
-        tfv.backgroundColor = .quaternarySystemFill
+        tfv.backgroundColor = .systemBackground
         
         return tfv
     }()

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
                     switch credentialState {
                     case .authorized:
                         print("User ID is conneted")
-                        initialViewController = TabBarController() // or any other authorized view controller
+                        initialViewController = LoginViewController() // or any other authorized view controller
                     case .revoked, .notFound, .transferred:
                         print("User ID is not conneted or Can't found")
                         initialViewController = LoginViewController() // or any other login view controller
