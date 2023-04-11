@@ -235,7 +235,7 @@ extension LoginViewModel {
     
     func getPrivateKey() -> String {
         
-        guard let filePath = Bundle.main.path(forResource: "keyList", ofType: "plist") else {
+        guard let filePath = Bundle.main.path(forResource: "KeyList", ofType: "plist") else {
             fatalError("Can't found 'KeyList.plist'")
         }
         
