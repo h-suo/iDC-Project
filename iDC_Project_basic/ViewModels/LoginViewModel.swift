@@ -203,10 +203,11 @@ extension LoginViewModel {
     
     func getClientSecret() -> String {
         let privateKeyId = "JW4474FQ22"
-        let privateKeyPath = URL(fileURLWithPath: "/Users/pyohyeonsu/Documents/iOS/iDC_Project_basic/iDC_Project_basic/AuthKey_JW4474FQ22.p8")
-        let privateKey: Data = try! Data(contentsOf: privateKeyPath, options: .alwaysMapped)
-//        guard let privateKeyData =
-//        let privateKey1: Data = Data(privateKeyData.utf8)
+//        let privateKeyPath = URL(fileURLWithPath: "/Users/pyohyeonsu/Documents/iOS/iDC_Project_basic/iDC_Project_basic/AuthKey_JW4474FQ22.p8")
+//        let privateKey: Data = try! Data(contentsOf: privateKeyPath, options: .alwaysMapped)
+        
+        let privateKeyData = self.getPrivateKey()
+        let privateKey: Data = Data(privateKeyData.utf8)
         let header = Header(kid: privateKeyId)
         
         struct MyClaims: Claims {
@@ -230,6 +231,21 @@ extension LoginViewModel {
         print("get JWT Success\(signedJwt)")
         UserDefaults.standard.set(signedJwt, forKey: "AppleClientSecret")
         return signedJwt
+    }
+    
+    func getPrivateKey() -> String {
+        
+        guard let filePath = Bundle.main.path(forResource: "keyList", ofType: "plist") else {
+            fatalError("Can't found 'KeyList.plist'")
+        }
+        
+        let plist = NSDictionary(contentsOfFile: filePath)
+        
+        guard let value = plist?.object(forKey: "AUTH_KEY") as? String else {
+            fatalError("Can't found 'AUTH_KEY' in 'KeyList.plist'")
+        }
+        
+        return value
     }
     
     func Withdraw() {

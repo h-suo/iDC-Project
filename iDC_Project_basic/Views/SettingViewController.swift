@@ -128,7 +128,6 @@ class SettingViewController: UITableViewController {
             alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             present(alertVC, animated: true, completion: nil)
         }
-        
     }
     
 }
