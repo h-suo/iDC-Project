@@ -53,7 +53,7 @@ class LoginViewController: UIViewController, ASAuthorizationControllerPresentati
     }()
     
     let authorizationButton: ASAuthorizationAppleIDButton = {
-        let ab = ASAuthorizationAppleIDButton(authorizationButtonType: .default, authorizationButtonStyle: .white)
+        let ab = ASAuthorizationAppleIDButton(authorizationButtonType: .default, authorizationButtonStyle: .whiteOutline)
         ab.cornerRadius = 4
         
         return ab
