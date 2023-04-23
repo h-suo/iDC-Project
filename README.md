@@ -31,7 +31,8 @@
     
   }
   ```
-  - FirebaseDB에 접근하는 코드는 모두 FirebaseDB 코드를 만들어 따로 관리하였고, 게시물을 가져오고 처리하는 일은 ViewModel이 처리하도록 만들었습니다. ViewController는 View와 관련된 코드만 있도록 정리하였습니다.
+  
+- FirebaseDB에 접근하는 코드는 모두 FirebaseDB 코드를 만들어 따로 관리하였고, 게시물을 가져오고 처리하는 일은 ViewModel이 처리하도록 만들었습니다. ViewController는 View와 관련된 코드만 있도록 정리하였습니다.
   ```swift
   class PostListViewModel {
     
@@ -70,6 +71,7 @@
     }
   }
   ```
+  
 - 게시글의 Model을 만들어 데이터를 관리하기 편하게 하였고, FirebaseDB에서 데이터를 가져올 때 딕셔너리로 가져오는 것을 토대로 초기화할 수 있도록 코드를 작성하였습니다.
   ```swift
   struct PostForm {
@@ -96,4 +98,34 @@
     }
   }
   ```
-- Apple 로그인 기능으로 앱을 처음 시작할 때 로그인 할 수 있도록 하였고, 로그인 정보 중 사용자 ID만 저장하여 게시글을 작성할 때 누가 작성한 것인지 알 수 있도록 Model값에 userIdentifier를 추가하여 관리하였습니다.
+- Apple 로그인 기능으로 앱을 처음 시작할 때 로그인 할 수 있도록 하였습니다.
+Apple 문서: https://developer.apple.com/documentation/sign_in_with_apple/implementing_user_authentication_with_sign_in_with_apple
+
+- 사용자 관리를 위해 Apple 로그인을 할 때 Firebase도 sign in 할 수 있도로 설정하였고 Firebase에 로그인 될 때 사용되는 UID를 키체인으로 저장하여 사용자가 작성하는 게시물에 UID 항목을 추가하여 사용자가 본인이 쓴 게시물을 관리하 수 있도로 하였습니다.
+  ```swift
+  // LoginViewModel
+  // Firebase sign in
+  FirebaseAuth.Auth.auth().signIn(with: credential) { (authResult, error) in
+                
+      if let user = authResult?.user {
+          // UID 키체인으로 저장
+          KeychainWrapper.standard.set(user.uid, forKey: "UID")
+          print("Login Success: ", user.uid, user.email ?? "-")
+          self.onLoginSuccess?()
+      } else if let error = error {
+          print(error.localizedDescription)
+          return
+      }
+  }
+  ```
+  
+  ```swift
+  // PostViewModel
+  func writePost(title: String, description: String, time: String) {
+      // 키체인으로 저장한 UID를 가져와 게시글 작성
+      let UID = KeychainWrapper.standard.string(forKey: "UID")!
+      let newWritePost: WritePostForm = WritePostForm(UID: UID, title: title, description: description, comment: [], time: time)
+      firebase.writePost(newWritePost)
+  }
+  ```
+  
